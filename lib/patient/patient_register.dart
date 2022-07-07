@@ -240,58 +240,102 @@ class _patient_registerState extends State<patient_register> {
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
+                              Divider(
+                                color: Color(0xff3E1E96),
+                                indent: size.width * 0.05,
+                                endIndent: size.width * 0.05,
+                                height: 1,
+                                thickness: 2,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
+                              TextButton(
+                                  onPressed: () async {
+                                      setState(() {
+                                        _isProcessing = true;
+                                      });
+                                      if (_registerFormKey.currentState!
+                                          .validate()) {
+                                        User? user = (await AuthProvider
+                                            .registerUsingEmailPassword(
+                                          name: _nameTextController.text,
+                                          email: _emailTextController.text,
+                                          password:
+                                              _passwordTextController.text,
+                                        ));
 
-                              
-                          //                        _isProcessing
-                          // ? CircularProgressIndicator()
-                          // : Row(
-                          //     children: [
-                          //       Expanded(
-                          //         child: ElevatedButton(
-                          //           onPressed: () async {
-                          //             setState(() {
-                          //               _isProcessing = true;
-                          //             });
+                                        setState(() {
+                                          _isProcessing = false;
+                                        });
 
-                          //             if (_registerFormKey.currentState!
-                          //                 .validate()) {
-                          //               User? user = await AuthProvider
-                          //                   .registerUsingEmailPassword(
-                          //                 name: _nameTextController.text,
-                          //                 email: _emailTextController.text,
-                          //                 password:
-                          //                     _passwordTextController.text,
-                          //               );
-
-                          //               setState(() {
-                          //                 _isProcessing = false;
-                          //               });
-
-                          //               if (user != null) {
-                          //                 Navigator.of(context)
-                          //                     .pushAndRemoveUntil(
-                          //                   MaterialPageRoute(
-                          //                     builder: (context) =>
-                          //                         ProfilePage(user: user),
-                          //                   ),
-                          //                   ModalRoute.withName('/'),
-                          //                 );
-                          //               }
-                          //             }
-                          //           },
-                          //           child: Text(
-                          //             'Sign up',
-                          //             style: TextStyle(color: Colors.white),
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ],
+                                        if (user != null) {
+                                          Get.to(() => patient_home());
+                                        }
+                                      }
+                                    },
+                                      
+                                     
+                                  
+                                  style: TextButton.styleFrom(
+                                    minimumSize: Size(
+                                        size.width * 0.8, size.height * 0.06),
+                                   
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25),
+                                      bottomRight: Radius.circular(25),
+                                    )),
+                                    backgroundColor: secondaryColor,
+                                  ),
+                                  child: CustomText(
+                                      text: 'REGISTER',
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'DMSans',
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 14))),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                    text: "Already have an account?",
+                                    textStyle:
+                                        TextStyle(color: Color(0xff6D6487),
+                                        fontFamily: 'DMSans',
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  // SizedBox(
+                                  //   width: size.width * 0.001,
+                                  // ),
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                        // Spadding: EdgeInsets.all(0),
+                                        // minimumSize: Size(1, 1)
+                                        ),
+                                    onPressed: () {
+                                      Get.to(() => PatientLogin());
+                                    },
+                                    child: CustomText(
+                                      text: "Login",
+                                      textStyle: TextStyle(
+                                          color: Color(0xff4CD2CF),
+                                          decoration: TextDecoration.underline),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
                              
-                          //       )        
-                          ]    
-                        
+                            ]),
                       ),
-                    ))
+                    )
                   ],
                 ),
               ]),
