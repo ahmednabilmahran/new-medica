@@ -62,9 +62,9 @@ class MyApp extends StatelessWidget {
                 firebaseStorage: firebaseStorage,
                 firebaseFirestore: firebaseFirestore))
       ],
-      child: const GetMaterialApp(
+      child:  GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SplashPage(),
+        home: patient_getstarted(),
       ),
     );
   }
