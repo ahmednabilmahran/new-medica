@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/patient/patient_getstarted.dart';
+import 'package:medica/screens/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medica/firebase_options.dart';
@@ -61,9 +62,9 @@ class MyApp extends StatelessWidget {
                 firebaseStorage: firebaseStorage,
                 firebaseFirestore: firebaseFirestore))
       ],
-      child: GetMaterialApp(
+      child: const GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: patient_getstarted(),
+        home: SplashPage(),
       ),
     );
   }

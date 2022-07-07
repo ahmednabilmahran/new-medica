@@ -63,7 +63,6 @@ class AuthViewModel extends GetxController {
   }
 
   void signInWithEmailAndPassword() async {
-        get_name = "...";
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
        FirebaseFirestore.instance

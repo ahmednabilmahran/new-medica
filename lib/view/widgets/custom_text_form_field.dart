@@ -7,6 +7,8 @@ import 'package:flutter/painting.dart';
 import 'custom_text.dart';
 
 class CustomTextFromField extends StatelessWidget {
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
   final String text;
   final int fontSize;
   final Color color;
@@ -22,7 +24,9 @@ class CustomTextFromField extends StatelessWidget {
     required this.color,
     required this.hint,
     this.icon_name,
-    required this.onSave,
+    this.controller,
+    this.focusNode,
+    this.onSave,
     required this.validator,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
