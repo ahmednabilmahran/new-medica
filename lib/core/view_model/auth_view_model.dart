@@ -67,7 +67,7 @@ class AuthViewModel extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
        FirebaseFirestore.instance
-          .collection('Users')
+          .collection('users')
           .doc((await FirebaseAuth.instance.currentUser)?.uid)
           .get()
           .then((ds) {
@@ -95,10 +95,10 @@ class AuthViewModel extends GetxController {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((_user) {
         FirebaseFirestore.instance
-            .collection('Users')
+            .collection('users')
             .doc(_user.user!.uid)
             .set({
-          'uid': _user.user?.uid,
+          'id': _user.user?.uid,
           'email': email,
           'password': password,
           'name': name

@@ -7,7 +7,6 @@ import 'package:medica/patient/patient_register.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
-import 'package:medica/view/widgets/custom_text_button.dart';
 import 'package:medica/view/widgets/slider_para.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:carousel_slider/carousel_slider.dart';

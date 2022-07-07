@@ -282,9 +282,7 @@ class patient_register extends GetWidget<AuthViewModel> {
                                   onPressed: () {
                                     _formKey.currentState?.save();
                                     if (_formKey.currentState!.validate()) {
-                                      controller
-                                          .createAccountWithEmailAndPassword();
-
+                                      controller.createAccountWithEmailAndPassword();
                                       print("Successful");
                                     } else {
                                       print("Unsuccessful");

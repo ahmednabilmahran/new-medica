@@ -14,8 +14,7 @@ import 'package:medica/providers/auth_provider.dart';
 import 'package:medica/providers/chat_provider.dart';
 import 'package:medica/providers/home_provider.dart';
 import 'package:medica/providers/profile_provider.dart';
-import 'package:medica/screens/splash_page.dart';
-import 'package:medica/utilities/theme.dart';
+import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
                 firebaseStorage: firebaseStorage,
                 firebaseFirestore: firebaseFirestore))
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: patient_getstarted(),
       ),

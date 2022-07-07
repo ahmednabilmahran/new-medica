@@ -79,8 +79,19 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
     - assets/icons/
+    - assets/images/
+    - assets/images/png/
+    - assets/images/0.75x/
+    - assets/images/1.5x/
+    - assets/images/1x/
+    - assets/images/2x/
+    - assets/images/3x/
+    - assets/images/4x/
+    - assets/images/depts/
+    - assets/images/socialmedia/
+    - assets/images/logo.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
