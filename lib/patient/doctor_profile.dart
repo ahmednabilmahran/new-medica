@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 
-class DoctorProfile extends StatelessWidget {
+class DoctorProfile extends StatefulWidget {
   const DoctorProfile({Key? key}) : super(key: key);
 
   @override
+  State<DoctorProfile> createState() => _DoctorProfileState();
+}
+
+class _DoctorProfileState extends State<DoctorProfile> {
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    //  _selectedValue;
 
     return Scaffold(
       body: Column(
@@ -38,7 +45,7 @@ class DoctorProfile extends StatelessWidget {
                       // padding:
                       //     EdgeInsets.symmetric(horizontal: size.width * 0.05),
                       width: double.infinity,
-                      height: size.height * 0.68,
+                      height: size.height * 0.7,
                       decoration: BoxDecoration(
                         color: whitegrayish,
                         borderRadius: BorderRadius.only(
@@ -163,7 +170,7 @@ class DoctorProfile extends StatelessWidget {
                             ),
                             padding: EdgeInsets.symmetric(
                                 horizontal: size.width * 0.055,
-                                vertical: size.height * 0.02),
+                                vertical: size.height * 0.015),
                             // height: size.height * 0.2,
                             decoration: BoxDecoration(
                               borderRadius:
@@ -279,7 +286,80 @@ class DoctorProfile extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          )
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                              top: size.height * 0.015,
+                              left: size.width * 0.08,
+                              right: size.width * 0.08,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    CustomText(
+                                      text: 'Schedule',
+                                      textStyle: TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    top: size.height * 0.015,
+                                    left: size.width * 0.02,
+                                    right: size.width * 0.02,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      DatePicker(
+                                        DateTime.now(),
+                                        initialSelectedDate: DateTime.now(),
+                                        daysCount: 60,
+                                        selectionColor: secondaryColor,
+                                        selectedTextColor: Colors.white,
+                                        deactivatedColor: Colors.white,
+                                        dayTextStyle: TextStyle(
+                                          color: Color(0xffFF8F6A),
+                                        ),
+                                        onDateChange: (date) {
+                                          // New date selected
+                                          setState(() {
+                                            // _selectedValue = date;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.only(
+                              top: size.height * 0.015,
+                              left: size.width * 0.08,
+                              right: size.width * 0.08,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  text: 'Visiting Hours',
+                                  textStyle: TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     )

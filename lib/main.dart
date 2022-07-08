@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                 firebaseStorage: firebaseStorage,
                 firebaseFirestore: firebaseFirestore))
       ],
-      child:  GetMaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: DoctorProfile(),
       ),
