@@ -73,76 +73,76 @@ class _patient_findState extends State<patient_find> {
       false,
       false,
     ];
-    List doctorCat = [
-      docCat(
-        catName: 'Cardio',
-        numOfDoctors: 25,
-        onPressed: () {
-          setState(() {
-            for (var i = 0; i < doctorCatbool.length; i++) {
-              if (i == 0) {
-                doctorCatbool[i] = true;
-              } else {
-                doctorCatbool[i] = false;
-              }
-            }
-          });
-        },
-        isActiv: doctorCatbool[0],
-      ),
-      docCat(
-        catName: 'Biochem',
-        numOfDoctors: 12,
-        onPressed: () {
-          setState(() {
-            for (var i = 0; i < doctorCatbool.length; i++) {
-              if (i == 1) {
-                doctorCatbool[i] = true;
-              } else {
-                doctorCatbool[i] = false;
-              }
-            }
-          });
-        },
-        isActiv: doctorCatbool[1],
-        // isActiv: true,
-      ),
-      docCat(
-        catName: 'Research',
-        numOfDoctors: 45,
-        onPressed: () {},
-        isActiv: doctorCatbool[2],
-        // isActiv: true,
-      ),
-      docCat(
-        catName: 'Neurology',
-        numOfDoctors: 25,
-        onPressed: () {},
-        isActiv: doctorCatbool[3],
-        // isActiv: true,
-      ),
-      docCat(
-        catName: 'General',
-        numOfDoctors: 25,
-        onPressed: () {},
-        isActiv: doctorCatbool[4],
-        // isActiv: true,
-      ),
-      docCat(
-        catName: 'General',
-        numOfDoctors: 25,
-        onPressed: () {},
-        isActiv: doctorCatbool[5],
-        // isActiv: true,
-      ),
-      docCat(
-        catName: 'General',
-        numOfDoctors: 25,
-        onPressed: () {},
-        isActiv: doctorCatbool[6],
-        // isActiv: true,
-      ),
-    ];
+    // List doctorCat = [
+    //   docCat(
+    //     catName: 'Cardio',
+    //     numOfDoctors: 25,
+    //     onPressed: () {
+    //       setState(() {
+    //         for (var i = 0; i < doctorCatbool.length; i++) {
+    //           if (i == 0) {
+    //             doctorCatbool[i] = true;
+    //           } else {
+    //             doctorCatbool[i] = false;
+    //           }
+    //         }
+    //       });
+    //     },
+    //     isActiv: doctorCatbool[0],
+    //   ),
+    //   docCat(
+    //     catName: 'Biochem',
+    //     numOfDoctors: 12,
+    //     onPressed: () {
+    //       setState(() {
+    //         for (var i = 0; i < doctorCatbool.length; i++) {
+    //           if (i == 1) {
+    //             doctorCatbool[i] = true;
+    //           } else {
+    //             doctorCatbool[i] = false;
+    //           }
+    //         }
+    //       });
+    //     },
+    //     isActiv: doctorCatbool[1],
+    //     // isActiv: true,
+    //   ),
+    //   docCat(
+    //     catName: 'Research',
+    //     numOfDoctors: 45,
+    //     onPressed: () {},
+    //     isActiv: doctorCatbool[2],
+    //     // isActiv: true,
+    //   ),
+    //   docCat(
+    //     catName: 'Neurology',
+    //     numOfDoctors: 25,
+    //     onPressed: () {},
+    //     isActiv: doctorCatbool[3],
+    //     // isActiv: true,
+    //   ),
+    //   docCat(
+    //     catName: 'General',
+    //     numOfDoctors: 25,
+    //     onPressed: () {},
+    //     isActiv: doctorCatbool[4],
+    //     // isActiv: true,
+    //   ),
+    //   docCat(
+    //     catName: 'General',
+    //     numOfDoctors: 25,
+    //     onPressed: () {},
+    //     isActiv: doctorCatbool[5],
+    //     // isActiv: true,
+    //   ),
+    //   docCat(
+    //     catName: 'General',
+    //     numOfDoctors: 25,
+    //     onPressed: () {},
+    //     isActiv: doctorCatbool[6],
+    //     // isActiv: true,
+    //   ),
+    // ];
     setState(() {});
     final Size size = MediaQuery.of(context).size;
     return WillPopScope(
@@ -259,23 +259,7 @@ class _patient_findState extends State<patient_find> {
                         top: size.height * 0.02,
                       ),
                       // margin: EdgeInsets.only(right: size.width * 0.02),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        // reverse: true,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.start,
-
-                          children: [
-                            doctorCat[0],
-                            doctorCat[1],
-                            doctorCat[2],
-                            doctorCat[3],
-                            doctorCat[4],
-                            doctorCat[5],
-                            doctorCat[6],
-                          ],
-                        ),
-                      ),
+                      child: docCat(),
                     ),
                     SizedBox(
                       height: size.height * 0.01,
