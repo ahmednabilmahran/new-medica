@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_getstarted.dart';
+import 'package:medica/screens/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medica/firebase_options.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
                 firebaseStorage: firebaseStorage,
                 firebaseFirestore: firebaseFirestore))
       ],
-      child: GetMaterialApp(
+      child:  GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: DoctorProfile(),
       ),
