@@ -64,15 +64,7 @@ class _patient_findState extends State<patient_find> {
   // final numbers = List.generate(100, (index) => '$index');
   @override
   Widget build(BuildContext context) {
-    List<bool> doctorCatbool = [
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ];
+
     // List doctorCat = [
     //   docCat(
     //     catName: 'Cardio',

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:medica/view/widgets/constance.dart';
 
-import 'constance.dart';
-import 'custom_text.dart';
+import '../view/widgets/custom_text.dart';
 
-class docCat extends StatefulWidget {
+class appTime extends StatefulWidget {
   // String catName;
   // int numOfDoctors;
   // bool isActiv;
   // Function onPressed;
-  // docCat({
+  // appTime({
   //   Key? key,
   //   required this.catName,
   //   required this.numOfDoctors,
@@ -21,21 +21,27 @@ class docCat extends StatefulWidget {
   // }
 
   @override
-  State<docCat> createState() => _docCatState();
+  State<appTime> createState() => _appTimeState();
 }
 
-class _docCatState extends State<docCat> {
+class _appTimeState extends State<appTime> {
   int selectedIndex = 0;
   final List<String> categories = [
-    "General",
-    "Dental",
-    "Cardio",
-    "Neurology",
-    "Neurology",
-    "Neurology",
-    "Neurology",
+    "8:00AM",
+    "9:00AM",
+    "10:00AM",
+    "11:00AM",
+    "12:00PM",
+    "1:00PM",
+    "2:00PM",
+    "3:00PM",
+    "4:00PM",
+    "5:00PM",
+    "6:00PM",
+    "7:00PM",
+    "8:00PM",
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -67,7 +73,7 @@ class _docCatState extends State<docCat> {
               child: TextButton(
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(14))),
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
                     backgroundColor: index == selectedIndex
                         ? selectedbgColor
                         : unSelectedbgColor,
