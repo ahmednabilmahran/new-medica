@@ -74,9 +74,13 @@ class MyApp extends StatelessWidget {
                 firebaseFirestore: firebaseFirestore))
       ],
       
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: isUserLoggedIn ? patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String) : patient_getstarted() ,
+      child: Builder(
+        builder: (context) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: isUserLoggedIn ? patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String) : patient_getstarted() ,
+          );
+        }
       ),
     );
   }

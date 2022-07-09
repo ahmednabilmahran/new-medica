@@ -100,6 +100,7 @@ class AuthProvider extends ChangeNotifier {
           await prefs.setString(
               FirestoreConstants.phoneNumber, userChat.phoneNumber);
         }
+        Get.to(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
         _status = Status.authenticated;
         notifyListeners();
         return true;
@@ -113,6 +114,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+    
   }
 
   Future<void> googleSignOut() async {
@@ -161,6 +163,7 @@ class AuthProvider extends ChangeNotifier {
               FirestoreConstants.phoneNumber, currentUser.phoneNumber ?? "");
               print(prefs.getString(FirestoreConstants.id));
               print(prefs.getString(FirestoreConstants.displayName));
+              
       Get.offAll(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

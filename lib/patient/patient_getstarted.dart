@@ -97,7 +97,7 @@ class patient_getstarted extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            // Get.to(() => PatientLogin());
+                            Get.to(() => PatientLogin());
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.symmetric(

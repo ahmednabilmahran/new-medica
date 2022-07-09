@@ -1,27 +1,18 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_const_literals_to_create_immutables, unused_local_variable, use_key_in_widget_constructors, camel_case_types, must_be_immutable, unnecessary_new, prefer_typing_uninitialized_variables, library_private_types_in_public_api, prefer_final_fields, use_build_context_synchronously
 
-import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:medica/controllers/profileController.dart';
-import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/providers/auth_provider.dart';
 import 'package:medica/providers/validation_provider.dart';
-import 'package:medica/screens/profile_page.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
-import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/my_flutter_app_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:medica/providers/auth_provider.dart';
 
 class patient_register extends StatefulWidget {
   @override
@@ -168,171 +159,163 @@ class _patient_registerState extends State<patient_register> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: size.width * 0.035,
+                              Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.035,
+                                      ),
+                                      CustomText(
+                                        text: 'Username',
+                                        textStyle: TextStyle(
+                                          fontFamily: 'DMSans',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: primaryColor,
                                         ),
-                                        CustomText(
-                                          text: 'Username',
-                                          textStyle: TextStyle(
+                                      ),
+                                    ],
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: 'Username',
+                                        prefixIcon: Icon(
+                                          MyFlutterApp.person,
+                                          size: 25,
+                                          color: Color(0xffF95DDE),
+                                        ),
+                                        hintStyle: TextStyle(
+                                            color: Color(0xff6D6487),
+                                            fontSize: 15,
                                             fontFamily: 'DMSans',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: primaryColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: 'Username',
-                                          prefixIcon: Icon(
-                                            MyFlutterApp.person,
-                                            size: 25,
-                                            color: Color(0xffF95DDE),
-                                          ),
-                                          hintStyle: TextStyle(
-                                              color: Color(0xff6D6487),
-                                              fontSize: 15,
-                                              fontFamily: 'DMSans',
-                                              fontWeight: FontWeight.normal),
-                                          fillColor: Colors.white,
-                                          border: InputBorder.none),
-                                      controller: _nameTextController,
-                                      focusNode: _focusName,
-                                      validator: (value) => validation_provider
-                                          .validateName(name: value!),
-                                    ),
-                                    Divider(
-                                      color: Color(0xff3E1E96),
-                                      indent: size.width * 0.05,
-                                      endIndent: size.width * 0.05,
-                                      height: 1,
-                                      thickness: 2,
-                                    ),
-                                  ],
-                                ),
+                                            fontWeight: FontWeight.normal),
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none),
+                                    controller: _nameTextController,
+                                    focusNode: _focusName,
+                                    validator: (value) => validation_provider
+                                        .validateName(name: value!),
+                                  ),
+                                  Divider(
+                                    color: Color(0xff3E1E96),
+                                    indent: size.width * 0.05,
+                                    endIndent: size.width * 0.05,
+                                    height: 1,
+                                    thickness: 2,
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              Container(
-                                // padding: EdgeInsets.symmetric(
-                                //     horizontal: size.width * 0.08),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: size.width * 0.035,
-                                        ),
-                                        CustomText(
-                                          text: 'Email',
-                                          textStyle: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: primaryColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: 'Email',
-                                          prefixIcon: Icon(
-                                            MyFlutterApp.mail,
-                                            size: 12,
-                                            color: Color(0xffF95DDE),
-                                          ),
-                                          hintStyle: TextStyle(
-                                              color: Color(0xff6D6487),
-                                              fontSize: 15,
-                                              fontFamily: 'DMSans',
-                                              fontWeight: FontWeight.normal),
-                                          fillColor: Colors.white,
-                                          border: InputBorder.none),
-                                      controller: _emailTextController,
-                                      focusNode: _focusEmail,
-                                      validator: (value) =>
-                                          validation_provider.validateEmail(
-                                        email: value!,
+                              Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.035,
                                       ),
+                                      CustomText(
+                                        text: 'Email',
+                                        textStyle: TextStyle(
+                                          fontFamily: 'DMSans',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: 'Email',
+                                        prefixIcon: Icon(
+                                          MyFlutterApp.mail,
+                                          size: 12,
+                                          color: Color(0xffF95DDE),
+                                        ),
+                                        hintStyle: TextStyle(
+                                            color: Color(0xff6D6487),
+                                            fontSize: 15,
+                                            fontFamily: 'DMSans',
+                                            fontWeight: FontWeight.normal),
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none),
+                                    controller: _emailTextController,
+                                    focusNode: _focusEmail,
+                                    validator: (value) =>
+                                        validation_provider.validateEmail(
+                                      email: value!,
                                     ),
-                                    Divider(
-                                      color: Color(0xff3E1E96),
-                                      indent: size.width * 0.05,
-                                      endIndent: size.width * 0.05,
-                                      height: 1,
-                                      thickness: 2,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  Divider(
+                                    color: Color(0xff3E1E96),
+                                    indent: size.width * 0.05,
+                                    endIndent: size.width * 0.05,
+                                    height: 1,
+                                    thickness: 2,
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: size.width * 0.035,
-                                        ),
-                                        CustomText(
-                                          text: 'Password',
-                                          textStyle: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: primaryColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: 'password',
-                                          prefixIcon: Icon(
-                                            MyFlutterApp.lock,
-                                            size: 20,
-                                            color: Color(0xffF95DDE),
-                                          ),
-                                          hintStyle: TextStyle(
-                                              color: Color(0xff6D6487),
-                                              fontSize: 15,
-                                              fontFamily: 'DMSans',
-                                              fontWeight: FontWeight.normal),
-                                          fillColor: Colors.white,
-                                          border: InputBorder.none),
-                                      controller: _passwordTextController,
-                                      focusNode: _focusPassword,
-                                      obscureText: true,
-                                      validator: (value) =>
-                                          validation_provider.validatePassword(
-                                        password: value!,
+                              Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.035,
                                       ),
+                                      CustomText(
+                                        text: 'Password',
+                                        textStyle: TextStyle(
+                                          fontFamily: 'DMSans',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: 'password',
+                                        prefixIcon: Icon(
+                                          MyFlutterApp.lock,
+                                          size: 20,
+                                          color: Color(0xffF95DDE),
+                                        ),
+                                        hintStyle: TextStyle(
+                                            color: Color(0xff6D6487),
+                                            fontSize: 15,
+                                            fontFamily: 'DMSans',
+                                            fontWeight: FontWeight.normal),
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none),
+                                    controller: _passwordTextController,
+                                    focusNode: _focusPassword,
+                                    obscureText: true,
+                                    validator: (value) =>
+                                        validation_provider.validatePassword(
+                                      password: value!,
                                     ),
-                                    Divider(
-                                      color: Color(0xff3E1E96),
-                                      indent: size.width * 0.05,
-                                      endIndent: size.width * 0.05,
-                                      height: 1,
-                                      thickness: 2,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  Divider(
+                                    color: Color(0xff3E1E96),
+                                    indent: size.width * 0.05,
+                                    endIndent: size.width * 0.05,
+                                    height: 1,
+                                    thickness: 2,
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: size.height * 0.03,
@@ -458,7 +441,7 @@ class _patient_registerState extends State<patient_register> {
                                         // minimumSize: Size(1, 1)
                                         ),
                                     onPressed: () {
-                                      // Get.to(() => PatientLogin());
+                                      Get.to(() => PatientLogin());
                                     },
                                     child: CustomText(
                                       text: "Login",

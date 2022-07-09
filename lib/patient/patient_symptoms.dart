@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
@@ -19,8 +20,19 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class patient_symptoms extends StatelessWidget {
+  patient_symptoms() : _name = "DEFAULT";
+
+  patient_symptoms.withuser(this._name);
+    String _name;
+
+  String get name => _name;
+
+  set name(String name) {
+    _name = name;
+  }
   List symptoms = [
     symptomCard(
       primary: 'Wear Mask Compulsory',
@@ -42,6 +54,9 @@ class patient_symptoms extends StatelessWidget {
         primary: 'Check Temperature',
         secondary: 'The point of using Lor Ipsum normal of letters...'),
   ];
+  
+
+
 
   // final numbers = List.generate(100, (index) => '$index');
 
