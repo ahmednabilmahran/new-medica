@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
         builder: (context) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            home: isUserLoggedIn ? patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String) : patient_getstarted() ,
+            home: DoctorProfile() ,
           );
         }
       ),
