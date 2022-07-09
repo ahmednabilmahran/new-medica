@@ -46,6 +46,8 @@ class _patient_registerState extends State<patient_register> {
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     final Size size = MediaQuery.of(context).size;
+    final authProvider = Provider.of<AuthProvider>(context);
+
 
     // switch (authProvider.status) {
     //   case Status.authenticateError:
@@ -170,108 +172,61 @@ class _patient_registerState extends State<patient_register> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              CustomTextFromField(
+                              TextFormField(
                                   controller: _nameTextController,
                                   focusNode: _focusName,
-                                  text: '\t\t\tUsername',
-                                  fontSize: 18,
-                                  color: Color(0xff300C92),
-                                  hint: 'Your username',
-                                  icon_name: Icon(
-                                    MyFlutterApp.person,
-                                    size: 25,
-                                    color: Color(0xffF95DDE),
-                                  ),
-                                  
-                                  validator: (value) => validation_provider.validateName(
-                          name: value!,
-                        ),),
-                              Divider(
-                                color: Color(0xff3E1E96),
-                                indent: size.width * 0.05,
-                                endIndent: size.width * 0.05,
-                                height: 1,
-                                thickness: 2,
-                              ),
+                                  validator:
+                                  (value) => validation_provider
+                                  .validateName(name: value!),),
+                              
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              CustomTextFromField(
+                              TextFormField(
                                   controller: _emailTextController,
                                   focusNode: _focusEmail,
-                                  text: '\t\t\tEmail',
-                                  fontSize: 20,
-                                  color: Color(0xff300C92),
-                                  hint: 'Your email',
-                                  icon_name: Icon(
-                                    MyFlutterApp.mail,
-                                    size: 12,
-                                    color: Color(0xffF95DDE),
-                                  ),
+                                  
                         validator: (value) => validation_provider.validateEmail(
                           email: value!,
                         ),),
-                              Divider(
-                                color: Color(0xff3E1E96),
-                                indent: size.width * 0.05,
-                                endIndent: size.width * 0.05,
-                                height: 1,
-                                thickness: 2,
-                              ),
+                              
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              CustomTextFromField(
+                              TextFormField(
                                   controller: _passwordTextController,
                                   focusNode: _focusPassword,
                                   obscureText: true,
-                                  text: '\t\t\tPassword',
-                                  fontSize: 18,
-                                  color: Color(0xff300C92),
-                                  hint: 'Password',
-                                  icon_name: Icon(
-                                    MyFlutterApp.lock,
-                                    size: 20,
-                                    color: Color(0xffF95DDE),
-                                  ),
+                                  
                         validator: (value) => validation_provider.validatePassword(
                           password: value!,
                         ),),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              Divider(
-                                color: Color(0xff3E1E96),
-                                indent: size.width * 0.05,
-                                endIndent: size.width * 0.05,
-                                height: 1,
-                                thickness: 2,
-                              ),
+                              
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
                               TextButton(
                                   onPressed: () async {
+                                    print(_nameTextController);
+                                    print(_nameTextController.value);
+                                    print(_nameTextController.text);
                                       setState(() {
                                         _isProcessing = true;
                                       });
                                       if (_registerFormKey.currentState!
                                           .validate()) {
-                                        User? user = (await AuthProvider
-                                            .registerUsingEmailPassword(
+                                        authProvider.registerUsingEmailPassword(
                                           name: _nameTextController.text,
                                           email: _emailTextController.text,
-                                          password:
-                                              _passwordTextController.text,
-                                        ));
+                                          password: _passwordTextController.text,
+                                        );
 
                                         setState(() {
                                           _isProcessing = false;
                                         });
-
-                                        if (user != null) {
-                                          Get.to(() => patient_home());
-                                        }
                                       }
                                     },
                                       
@@ -318,7 +273,7 @@ class _patient_registerState extends State<patient_register> {
                                         // minimumSize: Size(1, 1)
                                         ),
                                     onPressed: () {
-                                      Get.to(() => PatientLogin());
+                                      // Get.to(() => PatientLogin());
                                     },
                                     child: CustomText(
                                       text: "Login",

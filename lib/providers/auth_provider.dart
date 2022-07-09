@@ -3,10 +3,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:medica/allConstants/firestore_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/models/chat_user.dart';
+import 'package:medica/patient/patient_home.dart';
 
 enum Status {
   uninitialized,
@@ -119,16 +122,15 @@ class AuthProvider extends ChangeNotifier {
     await googleSignIn.signOut();
   }
 
-    static Future<User?> registerUsingEmailPassword({
+    Future<User?> registerUsingEmailPassword({
     required String name,
     required String email,
     required String password,
   }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
 
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -136,7 +138,30 @@ class AuthProvider extends ChangeNotifier {
       user = userCredential.user;
       await user!.updateProfile(displayName: name);
       await user.reload();
-      user = auth.currentUser;
+      user = firebaseAuth.currentUser;
+        firebaseFirestore
+            .collection(FirestoreConstants.pathUserCollection)
+            .doc(user!.uid)
+            .set({
+          FirestoreConstants.id: user.uid,
+          FirestoreConstants.email: user.email,
+          FirestoreConstants.pass: password,
+          FirestoreConstants.displayName: user.displayName,
+          "createdAt: ": DateTime.now().millisecondsSinceEpoch.toString(),
+          FirestoreConstants.chattingWith: null
+
+        });
+          User? currentUser = user;
+          await prefs.setString(FirestoreConstants.id, currentUser.uid);
+          await prefs.setString(
+              FirestoreConstants.displayName, currentUser.displayName ?? "");
+          await prefs.setString(
+              FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
+          await prefs.setString(
+              FirestoreConstants.phoneNumber, currentUser.phoneNumber ?? "");
+              print(prefs.getString(FirestoreConstants.id));
+              print(prefs.getString(FirestoreConstants.displayName));
+      Get.offAll(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -150,7 +175,7 @@ class AuthProvider extends ChangeNotifier {
     return user;
   }
 
-  static Future<User?> signInUsingEmailPassword({
+  Future<User?> signInUsingEmailPassword({
   required String email,
   required String password,
   required BuildContext context,
@@ -164,6 +189,18 @@ class AuthProvider extends ChangeNotifier {
       password: password,
     );
     user = userCredential.user;
+          User? currentUser = user;
+          await prefs.setString(FirestoreConstants.id, currentUser!.uid);
+          await prefs.setString(
+          FirestoreConstants.displayName, currentUser.displayName ?? "");
+          await prefs.setString(
+          FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
+          await prefs.setString(
+          FirestoreConstants.phoneNumber, currentUser.phoneNumber ?? "");
+          print(prefs.getString(FirestoreConstants.id));
+          print(prefs.getString(FirestoreConstants.displayName));
+          Get.offAll(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
+    
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       print('No user found for that email.');
