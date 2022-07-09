@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'constance.dart';
-import 'custom_text.dart';
+import 'package:medica/view/widgets/constance.dart';
 
-class docCat extends StatefulWidget {
+import '../view/widgets/custom_text.dart';
+
+class appTime extends StatefulWidget {
   // String catName;
   // int numOfDoctors;
   // bool isActiv;
   // Function onPressed;
-  // docCat({
+  // appTime({
   //   Key? key,
   //   required this.catName,
   //   required this.numOfDoctors,
@@ -19,23 +20,20 @@ class docCat extends StatefulWidget {
   // set setIsActive(bool isActiv) {
   //   this.isActiv = isActiv;
   // }
+     List<String> categories;
+   appTime({
+    Key? key,
+    required this.categories,
+  }) : super(key: key);
+
 
   @override
-  State<docCat> createState() => _docCatState();
+  State<appTime> createState() => _appTimeState();
+  
 }
 
-class _docCatState extends State<docCat> {
+class _appTimeState extends State<appTime> {
   int selectedIndex = 0;
-  final List<String> categories = [
-    "General",
-    "Dental",
-    "Cardio",
-    "Neurology",
-    "Neurology",
-    "Neurology",
-    "Neurology",
-  ];
-  
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -60,14 +58,14 @@ class _docCatState extends State<docCat> {
         height: size.height * 0.06,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
+          itemCount: widget.categories.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               margin: EdgeInsets.only(right: size.width * 0.02),
               child: TextButton(
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(14))),
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
                     backgroundColor: index == selectedIndex
                         ? selectedbgColor
                         : unSelectedbgColor,
@@ -84,7 +82,7 @@ class _docCatState extends State<docCat> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomText(
-                        text: categories[index],
+                        text: widget.categories[index],
                         textStyle: TextStyle(
                             color: index == selectedIndex
                                 ? selectedColor
