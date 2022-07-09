@@ -24,7 +24,6 @@ import 'package:provider/provider.dart';
 import 'package:medica/providers/auth_provider.dart';
 
 class patient_register extends StatefulWidget {
-  
   @override
   _patient_registerState createState() => _patient_registerState();
 }
@@ -48,7 +47,6 @@ class _patient_registerState extends State<patient_register> {
     final Size size = MediaQuery.of(context).size;
     final authProvider = Provider.of<AuthProvider>(context);
 
-
     // switch (authProvider.status) {
     //   case Status.authenticateError:
     //     Fluttertoast.showToast(msg: 'Sign in failed');
@@ -70,12 +68,12 @@ class _patient_registerState extends State<patient_register> {
       },
       child: GestureDetector(
         onTap: () {
-        _focusName.unfocus();
-        _focusEmail.unfocus();
-        _focusPassword.unfocus();
+          _focusName.unfocus();
+          _focusEmail.unfocus();
+          _focusPassword.unfocus();
         },
         child: Scaffold(
-      
+
             // resizeToAvoidBottomInset: false,
             body: Stack(children: [
           myDefaultBackground(),
@@ -106,7 +104,7 @@ class _patient_registerState extends State<patient_register> {
               child: Stack(children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget> [
+                  children: <Widget>[
                     SizedBox(
                       height: size.height * 0.05,
                     ),
@@ -123,22 +121,20 @@ class _patient_registerState extends State<patient_register> {
                     ),
                     Stack(children: [
                       SvgPicture.asset(
-                                    'assets/images/user_register.svg',
-                                    width: size.width * 0.30,
-                                  ),
-                      
+                        'assets/images/user_register.svg',
+                        width: size.width * 0.30,
+                      ),
                     ]),
                     SizedBox(
                       height: size.height * 0.005,
                     ),
                     CustomText(
-                      text: 'Register to Continue',
-                      textStyle: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'DMSans',
-                          fontSize: size.width * 0.06,
-                          fontWeight: FontWeight.bold)
-                    ),
+                        text: 'Register to Continue',
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'DMSans',
+                            fontSize: size.width * 0.06,
+                            fontWeight: FontWeight.bold)),
                     Divider(
                       color: Color(0xffFEB197),
                       indent: size.width * 0.4,
@@ -172,39 +168,232 @@ class _patient_registerState extends State<patient_register> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              TextFormField(
-                                  controller: _nameTextController,
-                                  focusNode: _focusName,
-                                  validator:
-                                  (value) => validation_provider
-                                  .validateName(name: value!),),
-                              
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.035,
+                                        ),
+                                        CustomText(
+                                          text: 'Username',
+                                          textStyle: TextStyle(
+                                            fontFamily: 'DMSans',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: primaryColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Username',
+                                          prefixIcon: Icon(
+                                            MyFlutterApp.person,
+                                            size: 25,
+                                            color: Color(0xffF95DDE),
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6D6487),
+                                              fontSize: 15,
+                                              fontFamily: 'DMSans',
+                                              fontWeight: FontWeight.normal),
+                                          fillColor: Colors.white,
+                                          border: InputBorder.none),
+                                      controller: _nameTextController,
+                                      focusNode: _focusName,
+                                      validator: (value) => validation_provider
+                                          .validateName(name: value!),
+                                    ),
+                                    Divider(
+                                      color: Color(0xff3E1E96),
+                                      indent: size.width * 0.05,
+                                      endIndent: size.width * 0.05,
+                                      height: 1,
+                                      thickness: 2,
+                                    ),
+                                  ],
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              TextFormField(
-                                  controller: _emailTextController,
-                                  focusNode: _focusEmail,
-                                  
-                        validator: (value) => validation_provider.validateEmail(
-                          email: value!,
-                        ),),
-                              
+                              Container(
+                                // padding: EdgeInsets.symmetric(
+                                //     horizontal: size.width * 0.08),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.035,
+                                        ),
+                                        CustomText(
+                                          text: 'Email',
+                                          textStyle: TextStyle(
+                                            fontFamily: 'DMSans',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: primaryColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Email',
+                                          prefixIcon: Icon(
+                                            MyFlutterApp.mail,
+                                            size: 12,
+                                            color: Color(0xffF95DDE),
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6D6487),
+                                              fontSize: 15,
+                                              fontFamily: 'DMSans',
+                                              fontWeight: FontWeight.normal),
+                                          fillColor: Colors.white,
+                                          border: InputBorder.none),
+                                      controller: _emailTextController,
+                                      focusNode: _focusEmail,
+                                      validator: (value) =>
+                                          validation_provider.validateEmail(
+                                        email: value!,
+                                      ),
+                                    ),
+                                    Divider(
+                                      color: Color(0xff3E1E96),
+                                      indent: size.width * 0.05,
+                                      endIndent: size.width * 0.05,
+                                      height: 1,
+                                      thickness: 2,
+                                    ),
+                                  ],
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              TextFormField(
-                                  controller: _passwordTextController,
-                                  focusNode: _focusPassword,
-                                  obscureText: true,
-                                  
-                        validator: (value) => validation_provider.validatePassword(
-                          password: value!,
-                        ),),
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.035,
+                                        ),
+                                        CustomText(
+                                          text: 'Password',
+                                          textStyle: TextStyle(
+                                            fontFamily: 'DMSans',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: primaryColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'password',
+                                          prefixIcon: Icon(
+                                            MyFlutterApp.lock,
+                                            size: 20,
+                                            color: Color(0xffF95DDE),
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: Color(0xff6D6487),
+                                              fontSize: 15,
+                                              fontFamily: 'DMSans',
+                                              fontWeight: FontWeight.normal),
+                                          fillColor: Colors.white,
+                                          border: InputBorder.none),
+                                      controller: _passwordTextController,
+                                      focusNode: _focusPassword,
+                                      obscureText: true,
+                                      validator: (value) =>
+                                          validation_provider.validatePassword(
+                                        password: value!,
+                                      ),
+                                    ),
+                                    Divider(
+                                      color: Color(0xff3E1E96),
+                                      indent: size.width * 0.05,
+                                      endIndent: size.width * 0.05,
+                                      height: 1,
+                                      thickness: 2,
+                                    ),
+                                  ],
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              
+                              // Container(
+                              //   child: Column(
+                              //     children: [
+                              //       Row(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.start,
+                              //         children: [
+                              //           SizedBox(
+                              //             width: size.width * 0.035,
+                              //           ),
+                              //           CustomText(
+                              //             text: 'Confirm Password',
+                              //             textStyle: TextStyle(
+                              //               fontFamily: 'DMSans',
+                              //               fontSize: 14,
+                              //               fontWeight: FontWeight.w600,
+                              //               color: primaryColor,
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //       TextFormField(
+                              //         decoration: InputDecoration(
+                              //             hintText: 'Confirm Passord',
+                              //             prefixIcon: Icon(
+                              //               MyFlutterApp.lock,
+                              //               size: 20,
+                              //               color: Color(0xffF95DDE),
+                              //             ),
+                              //             hintStyle: TextStyle(
+                              //                 color: Color(0xff6D6487),
+                              //                 fontSize: 15,
+                              //                 fontFamily: 'DMSans',
+                              //                 fontWeight: FontWeight.normal),
+                              //             fillColor: Colors.white,
+                              //             border: InputBorder.none),
+                              //         // controller: _passwordTextController,
+                              //         // focusNode: _focusPassword,
+                              //         obscureText: true,
+                              //         // validator: (value) =>
+                              //         //     validation_provider.validatePassword(
+                              //         //   password: value!,
+                              //         // ),
+                              //       ),
+                              //       Divider(
+                              //         color: Color(0xff3E1E96),
+                              //         indent: size.width * 0.05,
+                              //         endIndent: size.width * 0.05,
+                              //         height: 1,
+                              //         thickness: 2,
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
@@ -213,29 +402,25 @@ class _patient_registerState extends State<patient_register> {
                                     print(_nameTextController);
                                     print(_nameTextController.value);
                                     print(_nameTextController.text);
-                                      setState(() {
-                                        _isProcessing = true;
-                                      });
-                                      if (_registerFormKey.currentState!
-                                          .validate()) {
-                                        authProvider.registerUsingEmailPassword(
-                                          name: _nameTextController.text,
-                                          email: _emailTextController.text,
-                                          password: _passwordTextController.text,
-                                        );
+                                    setState(() {
+                                      _isProcessing = true;
+                                    });
+                                    if (_registerFormKey.currentState!
+                                        .validate()) {
+                                      authProvider.registerUsingEmailPassword(
+                                        name: _nameTextController.text,
+                                        email: _emailTextController.text,
+                                        password: _passwordTextController.text,
+                                      );
 
-                                        setState(() {
-                                          _isProcessing = false;
-                                        });
-                                      }
-                                    },
-                                      
-                                     
-                                  
+                                      setState(() {
+                                        _isProcessing = false;
+                                      });
+                                    }
+                                  },
                                   style: TextButton.styleFrom(
                                     minimumSize: Size(
                                         size.width * 0.8, size.height * 0.06),
-                                   
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(25),
@@ -258,8 +443,8 @@ class _patient_registerState extends State<patient_register> {
                                 children: [
                                   CustomText(
                                     text: "Already have an account?",
-                                    textStyle:
-                                        TextStyle(color: Color(0xff6D6487),
+                                    textStyle: TextStyle(
+                                        color: Color(0xff6D6487),
                                         fontFamily: 'DMSans',
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.normal),
@@ -287,7 +472,6 @@ class _patient_registerState extends State<patient_register> {
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                             
                             ]),
                       ),
                     )
