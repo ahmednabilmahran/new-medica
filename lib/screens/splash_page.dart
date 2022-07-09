@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              "Welcome to Smart Talk",
+              "Welcome to Medica Chat",
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: Sizes.dimen_18),
             ),

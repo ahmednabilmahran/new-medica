@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            title: const Text('Smart Talk'),
+            title: const Text('Medica Chat'),
             actions: [
               IconButton(
                   onPressed: () => googleSignOut(),
