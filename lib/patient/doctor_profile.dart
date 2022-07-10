@@ -1,22 +1,14 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:medica/patient/appointment_time.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
-import 'package:booking_calendar/booking_calendar.dart';
 
 import 'patient_home.dart';
 
-void main() {
-  initializeDateFormatting()
-      .then((_) => runApp(const DoctorProfile()));
-}
 class DoctorProfile extends StatefulWidget {
   const DoctorProfile({Key? key}) : super(key: key);
 
@@ -25,60 +17,6 @@ class DoctorProfile extends StatefulWidget {
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
-List<DateTimeRange> converted = [];
-  late BookingService mockBookingService;
-  final now = DateTime.now();
-
-@override
-  void initState() {
-    super.initState();
-    // DateTime.now().startOfDay
-    // DateTime.now().endOfDay
-    mockBookingService = BookingService(
-        serviceName: 'Mock Service',
-        serviceDuration: 30,
-        bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
-        bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
-  }
-
-    Stream<dynamic>? getBookingStreamMock(
-      {required DateTime end, required DateTime start}) {
-    return Stream.value([]);
-  }
-
-    Future<dynamic> uploadBookingMock(
-      {required BookingService newBooking}) async {
-    await Future.delayed(const Duration(seconds: 1));
-    converted.add(DateTimeRange(
-        start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    print('${newBooking.toJson()} has been uploaded');
-  }
-
-  List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
-    ///here you can parse the streamresult and convert to [List<DateTimeRange>]
-    DateTime first = now;
-    DateTime second = now.add(const Duration(minutes: 55));
-    DateTime third = now.subtract(const Duration(minutes: 240));
-    DateTime fourth = now.subtract(const Duration(minutes: 500));
-    converted.add(
-        DateTimeRange(start: first, end: now.add(const Duration(minutes: 30))));
-    converted.add(DateTimeRange(
-        start: second, end: second.add(const Duration(minutes: 23))));
-    converted.add(DateTimeRange(
-        start: third, end: third.add(const Duration(minutes: 15))));
-    converted.add(DateTimeRange(
-        start: fourth, end: fourth.add(const Duration(minutes: 50))));
-    return converted;
-  }
-
-    List<DateTimeRange> generatePauseSlots() {
-    return [
-      DateTimeRange(
-          start: DateTime(now.year, now.month, now.day, 12, 0),
-          end: DateTime(now.year, now.month, now.day, 13, 0))
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -105,407 +43,402 @@ List<DateTimeRange> converted = [];
                     )
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      // padding:
-                      //     EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                      width: double.infinity,
-                      height: size.height * 0.65,
-                      decoration: BoxDecoration(
-                        color: whitegrayish,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: size.height * 0.3,
                         ),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: size.height * 0.05),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.08),
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: size.width * 0.5,
-                                  // color: Colors.green,
-                                  alignment: Alignment.topLeft,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          CustomText(
-                                            text: 'Dr.Ellie',
-                                            // textAlign: TextAlign.left,
-                                            textStyle: TextStyle(
-                                                color: primaryColor,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.015,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: CustomText(
-                                              text:
-                                                  'Dentist (MDS . Orthodontics and Dentofacial',
-                                              textStyle: TextStyle(
-                                                color: Colors.grey.shade500,
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: size.width * 0.315,
-                                  height: size.height * 0.065,
-                                  // color: Colors.green.shade800,
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextButton(
-                                          onPressed: () {},
-                                          style: TextButton.styleFrom(
-                                              elevation: 5,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(18))),
-                                              minimumSize: Size(
-                                                  ((size.height +
-                                                          size.width / 2) *
-                                                      0.055),
-                                                  ((size.height +
-                                                          size.width / 2) *
-                                                      0.055)),
-                                              backgroundColor:
-                                                  Color(0xff00E160)),
-                                          child: SvgPicture.asset(
-                                              'assets/icons/phone.svg')),
-                                      TextButton(
-                                          onPressed: () {},
-                                          style: TextButton.styleFrom(
-                                              elevation: 5,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(18))),
-                                              minimumSize: Size(
-                                                  ((size.height +
-                                                          size.width / 2) *
-                                                      0.055),
-                                                  ((size.height +
-                                                          size.width / 2) *
-                                                      0.055)),
-                                              backgroundColor:
-                                                  Color(0xffF1AF05)),
-                                          child: SvgPicture.asset(
-                                              'assets/icons/chat.svg')),
-                                      // TextButton(
-                                      //     onPressed: () {},
-                                      //     style: TextButton.styleFrom(
-                                      //       backgroundColor: Color(0xffF1AF05),
-                                      //       elevation: 5,
-                                      //     ),
-                                      //     child: SvgPicture.asset(
-                                      //         'assets/icons/chat.svg')),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                        // padding:
+                        //     EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                        width: double.infinity,
+                        // height: size.height * 0.65,
+                        decoration: BoxDecoration(
+                          color: whitegrayish,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(75),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: size.height * 0.015,
-                              left: size.width * 0.08,
-                              right: size.width * 0.08,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.055,
-                                vertical: size.height * 0.015),
-                            // height: size.height * 0.2,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25)),
-                              color: Colors.white,
-                            ),
-                            child: IntrinsicHeight(
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: size.height * 0.05),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.08),
+                              width: double.infinity,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SvgPicture.asset('assets/icons/Exp.svg',
-                                          width: size.height * 0.022),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: 'Experience',
-                                        textStyle: TextStyle(
-                                          color: primaryColor.withAlpha(120),
-                                          fontSize: 15,
+                                  Container(
+                                    width: size.width * 0.5,
+                                    // color: Colors.green,
+                                    alignment: Alignment.topLeft,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            CustomText(
+                                              text: 'Dr.Ellie',
+                                              // textAlign: TextAlign.left,
+                                              textStyle: TextStyle(
+                                                  color: primaryColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: '15',
-                                        textStyle: TextStyle(
-                                          color: primaryColor,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w900,
+                                        SizedBox(
+                                          height: size.height * 0.015,
                                         ),
-                                      ),
-                                    ],
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CustomText(
+                                                text:
+                                                    'Dentist (MDS . Orthodontics and Dentofacial',
+                                                textStyle: TextStyle(
+                                                  color: Colors.grey.shade500,
+                                                ),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  VerticalDivider(
-                                    color: primaryColor.withAlpha(40),
-                                    endIndent: 10,
-                                    indent: 10,
-                                    // width: 40,
-                                    thickness: 1,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SvgPicture.asset('assets/icons/Pat.svg',
-                                          width: size.height * 0.03),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: 'Patients',
-                                        textStyle: TextStyle(
-                                          color: primaryColor.withAlpha(120),
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: '18K',
-                                        textStyle: TextStyle(
-                                          color: primaryColor,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  VerticalDivider(
-                                    color: primaryColor.withAlpha(40),
-                                    endIndent: 10,
-                                    indent: 10,
-                                    // width: 40,
-                                    thickness: 1,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SvgPicture.asset('assets/icons/Certi.svg',
-                                          width: size.height * 0.022),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: 'Certification',
-                                        textStyle: TextStyle(
-                                          color: primaryColor.withAlpha(120),
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      CustomText(
-                                        text: '20',
-                                        textStyle: TextStyle(
-                                          color: primaryColor,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                    ],
+                                  Container(
+                                    width: size.width * 0.315,
+                                    height: size.height * 0.065,
+                                    // color: Colors.green.shade800,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {},
+                                            style: TextButton.styleFrom(
+                                                elevation: 5,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                18))),
+                                                minimumSize: Size(
+                                                    ((size.height +
+                                                            size.width / 2) *
+                                                        0.055),
+                                                    ((size.height +
+                                                            size.width / 2) *
+                                                        0.055)),
+                                                backgroundColor:
+                                                    Color(0xff00E160)),
+                                            child: SvgPicture.asset(
+                                                'assets/icons/phone.svg')),
+                                        TextButton(
+                                            onPressed: () {},
+                                            style: TextButton.styleFrom(
+                                                elevation: 5,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                18))),
+                                                minimumSize: Size(
+                                                    ((size.height +
+                                                            size.width / 2) *
+                                                        0.055),
+                                                    ((size.height +
+                                                            size.width / 2) *
+                                                        0.055)),
+                                                backgroundColor:
+                                                    Color(0xffF1AF05)),
+                                            child: SvgPicture.asset(
+                                                'assets/icons/chat.svg')),
+                                        // TextButton(
+                                        //     onPressed: () {},
+                                        //     style: TextButton.styleFrom(
+                                        //       backgroundColor: Color(0xffF1AF05),
+                                        //       elevation: 5,
+                                        //     ),
+                                        //     child: SvgPicture.asset(
+                                        //         'assets/icons/chat.svg')),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
                             ),
-                          ),
-
-                          Center(
-                            child: Column(
-                              children: [
-                                BookingCalendar(
-                                              bookingService: mockBookingService,
-                                              convertStreamResultToDateTimeRanges: convertStreamResultMock,
-                                              getBookingStream: getBookingStreamMock,
-                                              uploadBooking: uploadBookingMock,
-                                              pauseSlots: generatePauseSlots(),
-                                              pauseSlotText: 'LUNCH',
-                                              hideBreakTime: false,
-                                              loadingWidget: const Text('Fetching data...'),
-                                              uploadingWidget: const CircularProgressIndicator(),
-                                                            ),
-                              ],
+                            Container(
+                              margin: EdgeInsets.only(
+                                top: size.height * 0.015,
+                                left: size.width * 0.08,
+                                right: size.width * 0.08,
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.055,
+                                  vertical: size.height * 0.015),
+                              // height: size.height * 0.2,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                                color: Colors.white,
+                              ),
+                              child: IntrinsicHeight(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset('assets/icons/Exp.svg',
+                                            width: size.height * 0.022),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: 'Experience',
+                                          textStyle: TextStyle(
+                                            color: primaryColor.withAlpha(120),
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: '15',
+                                          textStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    VerticalDivider(
+                                      color: primaryColor.withAlpha(40),
+                                      endIndent: 10,
+                                      indent: 10,
+                                      // width: 40,
+                                      thickness: 1,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset('assets/icons/Pat.svg',
+                                            width: size.height * 0.03),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: 'Patients',
+                                          textStyle: TextStyle(
+                                            color: primaryColor.withAlpha(120),
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: '18K',
+                                          textStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    VerticalDivider(
+                                      color: primaryColor.withAlpha(40),
+                                      endIndent: 10,
+                                      indent: 10,
+                                      // width: 40,
+                                      thickness: 1,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/icons/Certi.svg',
+                                            width: size.height * 0.022),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: 'Certification',
+                                          textStyle: TextStyle(
+                                            color: primaryColor.withAlpha(120),
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        CustomText(
+                                          text: '20',
+                                          textStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-
-                          // Container(
-                          //   margin: EdgeInsets.only(
-                          //     top: size.height * 0.015,
-                          //     left: size.width * 0.08,
-                          //     right: size.width * 0.08,
-                          //   ),
-                          //   child: Column(
-                          //     children: [
-                          //       Row(
-                          //         children: [
-                          //           CustomText(
-                          //             text: 'Schedule',
-                          //             textStyle: TextStyle(
-                          //               color: primaryColor,
-                          //               fontSize: 17,
-                          //               fontWeight: FontWeight.w600,
-                          //             ),
-                          //           )
-                          //         ],
-                          //       ),
-                          //       Container(
-                          //         margin: EdgeInsets.only(
-                          //           top: size.height * 0.015,
-                          //           left: size.width * 0.02,
-                          //           right: size.width * 0.02,
-                          //         ),
-                          //         child: Column(
-                          //           mainAxisAlignment: MainAxisAlignment.center,
-                          //           children: <Widget>[
-                          //             DatePicker(
-                          //               DateTime.now(),
-                          //               initialSelectedDate: DateTime.now(),
-                          //               daysCount: 60,
-                          //               selectionColor: secondaryColor,
-                          //               selectedTextColor: Colors.white,
-                          //               deactivatedColor: Colors.white,
-                          //               dayTextStyle: TextStyle(
-                          //                 color: Color(0xffFF8F6A),
-                          //               ),
-                          //               onDateChange: (date) {
-                          //                 // New date selected
-                          //                 setState(() {
-                          //                   // _selectedValue = date;
-                          //                 });
-                          //               },
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // Container(
-                          //   alignment: Alignment.topLeft,
-                          //   margin: EdgeInsets.only(
-                          //     top: size.height * 0.015,
-                          //     left: size.width * 0.08,
-                          //     right: size.width * 0.08,
-                          //   ),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       CustomText(
-                          //         text: 'Visiting Hours',
-                          //         textStyle: TextStyle(
-                          //           color: primaryColor,
-                          //           fontSize: 17,
-                          //           fontWeight: FontWeight.w600,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-            
-                          // ),
-                          // Container(
-                          //     margin: EdgeInsets.only(
-                          //       left: size.width * 0.08,
-                          //       top: size.height * 0.02,
-                          //     ),
-                          //     child: appTime(
-                          //       categories: [
-                          //         "8:00AM",
-                          //         "9:00AM",
-                          //         "10:00AM",
-                          //         "11:00AM",
-                          //         "12:00PM",
-                          //         "1:00PM",
-                          //         "2:00PM",
-                          //         "3:00PM",
-                          //         "4:00PM",
-                          //         "5:00PM",
-                          //         "6:00PM",
-                          //         "7:00PM",
-                          //         "8:00PM",
-                          //       ],
-                          //     )),
-                          
-                        
-                           
-                      
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: size.height * 0.03,
-                              left: size.width * 0.08,
-                              right: size.width * 0.08,
-                            ),
-                            child: Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(25),
-                                      bottomRight: Radius.circular(25),
-                                    )),
-                                    backgroundColor: primaryColor,
-                                    minimumSize: Size(
-                                        double.infinity, size.height * 0.08),
+                            Container(
+                              margin: EdgeInsets.only(
+                                top: size.height * 0.015,
+                                left: size.width * 0.08,
+                                right: size.width * 0.08,
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomText(
+                                        text: 'Schedule',
+                                        textStyle: TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  child: CustomText(
-                                    text: "MAKE APPOINTMENT",
-                                    textStyle: TextStyle(
-                                      color: Colors.white,
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      top: size.height * 0.015,
+                                      left: size.width * 0.02,
+                                      right: size.width * 0.02,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        DatePicker(
+                                          DateTime.now(),
+                                          initialSelectedDate: DateTime.now(),
+                                          daysCount: 60,
+                                          selectionColor: secondaryColor,
+                                          selectedTextColor: Colors.white,
+                                          deactivatedColor: Colors.white,
+                                          dayTextStyle: TextStyle(
+                                            color: Color(0xffFF8F6A),
+                                          ),
+                                          onDateChange: (date) {
+                                            // New date selected
+                                            setState(() {
+                                              // _selectedValue = date;
+                                            });
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          )
-                        ],
+                            Container(
+                              alignment: Alignment.topLeft,
+                              margin: EdgeInsets.only(
+                                top: size.height * 0.015,
+                                left: size.width * 0.08,
+                                right: size.width * 0.08,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                    text: 'Visiting Hours',
+                                    textStyle: TextStyle(
+                                      color: primaryColor,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(
+                                  left: size.width * 0.08,
+                                  top: size.height * 0.02,
+                                ),
+                                child: appTime(
+                                  categories: [
+                                    "8:00AM",
+                                    "9:00AM",
+                                    "10:00AM",
+                                    "11:00AM",
+                                    "12:00PM",
+                                    "1:00PM",
+                                    "2:00PM",
+                                    "3:00PM",
+                                    "4:00PM",
+                                    "5:00PM",
+                                    "6:00PM",
+                                    "7:00PM",
+                                    "8:00PM",
+                                  ],
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(
+                                top: size.height * 0.03,
+                                left: size.width * 0.08,
+                                right: size.width * 0.08,
+                              ),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      )),
+                                      backgroundColor: primaryColor,
+                                      minimumSize: Size(
+                                          double.infinity, size.height * 0.08),
+                                    ),
+                                    child: CustomText(
+                                      text: "MAKE APPOINTMENT",
+                                      textStyle: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.1,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
                     Container(
                       // padding: EdgeInsets.only(
                       //   top: size.height * 0.02,
@@ -608,9 +541,9 @@ List<DateTimeRange> converted = [];
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
