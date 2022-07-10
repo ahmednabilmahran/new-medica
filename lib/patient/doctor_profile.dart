@@ -1,14 +1,22 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:medica/patient/appointment_time.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:booking_calendar/booking_calendar.dart';
 
 import 'patient_home.dart';
 
+void main() {
+  initializeDateFormatting()
+      .then((_) => runApp(const DoctorProfile()));
+}
 class DoctorProfile extends StatefulWidget {
   const DoctorProfile({Key? key}) : super(key: key);
 
@@ -17,6 +25,60 @@ class DoctorProfile extends StatefulWidget {
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
+List<DateTimeRange> converted = [];
+  late BookingService mockBookingService;
+  final now = DateTime.now();
+
+@override
+  void initState() {
+    super.initState();
+    // DateTime.now().startOfDay
+    // DateTime.now().endOfDay
+    mockBookingService = BookingService(
+        serviceName: 'Mock Service',
+        serviceDuration: 30,
+        bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
+        bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
+  }
+
+    Stream<dynamic>? getBookingStreamMock(
+      {required DateTime end, required DateTime start}) {
+    return Stream.value([]);
+  }
+
+    Future<dynamic> uploadBookingMock(
+      {required BookingService newBooking}) async {
+    await Future.delayed(const Duration(seconds: 1));
+    converted.add(DateTimeRange(
+        start: newBooking.bookingStart, end: newBooking.bookingEnd));
+    print('${newBooking.toJson()} has been uploaded');
+  }
+
+  List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
+    ///here you can parse the streamresult and convert to [List<DateTimeRange>]
+    DateTime first = now;
+    DateTime second = now.add(const Duration(minutes: 55));
+    DateTime third = now.subtract(const Duration(minutes: 240));
+    DateTime fourth = now.subtract(const Duration(minutes: 500));
+    converted.add(
+        DateTimeRange(start: first, end: now.add(const Duration(minutes: 30))));
+    converted.add(DateTimeRange(
+        start: second, end: second.add(const Duration(minutes: 23))));
+    converted.add(DateTimeRange(
+        start: third, end: third.add(const Duration(minutes: 15))));
+    converted.add(DateTimeRange(
+        start: fourth, end: fourth.add(const Duration(minutes: 50))));
+    return converted;
+  }
+
+    List<DateTimeRange> generatePauseSlots() {
+    return [
+      DateTimeRange(
+          start: DateTime(now.year, now.month, now.day, 12, 0),
+          end: DateTime(now.year, now.month, now.day, 13, 0))
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -292,101 +354,125 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: size.height * 0.015,
-                              left: size.width * 0.08,
-                              right: size.width * 0.08,
-                            ),
+
+                          Center(
                             child: Column(
                               children: [
-                                Row(
-                                  children: [
-                                    CustomText(
-                                      text: 'Schedule',
-                                      textStyle: TextStyle(
-                                        color: primaryColor,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    top: size.height * 0.015,
-                                    left: size.width * 0.02,
-                                    right: size.width * 0.02,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      DatePicker(
-                                        DateTime.now(),
-                                        initialSelectedDate: DateTime.now(),
-                                        daysCount: 60,
-                                        selectionColor: secondaryColor,
-                                        selectedTextColor: Colors.white,
-                                        deactivatedColor: Colors.white,
-                                        dayTextStyle: TextStyle(
-                                          color: Color(0xffFF8F6A),
-                                        ),
-                                        onDateChange: (date) {
-                                          // New date selected
-                                          setState(() {
-                                            // _selectedValue = date;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                BookingCalendar(
+                                              bookingService: mockBookingService,
+                                              convertStreamResultToDateTimeRanges: convertStreamResultMock,
+                                              getBookingStream: getBookingStreamMock,
+                                              uploadBooking: uploadBookingMock,
+                                              pauseSlots: generatePauseSlots(),
+                                              pauseSlotText: 'LUNCH',
+                                              hideBreakTime: false,
+                                              loadingWidget: const Text('Fetching data...'),
+                                              uploadingWidget: const CircularProgressIndicator(),
+                                                            ),
                               ],
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            margin: EdgeInsets.only(
-                              top: size.height * 0.015,
-                              left: size.width * 0.08,
-                              right: size.width * 0.08,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomText(
-                                  text: 'Visiting Hours',
-                                  textStyle: TextStyle(
-                                    color: primaryColor,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                              margin: EdgeInsets.only(
-                                left: size.width * 0.08,
-                                top: size.height * 0.02,
-                              ),
-                              child: appTime(
-                                categories: [
-                                  "8:00AM",
-                                  "9:00AM",
-                                  "10:00AM",
-                                  "11:00AM",
-                                  "12:00PM",
-                                  "1:00PM",
-                                  "2:00PM",
-                                  "3:00PM",
-                                  "4:00PM",
-                                  "5:00PM",
-                                  "6:00PM",
-                                  "7:00PM",
-                                  "8:00PM",
-                                ],
-                              )),
+
+                          // Container(
+                          //   margin: EdgeInsets.only(
+                          //     top: size.height * 0.015,
+                          //     left: size.width * 0.08,
+                          //     right: size.width * 0.08,
+                          //   ),
+                          //   child: Column(
+                          //     children: [
+                          //       Row(
+                          //         children: [
+                          //           CustomText(
+                          //             text: 'Schedule',
+                          //             textStyle: TextStyle(
+                          //               color: primaryColor,
+                          //               fontSize: 17,
+                          //               fontWeight: FontWeight.w600,
+                          //             ),
+                          //           )
+                          //         ],
+                          //       ),
+                          //       Container(
+                          //         margin: EdgeInsets.only(
+                          //           top: size.height * 0.015,
+                          //           left: size.width * 0.02,
+                          //           right: size.width * 0.02,
+                          //         ),
+                          //         child: Column(
+                          //           mainAxisAlignment: MainAxisAlignment.center,
+                          //           children: <Widget>[
+                          //             DatePicker(
+                          //               DateTime.now(),
+                          //               initialSelectedDate: DateTime.now(),
+                          //               daysCount: 60,
+                          //               selectionColor: secondaryColor,
+                          //               selectedTextColor: Colors.white,
+                          //               deactivatedColor: Colors.white,
+                          //               dayTextStyle: TextStyle(
+                          //                 color: Color(0xffFF8F6A),
+                          //               ),
+                          //               onDateChange: (date) {
+                          //                 // New date selected
+                          //                 setState(() {
+                          //                   // _selectedValue = date;
+                          //                 });
+                          //               },
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   alignment: Alignment.topLeft,
+                          //   margin: EdgeInsets.only(
+                          //     top: size.height * 0.015,
+                          //     left: size.width * 0.08,
+                          //     right: size.width * 0.08,
+                          //   ),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       CustomText(
+                          //         text: 'Visiting Hours',
+                          //         textStyle: TextStyle(
+                          //           color: primaryColor,
+                          //           fontSize: 17,
+                          //           fontWeight: FontWeight.w600,
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+            
+                          // ),
+                          // Container(
+                          //     margin: EdgeInsets.only(
+                          //       left: size.width * 0.08,
+                          //       top: size.height * 0.02,
+                          //     ),
+                          //     child: appTime(
+                          //       categories: [
+                          //         "8:00AM",
+                          //         "9:00AM",
+                          //         "10:00AM",
+                          //         "11:00AM",
+                          //         "12:00PM",
+                          //         "1:00PM",
+                          //         "2:00PM",
+                          //         "3:00PM",
+                          //         "4:00PM",
+                          //         "5:00PM",
+                          //         "6:00PM",
+                          //         "7:00PM",
+                          //         "8:00PM",
+                          //       ],
+                          //     )),
+                          
+                        
+                           
+                      
                           Container(
                             margin: EdgeInsets.only(
                               top: size.height * 0.03,
