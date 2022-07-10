@@ -13,6 +13,7 @@ import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/patient/patient_symptoms.dart';
+import 'package:medica/screens/catalog_screen.dart';
 import 'package:medica/screens/home_page.dart';
 import 'package:medica/screens/splash_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
@@ -226,7 +227,9 @@ class patient_home extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)))),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => CatalogScreen());
+                          },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: size.width * 0.03),
