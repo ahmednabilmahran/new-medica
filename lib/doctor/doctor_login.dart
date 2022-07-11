@@ -14,6 +14,7 @@ import 'package:medica/view/widgets/my_flutter_app_icons.dart';
 
 class doctor_login extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthViewModel avm = Get.put(AuthViewModel());
   var confirmPass;
   @override
   Widget build(BuildContext context) {
@@ -179,7 +180,7 @@ class doctor_login extends GetWidget<AuthViewModel> {
 
                                     if (_formKey.currentState!.validate()) {
                                       controller
-                                          .createAccountWithEmailAndPassword();
+                                          .signInDoctorWithEmailAndPassword();
                                     }
                                   },
                                   style: TextButton.styleFrom(

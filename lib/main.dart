@@ -10,6 +10,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/allConstants/app_constants.dart';
+import 'package:medica/loginType.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_getstarted.dart';
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
         builder: (context) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            home: DoctorProfile() ,
+            home: loginAs() ,
           );
         }
       ),
