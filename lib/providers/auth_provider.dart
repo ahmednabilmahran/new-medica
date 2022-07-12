@@ -164,7 +164,7 @@ class AuthProvider extends ChangeNotifier {
               print(prefs.getString(FirestoreConstants.id));
               print(prefs.getString(FirestoreConstants.displayName));
               
-      Get.offAll(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
+      Get.to(() => patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

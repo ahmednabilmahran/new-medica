@@ -1,0 +1,2 @@
+0 COVID-19
+1 NORMAL

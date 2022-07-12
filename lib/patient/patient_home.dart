@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/Covid19Detector.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
@@ -133,26 +134,7 @@ class patient_home extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  TextFormField(
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.white),
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    indent: size.width * 0.04,
-                    endIndent: size.width * 0.06,
-                    thickness: 1,
-                    height: 1,
-                  ),
+                
                 ],
               ),
             ),
@@ -160,7 +142,7 @@ class patient_home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: size.height * 0.78,
+                  height: size.height * 0.84,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
@@ -214,6 +196,52 @@ class patient_home extends StatelessWidget {
                       ),
                       SizedBox(
                         height: size.height * 0.025,
+                      ),
+                                            TextButton(
+                          style: TextButton.styleFrom(
+                              maximumSize:
+                                  Size(double.infinity, size.height * 0.085),
+                              minimumSize:
+                                  Size(double.infinity, size.height * 0.085),
+                              // minimumSize: ,
+                              // foregroundColor: secondaryColor,
+                              backgroundColor: secondaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)))),
+                          onPressed: () {
+                            Get.to(() => Covid19Detector());
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.03),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SvgPicture.asset('assets/images/meds.svg'),
+                                CustomText(
+                                  text: 'Covid-19 Detector',
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18),
+                                ),
+                                Container(
+                                  child: Image.asset(
+                                      'assets/images/whiteArrow.png'),
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                      color: primaryColor,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(50))),
+                                )
+                              ],
+                            ),
+                          )),
+                          SizedBox(
+                        height: size.height * 0.015,
                       ),
                       TextButton(
                           style: TextButton.styleFrom(
