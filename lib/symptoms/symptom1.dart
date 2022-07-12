@@ -6,32 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
-import 'package:medica/doctor/doctor_profile.dart';
-import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
-import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
-import 'package:medica/symptoms/symptom1.dart';
+import 'package:medica/patient/patient_symptoms.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
-import 'package:medica/view/widgets/catalog_products.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
-import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class patient_symptoms extends StatelessWidget {
-  patient_symptoms() : _name = "DEFAULT";
+class symptom1 extends StatelessWidget {
+  symptom1() : _name = "DEFAULT";
 
-  patient_symptoms.withuser(this._name);
+  symptom1.withuser(this._name);
     String _name;
 
   String get name => _name;
@@ -39,34 +34,8 @@ class patient_symptoms extends StatelessWidget {
   set name(String name) {
     _name = name;
   }
-  List symptoms = [
-    symptomCard(
-      primary: 'Wear Mask Compulsory',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/wearMask.jpg',
-      imageFit: BoxFit.fitWidth, onPressed: () {Get.to(() => symptom1());},
-    ),
-    symptomCard(
-      primary: 'Use Sanitizer',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/useSanitizer.jpg',
-      onPressed: () {Get.to(() => patient_book());}
-    ),
-    symptomCard(
-      primary: 'Regular Hand Wash',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/washHands.jpg',
-      onPressed: () {Get.to(() => DoctorProfile());}
-    ),
-    symptomCard(
-        primary: 'Check Temperature',
-        secondary: 'The point of using Lor Ipsum normal of letters...',
-        onPressed: () {Get.to(() => CatalogProducts());}
-        )
-  ];
   
-
-
+  
 
   // final numbers = List.generate(100, (index) => '$index');
 
@@ -89,7 +58,7 @@ class patient_symptoms extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.to(() => patient_symptoms());
         return true;
       },
       child: Scaffold(
@@ -130,29 +99,6 @@ class patient_symptoms extends StatelessWidget {
                       Image.asset('assets/images/Notify.png')
                     ],
                   ),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  TextFormField(
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.white),
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    indent: size.width * 0.04,
-                    endIndent: size.width * 0.06,
-                    thickness: 1,
-                    height: 1,
-                  ),
                 ],
               ),
             ),
@@ -168,7 +114,7 @@ class patient_symptoms extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.78,
+                height: size.height * 0.88,
 
                 width: double.infinity,
                 child: Column(
@@ -183,10 +129,11 @@ class patient_symptoms extends StatelessWidget {
                             left: size.width * 0.08,
                           ),
                           child: CustomText(
-                            text: "Know about symptoms",
+                            textAlign: TextAlign.left,
+                            text: "When do I need to wear a \nface mask?",
                             textStyle: TextStyle(
                               color: primaryColor,
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Inter',
                             ),
@@ -202,19 +149,24 @@ class patient_symptoms extends StatelessWidget {
                         right: size.width * 0.08,
                         left: size.width * 0.08,
                       ),
-                      height: size.height * 0.62,
+                      height: size.height * 0.68,
                       width: double.infinity,
                       child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            symptoms[0],
-                            symptoms[1],
-                            symptoms[2],
-                            symptoms[3],
-                            symptoms[3],
-                            symptoms[3],
-                            symptoms[3],
-                          ],
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            right: size.width * 0.08,
+                            left: size.width * 0.08,
+                          ),
+                          child: CustomText(
+                            textAlign: TextAlign.left,
+                            text: "In the Netherlands wearing a face mask is no longer mandatory anywhere.\nPeople at risk of becoming severely ill if they get COVID-19 are advised to wear a face mask to protect their own health.\nRespect other people’s choices about wearing a face mask and keep in mind that everyone’s situation is different.",
+                            textStyle: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
                         ),
                       ),
                     ),
