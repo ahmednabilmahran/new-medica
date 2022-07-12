@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_const_literals_to_create_immutables, unused_local_variable, use_key_in_widget_constructors, camel_case_types, must_be_immutable, unnecessary_new, prefer_typing_uninitialized_variables, library_private_types_in_public_api, prefer_final_fields, use_build_context_synchronously
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -162,8 +161,7 @@ class _patient_registerState extends State<patient_register> {
                               Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: size.width * 0.035,
@@ -214,8 +212,7 @@ class _patient_registerState extends State<patient_register> {
                               Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: size.width * 0.035,
@@ -268,8 +265,7 @@ class _patient_registerState extends State<patient_register> {
                               Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: size.width * 0.035,

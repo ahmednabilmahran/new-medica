@@ -209,8 +209,7 @@ class _ChatPageState extends State<ChatPage> {
               ProfileProvider profileProvider;
               profileProvider = context.read<ProfileProvider>();
               String callPhoneNumber =
-                  profileProvider.getPrefs(FirestoreConstants.phoneNumber) ??
-                      "";
+                  profileProvider.getPrefs(FirestoreConstants.phone) ?? "";
               _callPhoneNumber(callPhoneNumber);
             },
             icon: const Icon(Icons.phone),

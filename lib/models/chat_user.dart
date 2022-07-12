@@ -34,7 +34,7 @@ class ChatUser extends Equatable {
   Map<String, dynamic> toJson() => {
         FirestoreConstants.displayName: displayName,
         FirestoreConstants.photoUrl: photoUrl,
-        FirestoreConstants.phoneNumber: phoneNumber,
+        FirestoreConstants.phone: phoneNumber,
         FirestoreConstants.aboutMe: aboutMe,
       };
   factory ChatUser.fromDocument(DocumentSnapshot snapshot) {
@@ -46,7 +46,7 @@ class ChatUser extends Equatable {
     try {
       photoUrl = snapshot.get(FirestoreConstants.photoUrl);
       nickname = snapshot.get(FirestoreConstants.displayName);
-      phoneNumber = snapshot.get(FirestoreConstants.phoneNumber);
+      phoneNumber = snapshot.get(FirestoreConstants.phone);
       aboutMe = snapshot.get(FirestoreConstants.aboutMe);
     } catch (e) {
       if (kDebugMode) {
