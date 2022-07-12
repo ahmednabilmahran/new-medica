@@ -6,6 +6,7 @@ import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'patient_home.dart';
 
@@ -122,7 +123,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              launch('tel:+201015248753');
+                                            },
                                             style: TextButton.styleFrom(
                                                 elevation: 5,
                                                 shape: RoundedRectangleBorder(
