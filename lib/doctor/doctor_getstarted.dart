@@ -73,7 +73,7 @@ class doctor_getstarted extends StatelessWidget {
                     children: [
                       TextButton(
                           onPressed: () {
-                            Get.to(doctor_register());
+                            Get.to(() => doctor_register());
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.symmetric(
@@ -97,7 +97,7 @@ class doctor_getstarted extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.to(doctor_login());
+                            Get.to(() => doctor_login());
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.symmetric(

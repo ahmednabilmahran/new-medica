@@ -11,6 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/allConstants/app_constants.dart';
 import 'package:medica/doctor/doctor_getstarted.dart';
+import 'package:medica/doctor/doctor_home.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_getstarted.dart';
@@ -48,12 +49,14 @@ class MyApp extends StatelessWidget {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   bool isUserLoggedIn = false;
+  bool doctorisUserLoggedIn = false;
 
   MyApp({Key? key, required this.prefs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     isUserLoggedIn = prefs.getBool(AppConstants.k_keepMeLoggedIn) ?? false;
+    isUserLoggedIn = prefs.getBool(AppConstants.k_dockeepMeLoggedIn) ?? false;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthProvider>(
@@ -79,8 +82,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           initialBinding: Binding(),
           debugShowCheckedModeBanner: false,
-          home: doctor_getstarted(),
-          // home: isUserLoggedIn ? patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String) : patient_getstarted() ,
+          home: isUserLoggedIn
+              ? patient_home.withuser(
+                  prefs.getString(FirestoreConstants.displayName) as String)
+              : patient_getstarted(),
         );
       }),
     );

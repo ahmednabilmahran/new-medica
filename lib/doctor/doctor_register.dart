@@ -67,7 +67,7 @@ class _doctor_registerState extends State<doctor_register> {
     final authProvider = Provider.of<AuthProvider>(context);
     return WillPopScope(
       onWillPop: () async {
-        Get.to(doctor_getstarted());
+        Get.to(() => doctor_getstarted());
         return true;
       },
       child: GestureDetector(

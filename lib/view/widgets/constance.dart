@@ -14,4 +14,5 @@ const Color whitegrayish = Color(0xfff8f8f8);
 const Color profilegrey = Color(0xffEBEBEB);
 
 const k_keepMeLoggedIn = 'KeepMeLoggedIn';
+const k_dockeepMeLoggedIn = 'docKeepMeLoggedIn';
 String current_user = patient_home() as String;
