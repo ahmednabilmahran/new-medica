@@ -5,17 +5,33 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:medica/doctor/doctor_login.dart';
+import 'package:medica/doctor/selectSpeciality.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/my_flutter_app_icons.dart';
+import 'package:medica/view/widgets/profile_icons_icons.dart';
 
+import 'doctor_getstarted.dart';
 
 class doctor_register extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthViewModel avm = Get.put(AuthViewModel());
   var confirmPass;
+  String specialityName = 'Select a speciality';
+
+  doctor_register() : specialityName = "Select a speciality";
+
+  doctor_register.getspeciality(this.specialityName);
+
+  String get name => specialityName;
+
+  set name(String name) {
+    specialityName = name;
+  }
+
   @override
   Widget build(BuildContext context) {
     // final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
@@ -113,7 +129,7 @@ class doctor_register extends GetWidget<AuthViewModel> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: size.height * 0.3333,
+                    height: size.height * 0.325,
                   ),
                   Container(
                     height: size.height * 0.666666,
@@ -151,7 +167,7 @@ class doctor_register extends GetWidget<AuthViewModel> {
                             thickness: 2,
                           ),
                           SizedBox(
-                            height: size.height * 0.03,
+                            height: size.height * 0.02,
                           ),
                           CustomTextFromField(
                               text: '\t\t\tEmail',
@@ -179,7 +195,7 @@ class doctor_register extends GetWidget<AuthViewModel> {
                             thickness: 2,
                           ),
                           SizedBox(
-                            height: size.height * 0.03,
+                            height: size.height * 0.02,
                           ),
                           CustomTextFromField(
                               keyboardType: TextInputType.phone,
@@ -188,12 +204,12 @@ class doctor_register extends GetWidget<AuthViewModel> {
                               color: Color(0xff300C92),
                               hint: '+20XXXXXXXXXX',
                               icon_name: Icon(
-                                MyFlutterApp.mail,
-                                size: 12,
+                                Icons.phone,
+                                size: 17,
                                 color: Color(0xffF95DDE),
                               ),
                               onSave: (value) {
-                                controller.email = value!;
+                                controller.phone = value!;
                               },
                               validator: (value) {
                                 if (value == null) {
@@ -208,7 +224,7 @@ class doctor_register extends GetWidget<AuthViewModel> {
                             thickness: 2,
                           ),
                           SizedBox(
-                            height: size.height * 0.03,
+                            height: size.height * 0.02,
                           ),
                           CustomTextFromField(
                               obscureText: true,
@@ -242,16 +258,112 @@ class doctor_register extends GetWidget<AuthViewModel> {
                             thickness: 2,
                           ),
                           SizedBox(
-                            height: size.height * 0.03,
+                            height: size.height * 0.02,
                           ),
+                          /*RawMaterialButton(
+                            
+                            child: CustomTextFromField(
+                                text: '\t\t\tSpeciality',
+                                isReadonly: true,
+                                fontSize: 18,
+                                color: Color(0xff300C92),
+                                hint: 'Select a speciality',
+                                icon_name: Icon(
+                                  MyFlutterApp.person,
+                                  size: 25,
+                                  color: Color(0xffF95DDE),
+                                ),
+                                onSave: (value) {
+                                  controller.name = value!;
+                                },
+                                validator: (value) {
+                                  if (value == null) {
+                                    print("Error");
+                                  }
+                                }),
+                                onPressed: () {
+                              Get.to(() => selectSpeciality());
+                            },
+                          ),*/
+                          Row(
+                            children: [
+                              CustomText(
+                                  text: "\t\t\tSpeciality",
+                                  textAlign: TextAlign.start,
+                                  textStyle: TextStyle(
+                                    color: Color(0xff3E1E96),
+                                    fontFamily: 'Inter',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  )),
+                            ],
+                          ),
+                          /* SizedBox(
+                            height: size.height * 0.01,
+                          ),*/
+                          RawMaterialButton(
+                            onPressed: () {
+                              Get.to(() => selectSpeciality());
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: size.width * 0.033,
+                                ),
+                                Icon(
+                                  ProfileIcons.path_16,
+                                  size: 20,
+                                  color: Color(0xffF95DDE),
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.033,
+                                ),
+                                CustomText(
+                                  text: specialityName,
+                                  textStyle: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontFamily: 'Inter',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          /* SizedBox(
+                            height: size.height * 0.015,
+                          ),*/
+                          Divider(
+                            color: Color(0xff3E1E96),
+                            indent: size.width * 0.05,
+                            endIndent: size.width * 0.05,
+                            height: 1,
+                            thickness: 2,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                          /*CustomText(
+                            text: 'Select a speciality',
+                            textStyle: TextStyle(
+                            color: Color.fromARGB(255, 133, 123, 123),
+                            fontSize: 18,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600),
+                      ),*/
+
                           Container(
                             child: TextButton(
                                 onPressed: () {
+                                  controller.speciality = specialityName;
                                   _formKey.currentState?.save();
 
                                   if (_formKey.currentState!.validate()) {
                                     controller
-                                        .createAccountWithEmailAndPassword();
+                                        .createDoctorAccountWithEmailAndPassword();
+                                    print("Successful");
+                                  } else {
+                                    print("Unsuccessful");
                                   }
                                 },
                                 style: TextButton.styleFrom(
