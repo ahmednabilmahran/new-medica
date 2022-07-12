@@ -27,9 +27,9 @@ class docCat extends StatefulWidget {
 class _docCatState extends State<docCat> {
   int selectedIndex = 0;
   final List<String> categories = [
-    "General",
-    "Dental",
     "Cardio",
+    "Biochem",
+    "Research",
     "Neurology",
     "Neurology",
     "Neurology",
