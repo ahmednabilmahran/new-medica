@@ -6,12 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
+import 'package:medica/doctor/doctor_profile.dart';
+import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
+import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
+import 'package:medica/view/widgets/catalog_products.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
@@ -38,21 +42,25 @@ class patient_symptoms extends StatelessWidget {
       primary: 'Wear Mask Compulsory',
       secondary: 'The point of using Lor Ipsum normal of letters...',
       imageAddress: 'assets/images/wearMask.jpg',
-      imageFit: BoxFit.fitWidth,
+      imageFit: BoxFit.fitWidth, onPressed: () {Get.to(() => patient_profile());},
     ),
     symptomCard(
       primary: 'Use Sanitizer',
       secondary: 'The point of using Lor Ipsum normal of letters...',
       imageAddress: 'assets/images/useSanitizer.jpg',
+      onPressed: () {Get.to(() => patient_book());}
     ),
     symptomCard(
       primary: 'Regular Hand Wash',
       secondary: 'The point of using Lor Ipsum normal of letters...',
       imageAddress: 'assets/images/washHands.jpg',
+      onPressed: () {Get.to(() => DoctorProfile());}
     ),
     symptomCard(
         primary: 'Check Temperature',
-        secondary: 'The point of using Lor Ipsum normal of letters...'),
+        secondary: 'The point of using Lor Ipsum normal of letters...',
+        onPressed: () {Get.to(() => CatalogProducts());}
+        )
   ];
   
 

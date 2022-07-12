@@ -9,10 +9,13 @@ class symptomCard extends StatelessWidget {
   String secondary;
   String imageAddress;
   BoxFit imageFit;
+  final Function onPressed;
+
   symptomCard({
     Key? key,
     required this.primary,
     required this.secondary,
+    required this.onPressed,
     this.imageAddress = 'assets/images/logo.png',
     this.imageFit = BoxFit.fitHeight,
   }) : super(key: key);
@@ -26,7 +29,9 @@ class symptomCard extends StatelessWidget {
         bottom: size.height * 0.012,
       ),
       child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            onPressed();
+          },
           style: TextButton.styleFrom(
               // alignment: Alignment.centerLeft,
               backgroundColor: Colors.white,

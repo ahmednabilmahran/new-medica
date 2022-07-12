@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors
+// ignore_for_file: must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,6 +23,7 @@ import 'package:medica/providers/chat_provider.dart';
 import 'package:medica/providers/home_provider.dart';
 import 'package:medica/providers/profile_provider.dart';
 import 'package:get/get.dart';
+import 'package:medica/helper/binding.dart';
 
 import 'screens/splash_page.dart';
 
@@ -77,8 +78,9 @@ class MyApp extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return GetMaterialApp(
+            initialBinding: Binding(),
             debugShowCheckedModeBanner: false,
-            home: DoctorProfile() ,
+            home: isUserLoggedIn ? patient_home.withuser(prefs.getString(FirestoreConstants.displayName) as String) : patient_getstarted() ,
           );
         }
       ),

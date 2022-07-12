@@ -8,7 +8,11 @@ class Depts extends StatelessWidget {
   final String icon;
   final Function onPressed;
 
-  const Depts({Key? key, required this.deptName, required this.icon, required this.onPressed}) : super(key: key);
+  const Depts({
+    Key? key,
+    required this.deptName,
+    required this.icon,
+    required this.onPressed}) : super(key: key);
 
 
 
