@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,7 +23,6 @@ import 'package:medica/view/widgets/patient_book_card.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
-
 
 class patient_book extends StatelessWidget {
   List book = [
@@ -62,6 +62,15 @@ class patient_book extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -96,7 +105,7 @@ class patient_book extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/Menu.png'),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

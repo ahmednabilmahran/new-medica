@@ -14,10 +14,12 @@ class FindDoctor extends StatelessWidget {
   BoxFit imageFit;
   int experienceYears;
   double? lng, lat;
+  final Function onPressed;
   FindDoctor({
     Key? key,
     required this.docName,
     required this.docSpec,
+    required this.onPressed,
     this.imageAddress = 'assets/images/logo.png',
     this.imageFit = BoxFit.fitHeight,
     required this.experienceYears,
@@ -33,7 +35,9 @@ class FindDoctor extends StatelessWidget {
         bottom: size.height * 0.012,
       ),
       child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            onPressed();
+          },
           style: TextButton.styleFrom(
               // alignment: Alignment.centerLeft,
               backgroundColor: Colors.white,
