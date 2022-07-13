@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
@@ -167,7 +168,9 @@ class patient_profile extends StatelessWidget {
                                 //   ),
                                 borderRadius: BorderRadius.circular(40)),
                           ),
-                          onPressed: null,
+                          onPressed: () {
+                            Get.to(() => MyAppointments());
+                          },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: size.width * 0.02),
@@ -176,7 +179,7 @@ class patient_profile extends StatelessWidget {
                               children: [
                                 SvgPicture.asset('assets/images/Heart.svg'),
                                 CustomText(
-                                  text: '\t\t Favourite',
+                                  text: '\t\t My Appointments',
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
