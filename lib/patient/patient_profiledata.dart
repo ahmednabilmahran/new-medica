@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures, unnecessary_new, empty_constructor_bodies
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,15 @@ class patient_profiledata extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -69,7 +79,7 @@ class patient_profiledata extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/Menu.png'),
                       CustomText(
-                        text: 'user_name',
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -97,10 +107,9 @@ class patient_profiledata extends StatelessWidget {
                     left: size.width * 0.08,
                   ),
                   child: Column(
-                   // mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(height: size.height * 0.02),
-                    
                       Row(
                         children: [
                           CustomText(
@@ -140,7 +149,7 @@ class patient_profiledata extends StatelessWidget {
                               children: [
                                 SvgPicture.asset('assets/images/User.svg'),
                                 CustomText(
-                                  text: '\t\t Username',
+                                  text: name,
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
@@ -151,7 +160,7 @@ class patient_profiledata extends StatelessWidget {
                             ),
                           )),
                       SizedBox(height: size.height * 0.04),
-                       Row(
+                      Row(
                         children: [
                           CustomText(
                             text: '\t\t\t Email',
@@ -190,7 +199,7 @@ class patient_profiledata extends StatelessWidget {
                               children: [
                                 SvgPicture.asset('assets/images/Mail.svg'),
                                 CustomText(
-                                  text: '\t\t Email Address',
+                                  text: email,
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
@@ -287,9 +296,7 @@ class patient_profiledata extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {
-                            
-                          },
+                          onPressed: () {},
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
