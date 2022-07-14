@@ -52,7 +52,7 @@ class patient_profiledata extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_getstarted());
+        Get.to(() => patient_profile());
         return true;
       },
       child: Scaffold(
@@ -113,7 +113,7 @@ class patient_profiledata extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '\t\t\t Username',
+                            text: '   Username',
                             textAlign: TextAlign.left,
                             textStyle: TextStyle(
                                 color: Color(0xff300C92),
@@ -148,6 +148,7 @@ class patient_profiledata extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SvgPicture.asset('assets/images/User.svg'),
+                                SizedBox(width: size.width * 0.04),
                                 CustomText(
                                   text: name,
                                   textStyle: TextStyle(
@@ -163,7 +164,7 @@ class patient_profiledata extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: '\t\t\t Email',
+                            text: '   Email',
                             textAlign: TextAlign.left,
                             textStyle: TextStyle(
                                 color: Color(0xff300C92),
@@ -198,6 +199,7 @@ class patient_profiledata extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SvgPicture.asset('assets/images/Mail.svg'),
+                                SizedBox(width: size.width * 0.04),
                                 CustomText(
                                   text: email,
                                   textStyle: TextStyle(
