@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medica/controllers/cart_controller.dart';
 import 'package:medica/models/product_model.dart';
+import 'package:medica/view/widgets/constance.dart';
 
 class CartProducts extends StatelessWidget {
-  final  controller = Get.put(CartController());
+  final controller = Get.put(CartController());
 
   CartProducts({Key? key}) : super(key: key);
 
@@ -44,38 +45,93 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
+    final Size size = MediaQuery.of(context).size;
+
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: size.height * 0.02,
+        left: size.width * 0.068,
+        right: size.width * 0.068,
+      ),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
+      padding: EdgeInsets.symmetric(
         horizontal: 20.0,
         vertical: 10,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage(
-              product.imageUrl,
+          Container(
+            width: size.width * 0.26,
+            height: size.width * 0.26,
+            decoration: BoxDecoration(
+              // color: Colors.green,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: NetworkImage(
+                  product.imageUrl,
+                ),
+              ),
             ),
           ),
+          // CircleAvatar(
+          //   radius: 40,
+          //   backgroundImage: NetworkImage(
+          //     product.imageUrl,
+          //   ),
+          // ),
           SizedBox(
             width: 20,
           ),
           Expanded(
-            child: Text(product.name),
+            child: Text(
+              product.name,
+              style: TextStyle(
+                  fontFamily: 'DMSans',
+                  color: primaryColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              controller.removeProduct(product);
-            },
-            icon: Icon(Icons.remove_circle),
-          ),
-          Text('$quantity'),
-          IconButton(
-            onPressed: () {
-              controller.addProduct(product);
-            },
-            icon: Icon(Icons.add_circle),
+          Container(
+            // padding: EdgeInsets.all(0),
+            // height: 90,
+            decoration: BoxDecoration(
+                color: secondaryColor, borderRadius: BorderRadius.circular(50)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    controller.removeProduct(product);
+                  },
+                  icon: Icon(
+                    Icons.remove,
+                    color: Colors.white,
+                    size: 17,
+                  ),
+                ),
+                Text(
+                  '$quantity',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    height: 0,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    controller.addProduct(product);
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 17,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

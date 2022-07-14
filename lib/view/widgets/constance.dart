@@ -12,6 +12,7 @@ const Color medicaCyan = Color(0xff4CD2CF);
 const Color secondaryTextColor = Color(0xff8C849F);
 const Color whitegrayish = Color(0xfff8f8f8);
 const Color profilegrey = Color(0xffEBEBEB);
+const Color primarybutton = Color(0xff603EBC);
 
 const k_keepMeLoggedIn = 'KeepMeLoggedIn';
 String current_user = patient_home() as String;

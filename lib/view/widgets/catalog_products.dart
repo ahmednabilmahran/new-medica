@@ -143,7 +143,7 @@ class CatalogProductCard extends StatelessWidget {
                       bottomRight: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
                     )),
-                    backgroundColor: Color(0xff603EBC),
+                    backgroundColor: primarybutton,
                     // primary: Colors.transparent,
                     minimumSize: Size(double.infinity, size.height * .07)),
                 onPressed: () {
