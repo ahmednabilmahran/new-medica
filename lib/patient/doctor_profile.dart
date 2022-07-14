@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -61,6 +62,20 @@ class _DoctorProfileState extends State<DoctorProfile> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final db = FirebaseFirestore.instance;
+    dynamic _msg = '';
+    dynamic pname = null;
+    dynamic description = null;
+    dynamic _selected_doc = null;
+    dynamic _selected_day = null;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic id = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      id = user.uid;
+    }
 
     //  _selectedValue;
 
@@ -258,7 +273,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: widget._docexperience.toString(),
+                                          text:
+                                              widget._docexperience.toString(),
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,
@@ -397,49 +413,49 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                 ],
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              margin: EdgeInsets.only(
-                                top: size.height * 0.015,
-                                left: size.width * 0.08,
-                                right: size.width * 0.08,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: 'Visiting Hours',
-                                    textStyle: TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(
-                                  left: size.width * 0.08,
-                                  top: size.height * 0.02,
-                                ),
-                                child: appTime(
-                                  categories: [
-                                    "8:00AM",
-                                    "9:00AM",
-                                    "10:00AM",
-                                    "11:00AM",
-                                    "12:00PM",
-                                    "1:00PM",
-                                    "2:00PM",
-                                    "3:00PM",
-                                    "4:00PM",
-                                    "5:00PM",
-                                    "6:00PM",
-                                    "7:00PM",
-                                    "8:00PM",
-                                  ],
-                                )),
+                            // Container(
+                            //   alignment: Alignment.topLeft,
+                            //   margin: EdgeInsets.only(
+                            //     top: size.height * 0.015,
+                            //     left: size.width * 0.08,
+                            //     right: size.width * 0.08,
+                            //   ),
+                            //   child: Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       CustomText(
+                            //         text: 'Visiting Hours',
+                            //         textStyle: TextStyle(
+                            //           color: primaryColor,
+                            //           fontSize: 17,
+                            //           fontWeight: FontWeight.w600,
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            // Container(
+                            //     margin: EdgeInsets.only(
+                            //       left: size.width * 0.08,
+                            //       top: size.height * 0.02,
+                            //     ),
+                            //     child: appTime(
+                            //       categories: [
+                            //         "8:00AM",
+                            //         "9:00AM",
+                            //         "10:00AM",
+                            //         "11:00AM",
+                            //         "12:00PM",
+                            //         "1:00PM",
+                            //         "2:00PM",
+                            //         "3:00PM",
+                            //         "4:00PM",
+                            //         "5:00PM",
+                            //         "6:00PM",
+                            //         "7:00PM",
+                            //         "8:00PM",
+                            //       ],
+                            //     )),
                             Container(
                               margin: EdgeInsets.only(
                                 top: size.height * 0.03,
@@ -449,7 +465,62 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               child: Column(
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      final user =
+                                          FirebaseAuth.instance.currentUser;
+                                      var uid = user?.uid;
+                                      db
+                                          .collection('users')
+                                          .doc(uid)
+                                          .get()
+                                          .then((value) {
+                                        if (value.data() != null) {
+                                          if (pname != null &&
+                                              // description != null &&
+                                              // _selected_doc != null &&
+                                              _selected_day != null) {
+                                            var time = [0, 0];
+                                            db.collection('appointments').add({
+                                              'patient': pname,
+                                              'patient_id': uid,
+                                              'doctor': _selected_doc,
+                                              'day': _selected_day,
+                                              // 'disease': description,
+                                              'status': 'pending',
+                                              'timestamp':
+                                                  FieldValue.serverTimestamp(),
+                                              'time': time,
+                                            }).then((value) {
+                                              print(value.id);
+                                              db
+                                                  .collection('users')
+                                                  .doc(uid)
+                                                  .update({
+                                                'appointments':
+                                                    FieldValue.arrayUnion(
+                                                        [value]),
+                                                // 'doctorname':
+                                                //     FieldValue.arrayUnion(
+                                                //         [doctor]),
+                                                'patientname':
+                                                    FieldValue.arrayUnion(
+                                                        [pname]),
+                                                'day': FieldValue.arrayUnion(
+                                                    [_selected_day]),
+                                              }).then((value) {
+                                                print('success');
+                                              }).catchError((e) => setState(() {
+                                                        _msg = e.message;
+                                                      }));
+                                            }).catchError((e) => setState(() {
+                                                  _msg = e.message;
+                                                }));
+                                          }
+                                        } else {
+                                          print('Fields can\'t be empty');
+                                        }
+                                      }).catchError((e) => print(e.toString()));
+                                    },
                                     style: TextButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
