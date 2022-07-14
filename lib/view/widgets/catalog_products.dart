@@ -16,10 +16,13 @@ class CatalogProducts extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Obx(
+      
       () => Flexible(
         child: GridView.builder(
+
             // scrollDirection: ,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              // mainAxisExtent: 3,
               crossAxisCount: 2,
               childAspectRatio: 0.6,
               crossAxisSpacing: ((size.width + size.height) / 2) * 0.016,
@@ -80,7 +83,7 @@ class CatalogProductCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fitHeight,
                       image: NetworkImage(
                         productController.products[index].imageUrl,
                       ),

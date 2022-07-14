@@ -6,12 +6,14 @@ import 'package:medica/view/widgets/cart_total.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 
+import '../controllers/cart_controller.dart';
 import '../patient/patient_home.dart';
 import '../patient/patient_profile.dart';
 import '../view/widgets/custom_background.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  CartScreen({Key? key}) : super(key: key);
+  final controller = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class CartScreen extends StatelessWidget {
                     padding: EdgeInsets.only(
                       // right: size.width * 0.08,
                       // left: size.width * 0.08,
-                      top: size.height * 0.04,
+                      top: size.height * 0.021,
                     ),
                     // color: Colors.green,
 
@@ -86,7 +88,131 @@ class CartScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CartProducts(),
-                        CartTotal(),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: size.height * 0.02,
+                            right: size.width * 0.08,
+                            left: size.width * 0.08,
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  CustomText(
+                                    text: 'Order Summary',
+                                    textStyle: TextStyle(
+                                      color: primaryColor,
+                                      fontFamily: 'dmsans',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Divider(
+                                height: size.height * 0.04,
+                                thickness: 1,
+                                color: primaryColor.withAlpha(100),
+                                // endIndent: size.width * 0.04,
+                                // indent: size.width * 0.04,
+                                // indent: 0,
+                                // endIndent: 0,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomText(
+                                    text: 'Subtotal',
+                                    textStyle: TextStyle(
+                                      color: Color(0xff938BA5),
+                                      fontFamily: 'inter',
+                                    ),
+                                  ),
+                                  Obx(
+                                    () => CustomText(
+                                      text: '\£${controller.total}',
+                                      textStyle: TextStyle(
+                                        color: Color(0xff938BA5),
+                                        fontFamily: 'inter',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomText(
+                                    text: 'Shipping',
+                                    textStyle: TextStyle(
+                                      color: Color(0xff938BA5),
+                                      fontFamily: 'inter',
+                                    ),
+                                  ),
+                                  CustomText(
+                                    text: 'Free',
+                                    textStyle: TextStyle(
+                                      color: Color(0xff938BA5),
+                                      fontFamily: 'inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomText(
+                                    text: 'Total',
+                                    textStyle: TextStyle(
+                                        color: primaryColor,
+                                        fontFamily: 'dmsans',
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 17),
+                                  ),
+                                  CustomText(
+                                    text: '\£${controller.total}',
+                                    textStyle: TextStyle(
+                                        color: secondaryColor,
+                                        fontFamily: 'dmsans',
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 17),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.03,
+                              ),
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: primarybutton,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                      )),
+                                      minimumSize: Size(
+                                        double.infinity,
+                                        size.height * 0.062,
+                                      )),
+                                  onPressed: () {},
+                                  child: CustomText(
+                                    text: 'PROCEED TO CHECKOUT',
+                                    textStyle: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   )

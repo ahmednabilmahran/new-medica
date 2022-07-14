@@ -11,19 +11,23 @@ class CartProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Obx(
-      () => SizedBox(
-        height: 600,
-        child: ListView.builder(
-            itemCount: controller.products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return CartProductCard(
-                controller: controller,
-                product: controller.products.keys.toList()[index],
-                quantity: controller.products.values.toList()[index],
-                index: index,
-              );
-            }),
+      () => Scrollbar(
+        child: SizedBox(
+          height: size.height * 0.47,
+          child: ListView.builder(
+              itemCount: controller.products.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CartProductCard(
+                  controller: controller,
+                  product: controller.products.keys.toList()[index],
+                  quantity: controller.products.values.toList()[index],
+                  index: index,
+                );
+              }),
+        ),
       ),
     );
   }
@@ -100,8 +104,8 @@ class CartProductCard extends StatelessWidget {
                   '${product.price}',
                   style: TextStyle(
                       fontFamily: 'DMSans',
-                      color: primaryColor,
-                      fontSize: 18,
+                      color: secondaryColor,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold),
                 ),
               ],
@@ -110,7 +114,7 @@ class CartProductCard extends StatelessWidget {
           Container(
             // padding: EdgeInsets.all(0),
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            height: 65,
+            // height: 6,
             decoration: BoxDecoration(
                 color: secondaryColor, borderRadius: BorderRadius.circular(50)),
             child: Column(
@@ -120,10 +124,13 @@ class CartProductCard extends StatelessWidget {
                   onTap: () {
                     controller.removeProduct(product);
                   },
-                  child: Icon(
-                    Icons.remove,
-                    color: Colors.white,
-                    size: 17,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.remove,
+                      color: Colors.white,
+                      size: 17,
+                    ),
                   ),
                 ),
                 Text(
