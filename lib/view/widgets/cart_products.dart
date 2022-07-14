@@ -109,7 +109,8 @@ class CartProductCard extends StatelessWidget {
           ),
           Container(
             // padding: EdgeInsets.all(0),
-            // height: 90,
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+            height: 65,
             decoration: BoxDecoration(
                 color: secondaryColor, borderRadius: BorderRadius.circular(50)),
             child: Column(
@@ -137,10 +138,13 @@ class CartProductCard extends StatelessWidget {
                   onTap: () {
                     controller.addProduct(product);
                   },
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 17,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 17,
+                    ),
                   ),
                 ),
               ],
