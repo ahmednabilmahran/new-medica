@@ -86,6 +86,7 @@ class CartScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CartProducts(),
+                        CartTotal(),
                       ],
                     ),
                   )

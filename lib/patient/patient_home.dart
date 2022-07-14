@@ -30,7 +30,6 @@ import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 
 class patient_home extends StatelessWidget {
-  
   patient_home() : _name = "DEFAULT";
 
   patient_home.withuser(this._name);
@@ -132,9 +131,9 @@ class patient_home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Get.to(() => MyAppointments());
-                        },
+                          onTap: () {
+                            Get.to(() => MyAppointments());
+                          },
                           child: Image.asset('assets/images/Menu.png')),
                       CustomText(
                         text: name,
@@ -426,7 +425,7 @@ class patient_home extends StatelessWidget {
                                         CustomText(
                                           text: 'Find Doctors',
                                           textStyle: TextStyle(
-                                              fontSize: 15,
+                                              fontSize: size.width * 0.038,
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
                                               color: primaryColor),
@@ -438,7 +437,7 @@ class patient_home extends StatelessWidget {
                                         CustomText(
                                           text: 'The points of using to',
                                           textStyle: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: size.width * 0.0318,
                                               fontFamily: 'Inter',
                                               color: secondaryTextColor),
                                         ),
@@ -510,7 +509,7 @@ class patient_home extends StatelessWidget {
                                         CustomText(
                                           text: 'Online consult',
                                           textStyle: TextStyle(
-                                              fontSize: 15,
+                                              fontSize: size.width * 0.038,
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
                                               color: primaryColor),
@@ -522,7 +521,7 @@ class patient_home extends StatelessWidget {
                                         CustomText(
                                           text: 'The points of using to',
                                           textStyle: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: size.width * 0.0318,
                                               fontFamily: 'Inter',
                                               color: secondaryTextColor),
                                         ),

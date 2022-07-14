@@ -85,13 +85,26 @@ class CartProductCard extends StatelessWidget {
             width: 20,
           ),
           Expanded(
-            child: Text(
-              product.name,
-              style: TextStyle(
-                  fontFamily: 'DMSans',
-                  color: primaryColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: TextStyle(
+                      fontFamily: 'DMSans',
+                      color: primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '${product.price}',
+                  style: TextStyle(
+                      fontFamily: 'DMSans',
+                      color: primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
           Container(
@@ -102,11 +115,11 @@ class CartProductCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  onPressed: () {
+                GestureDetector(
+                  onTap: () {
                     controller.removeProduct(product);
                   },
-                  icon: Icon(
+                  child: Icon(
                     Icons.remove,
                     color: Colors.white,
                     size: 17,
@@ -120,11 +133,11 @@ class CartProductCard extends StatelessWidget {
                     height: 0,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
+                GestureDetector(
+                  onTap: () {
                     controller.addProduct(product);
                   },
-                  icon: Icon(
+                  child: Icon(
                     Icons.add,
                     color: Colors.white,
                     size: 17,
