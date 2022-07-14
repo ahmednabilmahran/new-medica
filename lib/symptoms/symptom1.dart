@@ -130,7 +130,7 @@ class symptom1 extends StatelessWidget {
                           ),
                           child: CustomText(
                             textAlign: TextAlign.left,
-                            text: "When do I need to wear a \nface mask?",
+                            text: "Diabetes Symptoms",
                             textStyle: TextStyle(
                               color: primaryColor,
                               fontSize: 22,
@@ -154,22 +154,43 @@ class symptom1 extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Container(
                           padding: EdgeInsets.only(
-                            right: size.width * 0.08,
-                            left: size.width * 0.08,
+                            right: size.width * 0.03,
+                            left: size.width * 0.04,
                           ),
                           child: CustomText(
                             textAlign: TextAlign.left,
-                            text: "In the Netherlands wearing a face mask is no longer mandatory anywhere.\nPeople at risk of becoming severely ill if they get COVID-19 are advised to wear a face mask to protect their own health.\nRespect other people’s choices about wearing a face mask and keep in mind that everyone’s situation is different.",
+                            text: "If you have any of the following diabetes symptoms, see your doctor about getting your blood sugar tested:",
                             textStyle: TextStyle(
                               color: Colors.black87,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Inter',
                             ),
-                          ),
-                        ),
+                          ),                           
+                        ),                       
+                      ),                                          
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.08,
+                        left: size.width * 0.08,
+                      ),
+                     // height: size.height * 0.68,
+                      width: double.infinity,
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: Icon(Icons.fiber_manual_record),
+                            title: new Text('My first line'),
+                            ),
+                            
+
+                        ]
                       ),
                     ),
+                     
+                     
+
                     Container(
                       // padding: EdgeInsets.only(
                       //   top: size.height * 0.02,

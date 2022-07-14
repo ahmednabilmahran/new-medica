@@ -43,9 +43,9 @@ class patient_symptoms extends StatelessWidget {
 
   List symptoms = [
     symptomCard(
-      primary: 'Wear Mask Compulsory',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/wearMask.jpg',
+      primary: 'Diabetes Symptoms',
+      secondary: 'if you have any of the following...',
+      imageAddress: 'assets/images/symptoms/diabetes.jpg',
       imageFit: BoxFit.fitWidth,
       onPressed: () {
         Get.to(() => symptom1());
