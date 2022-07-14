@@ -507,9 +507,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                                 'doctorname':
                                                     FieldValue.arrayUnion(
                                                         [_selected_doc]),
-                                                'patientname':
-                                                    FieldValue.arrayUnion(
-                                                        [pname]),
+                                                // 'patientname':
+                                                //     FieldValue.arrayUnion(
+                                                //         [pname]),
                                                 'day': FieldValue.arrayUnion([
                                                   widget._selectedValue
                                                       .toString()

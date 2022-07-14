@@ -8,8 +8,9 @@ class MyAppointments extends StatefulWidget {
 }
 
 class _MyAppointmentsState extends State<MyAppointments> {
+  FirebaseAuth auth = FirebaseAuth.instance;
   dynamic docnames = [];
-  dynamic patientnames = [];
+  late String? patientnames = auth.currentUser?.displayName;
   dynamic days = [];
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class _MyAppointmentsState extends State<MyAppointments> {
                     .then((value) {
                   user_appointment_codes = value.data()?['appointments'];
                   docnames = value.data()?['doctorname'];
-                  patientnames = value.data()?['patientname'];
+                  patientnames =
+                      FirebaseAuth.instance.currentUser?.displayName as String;
                   days = value.data()?['day'];
                 });
                 return Center(
@@ -44,34 +46,37 @@ class _MyAppointmentsState extends State<MyAppointments> {
               // user_appointment_codes = FirebaseFirestore.instance.collection('appointments').doc()
               int index = 0;
               print(user_appointment_codes);
-
-              return ListView.builder(
-                  itemCount: user_appointment_codes?.length ?? 0,
-                  itemBuilder: (BuildContext context, index) {
-                    return Card(
-                      child: ListTile(
-                        leading: Icon(Icons.calendar_today),
-                        title: Text(
-                          patientnames[index],
-                          style: TextStyle(fontSize: 18),
+              if (user_appointment_codes == null) {
+                return Center(child: Text("No Appointments Found"));
+              } else {
+                return ListView.builder(
+                    itemCount: user_appointment_codes.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return Card(
+                        child: ListTile(
+                          leading: Icon(Icons.calendar_today),
+                          title: Text(
+                            patientnames!,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                docnames[index],
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ],
+                          ),
+                          trailing: Text(
+                            days[index],
+                            style: TextStyle(
+                                fontSize: 15, color: Colors.greenAccent),
+                          ),
                         ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              docnames[index],
-                              style: TextStyle(fontSize: 15),
-                            ),
-                          ],
-                        ),
-                        trailing: Text(
-                          days[index],
-                          style: TextStyle(
-                              fontSize: 15, color: Colors.greenAccent),
-                        ),
-                      ),
-                    );
-                  });
+                      );
+                    });
+              }
             }),
       ),
     );
