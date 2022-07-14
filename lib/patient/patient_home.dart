@@ -30,7 +30,6 @@ import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 
 class patient_home extends StatelessWidget {
-  
   patient_home() : _name = "DEFAULT";
 
   patient_home.withuser(this._name);
@@ -132,9 +131,9 @@ class patient_home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Get.to(() => MyAppointments());
-                        },
+                          onTap: () {
+                            Get.to(() => MyAppointments());
+                          },
                           child: Image.asset('assets/images/Menu.png')),
                       CustomText(
                         text: name,
@@ -233,7 +232,12 @@ class patient_home extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SvgPicture.asset('assets/images/meds.svg'),
+                                SvgPicture.asset(
+                                  "assets/images/covid4.svg",
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.scaleDown,
+                                ),
                                 CustomText(
                                   text: 'Covid-19 Detector',
                                   textStyle: TextStyle(
