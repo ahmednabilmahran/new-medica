@@ -24,6 +24,7 @@ class DoctorProfile extends StatefulWidget {
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
+  DateTime _selectedValue = DateTime.now();
   String _docname;
 
   String get name => _docname;
@@ -64,9 +65,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
     final db = FirebaseFirestore.instance;
     dynamic _msg = '';
     dynamic pname = null;
-    dynamic description = null;
-    dynamic _selected_doc = null;
-    dynamic _selected_day = null;
+    dynamic speciality = widget._docspec;
+    dynamic _selected_doc = widget._docname;
+    dynamic _selected_day = DateTime.now();
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
     dynamic name = '';
@@ -75,6 +76,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
       email = user.email;
       name = user.displayName;
       id = user.uid;
+      pname = user.displayName;
     }
 
     //  _selectedValue;
@@ -393,7 +395,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         DatePicker(
                                           DateTime.now(),
                                           initialSelectedDate: DateTime.now(),
-                                          daysCount: 60,
+                                          daysCount: 7,
                                           selectionColor: secondaryColor,
                                           selectedTextColor: Colors.white,
                                           deactivatedColor: Colors.white,
@@ -403,7 +405,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           onDateChange: (date) {
                                             // New date selected
                                             setState(() {
-                                              // _selectedValue = date;
+                                              widget._selectedValue = date;
+                                              print(widget._selectedValue
+                                                  .toString());
                                             });
                                           },
                                         ),
@@ -478,13 +482,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           if (pname != null &&
                                               // description != null &&
                                               // _selected_doc != null &&
-                                              _selected_day != null) {
+                                              widget._selectedValue != null) {
                                             var time = [0, 0];
                                             db.collection('appointments').add({
                                               'patient': pname,
                                               'patient_id': uid,
                                               'doctor': _selected_doc,
-                                              'day': _selected_day,
+                                              'day': widget._selectedValue
+                                                  .toString(),
                                               // 'disease': description,
                                               'status': 'pending',
                                               'timestamp':
@@ -499,14 +504,16 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                                 'appointments':
                                                     FieldValue.arrayUnion(
                                                         [value]),
-                                                // 'doctorname':
-                                                //     FieldValue.arrayUnion(
-                                                //         [doctor]),
+                                                'doctorname':
+                                                    FieldValue.arrayUnion(
+                                                        [_selected_doc]),
                                                 'patientname':
                                                     FieldValue.arrayUnion(
                                                         [pname]),
-                                                'day': FieldValue.arrayUnion(
-                                                    [_selected_day]),
+                                                'day': FieldValue.arrayUnion([
+                                                  widget._selectedValue
+                                                      .toString()
+                                                ]),
                                               }).then((value) {
                                                 print('success');
                                               }).catchError((e) => setState(() {
