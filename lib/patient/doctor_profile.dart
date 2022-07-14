@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class DoctorProfile extends StatefulWidget {
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
+  DateTime _selectedValue = DateTime.now();
   String _docname;
 
   String get name => _docname;
@@ -61,6 +63,21 @@ class _DoctorProfileState extends State<DoctorProfile> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final db = FirebaseFirestore.instance;
+    dynamic _msg = '';
+    dynamic pname = null;
+    dynamic speciality = widget._docspec;
+    dynamic _selected_doc = widget._docname;
+    dynamic _selected_day = DateTime.now();
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic id = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      id = user.uid;
+      pname = user.displayName;
+    }
 
     //  _selectedValue;
 
@@ -258,7 +275,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: widget._docexperience.toString(),
+                                          text:
+                                              widget._docexperience.toString(),
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,
@@ -377,7 +395,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         DatePicker(
                                           DateTime.now(),
                                           initialSelectedDate: DateTime.now(),
-                                          daysCount: 60,
+                                          daysCount: 7,
                                           selectionColor: secondaryColor,
                                           selectedTextColor: Colors.white,
                                           deactivatedColor: Colors.white,
@@ -387,7 +405,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           onDateChange: (date) {
                                             // New date selected
                                             setState(() {
-                                              // _selectedValue = date;
+                                              widget._selectedValue = date;
+                                              print(widget._selectedValue
+                                                  .toString());
                                             });
                                           },
                                         ),
@@ -397,49 +417,49 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                 ],
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              margin: EdgeInsets.only(
-                                top: size.height * 0.015,
-                                left: size.width * 0.08,
-                                right: size.width * 0.08,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: 'Visiting Hours',
-                                    textStyle: TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(
-                                  left: size.width * 0.08,
-                                  top: size.height * 0.02,
-                                ),
-                                child: appTime(
-                                  categories: [
-                                    "8:00AM",
-                                    "9:00AM",
-                                    "10:00AM",
-                                    "11:00AM",
-                                    "12:00PM",
-                                    "1:00PM",
-                                    "2:00PM",
-                                    "3:00PM",
-                                    "4:00PM",
-                                    "5:00PM",
-                                    "6:00PM",
-                                    "7:00PM",
-                                    "8:00PM",
-                                  ],
-                                )),
+                            // Container(
+                            //   alignment: Alignment.topLeft,
+                            //   margin: EdgeInsets.only(
+                            //     top: size.height * 0.015,
+                            //     left: size.width * 0.08,
+                            //     right: size.width * 0.08,
+                            //   ),
+                            //   child: Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       CustomText(
+                            //         text: 'Visiting Hours',
+                            //         textStyle: TextStyle(
+                            //           color: primaryColor,
+                            //           fontSize: 17,
+                            //           fontWeight: FontWeight.w600,
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            // Container(
+                            //     margin: EdgeInsets.only(
+                            //       left: size.width * 0.08,
+                            //       top: size.height * 0.02,
+                            //     ),
+                            //     child: appTime(
+                            //       categories: [
+                            //         "8:00AM",
+                            //         "9:00AM",
+                            //         "10:00AM",
+                            //         "11:00AM",
+                            //         "12:00PM",
+                            //         "1:00PM",
+                            //         "2:00PM",
+                            //         "3:00PM",
+                            //         "4:00PM",
+                            //         "5:00PM",
+                            //         "6:00PM",
+                            //         "7:00PM",
+                            //         "8:00PM",
+                            //       ],
+                            //     )),
                             Container(
                               margin: EdgeInsets.only(
                                 top: size.height * 0.03,
@@ -449,7 +469,65 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               child: Column(
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      final user =
+                                          FirebaseAuth.instance.currentUser;
+                                      var uid = user?.uid;
+                                      db
+                                          .collection('users')
+                                          .doc(uid)
+                                          .get()
+                                          .then((value) {
+                                        if (value.data() != null) {
+                                          if (pname != null &&
+                                              // description != null &&
+                                              // _selected_doc != null &&
+                                              widget._selectedValue != null) {
+                                            var time = [0, 0];
+                                            db.collection('appointments').add({
+                                              'patient': pname,
+                                              'patient_id': uid,
+                                              'doctor': _selected_doc,
+                                              'day': widget._selectedValue
+                                                  .toString(),
+                                              // 'disease': description,
+                                              'status': 'pending',
+                                              'timestamp':
+                                                  FieldValue.serverTimestamp(),
+                                              'time': time,
+                                            }).then((value) {
+                                              print(value.id);
+                                              db
+                                                  .collection('users')
+                                                  .doc(uid)
+                                                  .update({
+                                                'appointments':
+                                                    FieldValue.arrayUnion(
+                                                        [value]),
+                                                'doctorname':
+                                                    FieldValue.arrayUnion(
+                                                        [_selected_doc]),
+                                                'patientname':
+                                                    FieldValue.arrayUnion(
+                                                        [pname]),
+                                                'day': FieldValue.arrayUnion([
+                                                  widget._selectedValue
+                                                      .toString()
+                                                ]),
+                                              }).then((value) {
+                                                print('success');
+                                              }).catchError((e) => setState(() {
+                                                        _msg = e.message;
+                                                      }));
+                                            }).catchError((e) => setState(() {
+                                                  _msg = e.message;
+                                                }));
+                                          }
+                                        } else {
+                                          print('Fields can\'t be empty');
+                                        }
+                                      }).catchError((e) => print(e.toString()));
+                                    },
                                     style: TextButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(

@@ -137,15 +137,16 @@ class patient_profile extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SvgPicture.asset('assets/images/User.svg'),
+                                SizedBox(width: size.width * 0.04),
                                 CustomText(
-                                  text: '\t\t Profile',
+                                  text: 'Profile',
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 ),
-                                SizedBox(width: size.width * 0.45),
+                                SizedBox(width: size.width * 0.47),
                                 SvgPicture.asset(
                                     'assets/images/chevron-right.svg'),
                               ],
@@ -178,15 +179,16 @@ class patient_profile extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SvgPicture.asset('assets/images/Heart.svg'),
+                                SizedBox(width: size.width * 0.04),
                                 CustomText(
-                                  text: '\t\t My Appointments',
+                                  text: 'My Appointments',
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 ),
-                                SizedBox(width: size.width * 0.38),
+                                SizedBox(width: size.width * 0.26),
                                 SvgPicture.asset(
                                     'assets/images/chevron-right.svg'),
                               ],
@@ -218,15 +220,16 @@ class patient_profile extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                     'assets/images/information-svgrepo-com.svg'),
+                                SizedBox(width: size.width * 0.04),
                                 CustomText(
-                                  text: '\t\t About us',
+                                  text: 'About us',
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 ),
-                                SizedBox(width: size.width * 0.38),
+                                SizedBox(width: size.width * 0.43),
                                 SvgPicture.asset(
                                     'assets/images/chevron-right.svg'),
                               ],
@@ -263,8 +266,10 @@ class patient_profile extends StatelessWidget {
                                   color: secondaryColor,
                                   size: 18,
                                 ),
+                                SizedBox(width: size.width * 0.04),
+
                                 CustomText(
-                                  text: '\t\t Logout',
+                                  text: 'Logout',
                                   textStyle: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: 'Inter',
