@@ -27,15 +27,13 @@ class symptom1 extends StatelessWidget {
   symptom1() : _name = "DEFAULT";
 
   symptom1.withuser(this._name);
-    String _name;
+  String _name;
 
   String get name => _name;
 
   set name(String name) {
     _name = name;
   }
-  
-  
 
   // final numbers = List.generate(100, (index) => '$index');
 
@@ -87,7 +85,12 @@ class symptom1 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      SvgPicture.asset(
+                        'assets/images/appointment.svg',
+                        width: 25,
+                        height: 25,
+                        color: Colors.white,
+                      ),
                       CustomText(
                         text: "USERNAME",
                         textStyle: TextStyle(
@@ -152,45 +155,50 @@ class symptom1 extends StatelessWidget {
                       height: size.height * 0.68,
                       width: double.infinity,
                       child: SingleChildScrollView(
-                        child: Container(
-                          padding: EdgeInsets.only(
-                            right: size.width * 0.03,
-                            left: size.width * 0.04,
-                          ),
-                          child: CustomText(
-                            textAlign: TextAlign.left,
-                            text: "If you have any of the following diabetes symptoms, see your doctor about getting your blood sugar tested:",
-                            textStyle: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Inter',
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "If you have any of the following diabetes symptoms, see your doctor about getting your blood sugar tested:",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
                             ),
-                          ),                           
-                        ),                       
-                      ),                                          
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        right: size.width * 0.08,
-                        left: size.width * 0.08,
-                      ),
-                     // height: size.height * 0.68,
-                      width: double.infinity,
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Icon(Icons.fiber_manual_record),
-                            title: new Text('My first line'),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.08,
+                                left: size.width * 0.08,
+                              ),
+                              // height: size.height * 0.68,
+                              width: double.infinity,
+                              child: Column(children: <Widget>[
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.fiber_manual_record,
+                                    size: 15,
+                                  ),
+                                  title: new Text(
+                                    'My first line',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: 13),
+                                  ),
+                                ),
+                              ]),
                             ),
-                            
-
-                        ]
+                          ],
+                        ),
                       ),
                     ),
-                     
-                     
-
                     Container(
                       // padding: EdgeInsets.only(
                       //   top: size.height * 0.02,

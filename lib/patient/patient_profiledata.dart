@@ -77,7 +77,12 @@ class patient_profiledata extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      SvgPicture.asset(
+                        'assets/images/appointment.svg',
+                        width: 25,
+                        height: 25,
+                        color: Colors.white,
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
