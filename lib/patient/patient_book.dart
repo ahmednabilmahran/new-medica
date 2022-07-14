@@ -12,6 +12,7 @@ import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
+import 'package:medica/screens/splash_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -28,19 +29,19 @@ class patient_book extends StatelessWidget {
   List book = [
     patientAppointmentCard(
         speciality: 'Orthopedist',
-        numberOfDoctor: '20',
+        numberOfDoctor: '20 ',
         description: 'The point of using Lor Ipsum letters...'),
     patientAppointmentCard(
         speciality: 'Dentist',
-        numberOfDoctor: '20',
+        numberOfDoctor: '20 ',
         description: 'The point of using Lor Ipsum letters...'),
     patientAppointmentCard(
         speciality: 'Ear Nose Throat',
-        numberOfDoctor: '20',
+        numberOfDoctor: '20 ',
         description: 'The point of using Lor Ipsum letters...'),
     patientAppointmentCard(
         speciality: 'Pediatrain',
-        numberOfDoctor: '20',
+        numberOfDoctor: '20 ',
         description: 'The point of using Lor Ipsum letters...'),
   ];
 
@@ -103,14 +104,19 @@ class patient_book extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      SvgPicture.asset(
+                        'assets/images/appointment.svg',
+                        width: 25,
+                        height: 25,
+                        color: Colors.white,
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600),
+                            fontFamily: 'DMSans',
+                            fontWeight: FontWeight.bold),
                       ),
                       Image.asset('assets/images/Notify.png')
                     ],
@@ -198,7 +204,7 @@ class patient_book extends StatelessWidget {
                           ),
                           // width: double.infinity,
                           // color: Colors.amber,
-                          height: size.height * 0.58,
+                          height: size.height * 0.5925,
                           child: SingleChildScrollView(
                             child: Wrap(
                               // alignment: WrapAlignment.spaceBetween,
@@ -276,7 +282,9 @@ class patient_book extends StatelessWidget {
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(() => SplashPage());
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

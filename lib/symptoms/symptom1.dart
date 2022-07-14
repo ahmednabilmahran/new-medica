@@ -87,7 +87,8 @@ class symptom1 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      SvgPicture.asset('assets/images/appointment.svg',
+                      width: 25, height: 25,color: Colors.white,),
                       CustomText(
                         text: "USERNAME",
                         textStyle: TextStyle(
@@ -166,30 +167,11 @@ class symptom1 extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Inter',
                             ),
-                          ),                           
-                        ),                       
+                          ),                      
+                        ),     
+                
                       ),                                          
                     ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        right: size.width * 0.08,
-                        left: size.width * 0.08,
-                      ),
-                     // height: size.height * 0.68,
-                      width: double.infinity,
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Icon(Icons.fiber_manual_record),
-                            title: new Text('My first line'),
-                            ),
-                            
-
-                        ]
-                      ),
-                    ),
-                     
-                     
 
                     Container(
                       // padding: EdgeInsets.only(

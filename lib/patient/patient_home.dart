@@ -134,12 +134,13 @@ class patient_home extends StatelessWidget {
                           onTap: () {
                             Get.to(() => MyAppointments());
                           },
-                          child: Image.asset('assets/images/Menu.png')),
+                          child: SvgPicture.asset('assets/images/appointment.svg',
+                      width: 25, height: 25,color: Colors.white,),),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 18,
                             fontFamily: 'DMSans',
                             fontWeight: FontWeight.bold),
                       ),
