@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,15 @@ class CatalogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -52,7 +62,7 @@ class CatalogScreen extends StatelessWidget {
                           margin: EdgeInsets.only(left: size.width * 0.04),
                           child: Image.asset('assets/images/Menu.png')),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

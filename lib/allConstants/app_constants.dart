@@ -7,4 +7,5 @@ class AppConstants {
   static const profileTitle = "Profile Page";
   static const fullPhotoTitle = "Image Full Size";
   static const k_keepMeLoggedIn = 'KeepMeLoggedIn';
+  static const k_dockeepMeLoggedIn = 'KeepMeLoggedIn';
 }

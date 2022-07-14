@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -11,16 +12,56 @@ import 'package:url_launcher/url_launcher.dart';
 import 'patient_home.dart';
 
 class DoctorProfile extends StatefulWidget {
-  const DoctorProfile({Key? key}) : super(key: key);
+  DoctorProfile()
+      : _docname = "DEFAULT",
+        _docspec = "DEFAULT",
+        _docimageAddress = "assets/images/logo.png",
+        _docexperience = 0;
+
+  DoctorProfile.withdoctor(
+      this._docname, this._docspec, this._docexperience, this._docimageAddress);
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
+  String _docname;
+
+  String get name => _docname;
+
+  set name(String name) {
+    _docname = name;
+  }
+
+  String _docspec;
+
+  String get spec => _docspec;
+
+  set spec(String spec) {
+    _docspec = spec;
+  }
+
+  String _docimageAddress;
+
+  String get imageAddress => _docimageAddress;
+
+  set imageAddress(String imageAddress) {
+    _docimageAddress = imageAddress;
+  }
+
+  int _docexperience;
+
+  int get experience => _docexperience;
+
+  set experience(int experience) {
+    _docexperience = experience;
+  }
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final db = FirebaseFirestore.instance;
+
     //  _selectedValue;
 
     return Scaffold(
@@ -38,7 +79,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       height: size.height * 0.4,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/images/wearMask.jpg'),
+                              image: AssetImage(widget._docimageAddress),
                               fit: BoxFit.fitWidth,
                               alignment: Alignment.topCenter)),
                     )
@@ -83,7 +124,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         Row(
                                           children: [
                                             CustomText(
-                                              text: 'Dr.Ellie',
+                                              text: widget._docname,
                                               // textAlign: TextAlign.left,
                                               textStyle: TextStyle(
                                                   color: primaryColor,
@@ -99,8 +140,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           children: [
                                             Expanded(
                                               child: CustomText(
-                                                text:
-                                                    'Dentist (MDS . Orthodontics and Dentofacial',
+                                                text: widget._docspec,
                                                 textStyle: TextStyle(
                                                   color: Colors.grey.shade500,
                                                 ),
@@ -218,7 +258,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: '15',
+                                          text: widget._docexperience.toString(),
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,

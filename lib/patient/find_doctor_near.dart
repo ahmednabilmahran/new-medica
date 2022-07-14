@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,6 +22,7 @@ import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
+import 'package:medica/patient/doctor_profile.dart';
 
 class patient_find extends StatefulWidget {
   @override
@@ -39,32 +41,51 @@ class _patient_findState extends State<patient_find> {
       experienceYears: 15,
       lat: 30.0380503,
       lng: 31.2112887,
+      onPressed: () {
+        Get.to(() => DoctorProfile.withdoctor(
+            'Dr. Omar Essam',
+            'Cardiovascular Pathologist in El Dokki Clinic',
+            15,
+            'assets/images/OIP.png'));
+      },
     ),
     FindDoctor(
-      docName: 'Dr. Kareem ',
+      docName: 'Dr. Kareem Ayman',
       experienceYears: 20,
       docSpec: 'Cardiologist in 6th of October Clinic',
       imageAddress: 'assets/images/Kareem.png',
       lat: 29.9725103,
       lng: 30.9366578,
+      onPressed: () {
+        Get.to(() => DoctorProfile.withdoctor(
+            'Dr. Kareem Ayman',
+            'Cardiologist in 6th of October Clinic',
+            20,
+            'assets/images/Kareem.png'));
+      },
     ),
     FindDoctor(
       docName: 'Dr. Mai Farah',
       docSpec: 'The point of using Lor Ipsum normal of letters...',
       imageAddress: 'assets/images/washHands.jpg',
       experienceYears: 15,
+      onPressed: () {
+        Get.to(() => DoctorProfile());
+      },
     ),
     FindDoctor(
       docName: 'Check Temperature',
       docSpec: 'The point of using Lor Ipsum normal of letters...',
       experienceYears: 15,
+      onPressed: () {
+        Get.to(() => DoctorProfile());
+      },
     ),
   ];
 
   // final numbers = List.generate(100, (index) => '$index');
   @override
   Widget build(BuildContext context) {
-
     // List doctorCat = [
     //   docCat(
     //     catName: 'Cardio',
@@ -137,6 +158,15 @@ class _patient_findState extends State<patient_find> {
     // ];
     setState(() {});
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -171,7 +201,7 @@ class _patient_findState extends State<patient_find> {
                     children: [
                       Image.asset('assets/images/Menu.png'),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

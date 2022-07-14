@@ -24,8 +24,6 @@ class PatientLogin extends StatefulWidget {
 }
 
 class _PatientLoginState extends State<PatientLogin> {
-  var confirmPass;
-
   bool keepMeLoggedIn = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final CheckController ctrl = Get.put(CheckController());
@@ -48,15 +46,14 @@ class _PatientLoginState extends State<PatientLogin> {
 
     return WillPopScope(
       onWillPop: () async {
-        // Get.to(patient_getstarted());
         Get.to(() => patient_getstarted());
         return true;
       },
       child: GestureDetector(
         onTap: () {
-        _emailFocusNode.unfocus();
-        _passwordFocusNode.unfocus();
-      },
+          _emailFocusNode.unfocus();
+          _passwordFocusNode.unfocus();
+        },
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             body: Stack(children: [
@@ -133,280 +130,289 @@ class _PatientLoginState extends State<PatientLogin> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        height: size.height * 0.666666,
-                        // color: Colors.green,
-                        padding: EdgeInsets.symmetric(
-                          vertical: size.height * 0.04,
-                          horizontal: size.width * 0.05,
-                        ),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
+                          height: size.height * 0.666666,
+                          // color: Colors.green,
+                          padding: EdgeInsets.symmetric(
+                            vertical: size.height * 0.04,
+                            horizontal: size.width * 0.05,
+                          ),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
                                 Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: size.width * 0.035,
-                                      ),
-                                      CustomText(
-                                        text: 'Email',
-                                        textStyle: TextStyle(
-                                          fontFamily: 'DMSans',
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: primaryColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        hintText: 'Email',
-                                        prefixIcon: Icon(
-                                          MyFlutterApp.mail,
-                                          size: 12,
-                                          color: Color(0xffF95DDE),
-                                        ),
-                                        hintStyle: TextStyle(
-                                            color: Color(0xff6D6487),
-                                            fontSize: 15,
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.normal),
-                                        fillColor: Colors.white,
-                                        border: InputBorder.none),
-                                    controller: _emailController,
-                                    focusNode: _emailFocusNode,
-                                    validator: (value) => validation_provider
-                                        .validateEmail(email: value!),
-                                  ),
-                                  Divider(
-                                    color: Color(0xff3E1E96),
-                                    indent: size.width * 0.05,
-                                    endIndent: size.width * 0.05,
-                                    height: 1,
-                                    thickness: 2,
-                                  ),
-
-                                   SizedBox(
-                                height: size.height * 0.03,
-                              ),
-
-                                  Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: size.width * 0.035,
-                                      ),
-                                      CustomText(
-                                        text: 'Password',
-                                        textStyle: TextStyle(
-                                          fontFamily: 'DMSans',
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: primaryColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        hintText: 'Password',
-                                        prefixIcon: Icon(
-                                          MyFlutterApp.lock,
-                                          size: 20,
-                                          color: Color(0xffF95DDE),
-                                        ),
-                                        hintStyle: TextStyle(
-                                            color: Color(0xff6D6487),
-                                            fontSize: 15,
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.normal),
-                                        fillColor: Colors.white,
-                                        border: InputBorder.none),
-                                    controller: _passwordController,
-                                    focusNode: _passwordFocusNode,
-                                    obscureText: true,
-                                    validator: (value) => validation_provider
-                                        .validatePassword(password: value!),
-                                  ),
-                                  Divider(
-                                    color: Color(0xff3E1E96),
-                                    indent: size.width * 0.05,
-                                    endIndent: size.width * 0.05,
-                                    height: 1,
-                                    thickness: 2,
-                                  ),
-
-                                  
-                              SizedBox(
-                                height: size.height * 0.03,
-                              ),
-
-                             
-                              TextButton(
-                                  onPressed: () {      
-                                    if (_formKey.currentState!.validate()) {
-                                      if (ctrl.checkbool.value == true) {
-                                        keepUserLoggedIn();
-                                      }
-                                      authProvider.signInUsingEmailPassword(
-                                        email: _emailController.text, 
-                                        password: _passwordController.text, 
-                                        context: context);
-                                    }
-                                  },
-                                  style: TextButton.styleFrom(
-                                    minimumSize: Size(
-                                        size.width * 0.8, size.height * 0.06),
-                                    // padding: EdgeInsets.symmetric(
-                                    //   horizontal:
-                                    //       size.width * 0.35,
-                                    //   // double.infinity,
-                                    //   vertical: size.height *
-                                    //       0.023,
-                                    // ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(25),
-                                      bottomRight: Radius.circular(25),
-                                    )),
-                                    backgroundColor: secondaryColor,
-                                  ),
-                                  child: CustomText(
-                                      text: 'LOGIN',
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: size.width * 0.035,
+                                    ),
+                                    CustomText(
+                                      text: 'Email',
                                       textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 14))),
-                              SizedBox(
-                                height: size.height * 0.001,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Theme(
-                                    data: ThemeData(
-                                        unselectedWidgetColor: primaryColor),
-                                    child: Obx(
-                                      () => Checkbox(
-                                        checkColor: primaryColor,
-                                        activeColor: secondaryColor,
-                                        value: ctrl.checkbool.value,
-                                        onChanged: (value) {
-                                          ctrl.checkbool.value =
-                                              !ctrl.checkbool.value;
-                                          print(ctrl.checkbool.value);
-                                        },
+                                        fontFamily: 'DMSans',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: primaryColor,
                                       ),
                                     ),
-                                  ),
-                                  CustomText(
-                                      text: "Remember Me ",
-                                      textStyle: TextStyle(
-                                          color: Color(0xff300C92),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14)),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomText(
-                                    text: "Dont't have an account?",
-                                    textStyle:
-                                        TextStyle(color: Color(0xff6D6487)),
-                                  ),
-                                  // SizedBox(
-                                  //   width: size.width * 0.001,
-                                  // ),
-                                  TextButton(
-                                    style: TextButton.styleFrom(
-                                      padding: EdgeInsets.all(0),
-                                    ),
-                                    onPressed: () {
-                                      Get.to(() => patient_register());
-                                    },
-                                    child: CustomText(
-                                      text: "Register",
-                                      textStyle: TextStyle(
-                                          color: Color(0xff4CD2CF),
-                                          decoration: TextDecoration.underline),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: size.height * 0.015,
-                              ),
-                              CustomText(
-                                text:
-                                    '-\u00a0 - \u00a0- \u00a0 or \u00a0 -\u00a0 -\u00a0 - ',
-                                textStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                  // (
-                                  //   size.width +
-                                  //         size.width) /
-                                  //     2 *
-                                  //     0.05,
+                                  ],
                                 ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              CustomText(
-                                text: 'Continue with',
-                                textStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                  // (
-                                  //   size.width +
-                                  //         size.width) /
-                                  //     2 *
-                                  //     0.05,
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: 'Email',
+                                      prefixIcon: Icon(
+                                        MyFlutterApp.mail,
+                                        size: 12,
+                                        color: Color(0xffF95DDE),
+                                      ),
+                                      hintStyle: TextStyle(
+                                          color: Color(0xff6D6487),
+                                          fontSize: 15,
+                                          fontFamily: 'DMSans',
+                                          fontWeight: FontWeight.normal),
+                                      fillColor: Colors.white,
+                                      border: InputBorder.none),
+                                  controller: _emailController,
+                                  focusNode: _emailFocusNode,
+                                  validator: (value) => validation_provider
+                                      .validateEmail(email: value!),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        bottomRight: Radius.circular(15),
-                                      )),
-                                      backgroundColor: primaryColor,
-                                      minimumSize: Size(
-                                          size.width * 0.15, size.height * 0.062),
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                      if (ctrl.checkbool.value == true) {
-                                        keepUserLoggedIn();
-                                      }
-                                        authProvider.handleGoogleSignIn();
-                                      },
-                                      child: SvgPicture.asset(
-                                          'assets/images/google.svg'
+                                Divider(
+                                  color: Color(0xff3E1E96),
+                                  indent: size.width * 0.05,
+                                  endIndent: size.width * 0.05,
+                                  height: 1,
+                                  thickness: 2,
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.03,
+                                ),
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: size.width * 0.035,
                                           ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ]),
-                    ])
-                  )],
+                                          CustomText(
+                                            text: 'Password',
+                                            textStyle: TextStyle(
+                                              fontFamily: 'DMSans',
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: 'Password',
+                                            prefixIcon: Icon(
+                                              MyFlutterApp.lock,
+                                              size: 20,
+                                              color: Color(0xffF95DDE),
+                                            ),
+                                            hintStyle: TextStyle(
+                                                color: Color(0xff6D6487),
+                                                fontSize: 15,
+                                                fontFamily: 'DMSans',
+                                                fontWeight: FontWeight.normal),
+                                            fillColor: Colors.white,
+                                            border: InputBorder.none),
+                                        controller: _passwordController,
+                                        focusNode: _passwordFocusNode,
+                                        obscureText: true,
+                                        validator: (value) =>
+                                            validation_provider
+                                                .validatePassword(
+                                                    password: value!),
+                                      ),
+                                      Divider(
+                                        color: Color(0xff3E1E96),
+                                        indent: size.width * 0.05,
+                                        endIndent: size.width * 0.05,
+                                        height: 1,
+                                        thickness: 2,
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.03,
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              if (ctrl.checkbool.value ==
+                                                  true) {
+                                                keepUserLoggedIn();
+                                              }
+                                              authProvider
+                                                  .signInUsingEmailPassword(
+                                                      email:
+                                                          _emailController.text,
+                                                      password:
+                                                          _passwordController
+                                                              .text,
+                                                      context: context);
+                                            }
+                                          },
+                                          style: TextButton.styleFrom(
+                                            minimumSize: Size(size.width * 0.8,
+                                                size.height * 0.06),
+                                            // padding: EdgeInsets.symmetric(
+                                            //   horizontal:
+                                            //       size.width * 0.35,
+                                            //   // double.infinity,
+                                            //   vertical: size.height *
+                                            //       0.023,
+                                            // ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(25),
+                                              bottomRight: Radius.circular(25),
+                                            )),
+                                            backgroundColor: secondaryColor,
+                                          ),
+                                          child: CustomText(
+                                              text: 'LOGIN',
+                                              textStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 14))),
+                                      SizedBox(
+                                        height: size.height * 0.001,
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Theme(
+                                            data: ThemeData(
+                                                unselectedWidgetColor:
+                                                    primaryColor),
+                                            child: Obx(
+                                              () => Checkbox(
+                                                checkColor: primaryColor,
+                                                activeColor: secondaryColor,
+                                                value: ctrl.checkbool.value,
+                                                onChanged: (value) {
+                                                  ctrl.checkbool.value =
+                                                      !ctrl.checkbool.value;
+                                                  print(ctrl.checkbool.value);
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          CustomText(
+                                              text: "Remember Me ",
+                                              textStyle: TextStyle(
+                                                  color: Color(0xff300C92),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14)),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          CustomText(
+                                            text: "Dont't have an account?",
+                                            textStyle: TextStyle(
+                                                color: Color(0xff6D6487)),
+                                          ),
+                                          // SizedBox(
+                                          //   width: size.width * 0.001,
+                                          // ),
+                                          TextButton(
+                                            style: TextButton.styleFrom(
+                                              padding: EdgeInsets.all(0),
+                                            ),
+                                            onPressed: () {
+                                              Get.to(() => patient_register());
+                                            },
+                                            child: CustomText(
+                                              text: "Register",
+                                              textStyle: TextStyle(
+                                                  color: Color(0xff4CD2CF),
+                                                  decoration:
+                                                      TextDecoration.underline),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.015,
+                                      ),
+                                      CustomText(
+                                        text:
+                                            '-\u00a0 - \u00a0- \u00a0 or \u00a0 -\u00a0 -\u00a0 - ',
+                                        textStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                          // (
+                                          //   size.width +
+                                          //         size.width) /
+                                          //     2 *
+                                          //     0.05,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.02,
+                                      ),
+                                      CustomText(
+                                        text: 'Continue with',
+                                        textStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                          // (
+                                          //   size.width +
+                                          //         size.width) /
+                                          //     2 *
+                                          //     0.05,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          TextButton(
+                                            onPressed: () {},
+                                            style: TextButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                topLeft: Radius.circular(15),
+                                                bottomRight:
+                                                    Radius.circular(15),
+                                              )),
+                                              backgroundColor: primaryColor,
+                                              minimumSize: Size(
+                                                  size.width * 0.15,
+                                                  size.height * 0.062),
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                if (ctrl.checkbool.value ==
+                                                    true) {
+                                                  keepUserLoggedIn();
+                                                }
+                                                authProvider
+                                                    .handleGoogleSignIn();
+                                              },
+                                              child: SvgPicture.asset(
+                                                  'assets/images/google.svg'),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ]),
+                              ]))
+                    ],
                   ),
                 ]),
               ),

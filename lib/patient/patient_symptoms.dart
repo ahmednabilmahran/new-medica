@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,41 +33,45 @@ class patient_symptoms extends StatelessWidget {
   patient_symptoms() : _name = "DEFAULT";
 
   patient_symptoms.withuser(this._name);
-    String _name;
+  String _name;
 
   String get name => _name;
 
   set name(String name) {
     _name = name;
   }
+
   List symptoms = [
     symptomCard(
       primary: 'Wear Mask Compulsory',
       secondary: 'The point of using Lor Ipsum normal of letters...',
       imageAddress: 'assets/images/wearMask.jpg',
-      imageFit: BoxFit.fitWidth, onPressed: () {Get.to(() => symptom1());},
+      imageFit: BoxFit.fitWidth,
+      onPressed: () {
+        Get.to(() => symptom1());
+      },
     ),
     symptomCard(
-      primary: 'Use Sanitizer',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/useSanitizer.jpg',
-      onPressed: () {Get.to(() => patient_book());}
-    ),
+        primary: 'Use Sanitizer',
+        secondary: 'The point of using Lor Ipsum normal of letters...',
+        imageAddress: 'assets/images/useSanitizer.jpg',
+        onPressed: () {
+          Get.to(() => patient_book());
+        }),
     symptomCard(
-      primary: 'Regular Hand Wash',
-      secondary: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/washHands.jpg',
-      onPressed: () {Get.to(() => DoctorProfile());}
-    ),
+        primary: 'Regular Hand Wash',
+        secondary: 'The point of using Lor Ipsum normal of letters...',
+        imageAddress: 'assets/images/washHands.jpg',
+        onPressed: () {
+          Get.to(() => DoctorProfile());
+        }),
     symptomCard(
         primary: 'Check Temperature',
         secondary: 'The point of using Lor Ipsum normal of letters...',
-        onPressed: () {Get.to(() => CatalogProducts());}
-        )
+        onPressed: () {
+          Get.to(() => CatalogProducts());
+        })
   ];
-  
-
-
 
   // final numbers = List.generate(100, (index) => '$index');
 
@@ -86,6 +91,15 @@ class patient_symptoms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -120,7 +134,7 @@ class patient_symptoms extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/Menu.png'),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

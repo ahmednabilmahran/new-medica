@@ -1,12 +1,14 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures, unnecessary_new, empty_constructor_bodies
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/Covid19Detector.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
@@ -28,6 +30,7 @@ import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 
 class patient_home extends StatelessWidget {
+  
   patient_home() : _name = "DEFAULT";
 
   patient_home.withuser(this._name);
@@ -87,6 +90,15 @@ class patient_home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -119,7 +131,11 @@ class patient_home extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                          child: Image.asset('assets/images/Menu.png')),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -134,7 +150,6 @@ class patient_home extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                
                 ],
               ),
             ),
@@ -197,7 +212,7 @@ class patient_home extends StatelessWidget {
                       SizedBox(
                         height: size.height * 0.025,
                       ),
-                                            TextButton(
+                      TextButton(
                           style: TextButton.styleFrom(
                               maximumSize:
                                   Size(double.infinity, size.height * 0.085),
@@ -240,7 +255,7 @@ class patient_home extends StatelessWidget {
                               ],
                             ),
                           )),
-                          SizedBox(
+                      SizedBox(
                         height: size.height * 0.015,
                       ),
                       TextButton(
