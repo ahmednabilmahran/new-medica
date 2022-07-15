@@ -16,7 +16,7 @@ import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profiledata.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/patient/patient_symptoms.dart';
-import 'package:medica/screens/splash_page.dart';
+import 'package:medica/screens/login_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -456,7 +456,7 @@ class patient_profile extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(() => SplashPage());
+                            Get.to(() => LoginPage());
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
