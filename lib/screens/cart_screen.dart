@@ -178,13 +178,15 @@ class CartScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w800,
                                         fontSize: 17),
                                   ),
-                                  CustomText(
-                                    text: '\£${controller.total}',
-                                    textStyle: TextStyle(
-                                        color: secondaryColor,
-                                        fontFamily: 'dmsans',
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 17),
+                                  Obx(
+                                    () => CustomText(
+                                      text: '\£${controller.total}',
+                                      textStyle: TextStyle(
+                                          color: secondaryColor,
+                                          fontFamily: 'dmsans',
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 17),
+                                    ),
                                   ),
                                 ],
                               ),

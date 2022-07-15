@@ -59,8 +59,14 @@ class CatalogScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          margin: EdgeInsets.only(left: size.width * 0.04),
-                          child: Image.asset('assets/images/Menu.png')),
+                        margin: EdgeInsets.only(left: size.width * 0.04),
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
