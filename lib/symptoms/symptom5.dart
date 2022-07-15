@@ -1,43 +1,32 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
-import 'package:medica/doctor/doctor_profile.dart';
-import 'package:medica/myAppointments.dart';
-import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
-import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
-import 'package:medica/symptoms/symptom1.dart';
-import 'package:medica/symptoms/symptom2.dart';
-import 'package:medica/symptoms/symptom3.dart';
-import 'package:medica/symptoms/symptom4.dart';
-import 'package:medica/symptoms/symptom5.dart';
+import 'package:medica/patient/patient_symptoms.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
-import 'package:medica/view/widgets/catalog_products.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
-import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class patient_symptoms extends StatelessWidget {
-  patient_symptoms() : _name = "DEFAULT";
+class symptom5 extends StatelessWidget {
+  symptom5() : _name = "DEFAULT";
 
-  patient_symptoms.withuser(this._name);
+  symptom5.withuser(this._name);
   String _name;
 
   String get name => _name;
@@ -45,52 +34,6 @@ class patient_symptoms extends StatelessWidget {
   set name(String name) {
     _name = name;
   }
-
-  List symptoms = [
-    symptomCard(
-      primary: 'Diabetes',
-      secondary: 'if you have any of the following...',
-      imageAddress: 'assets/images/symptoms/diabetes.jpg',
-      imageFit: BoxFit.fitWidth,
-      onPressed: () {
-        Get.to(() => symptom1());
-      },
-    ),
-    symptomCard(
-        primary: 'COVID-19',
-        secondary: 'People with COVID-19 have had a wide...',
-        imageAddress: 'assets/images/symptoms/covid.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom2());
-        }),
-    symptomCard(
-        primary: 'Cancer',
-        secondary: 'Signs and symptoms caused by cancer will...',
-        imageAddress: 'assets/images/symptoms/cancer.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom3());
-        }),
-    symptomCard(
-        primary: 'Heart disease ',
-        secondary: 'A buildup of fatty plaques in your arteries...',
-        imageAddress: 'assets/images/symptoms/heart.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom4());
-        }),
-        symptomCard(
-        primary: 'Bone disease ',
-        secondary: 'Most people who have Pagets disease...',
-        imageAddress: 'assets/images/symptoms/bone.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom5());
-        }),
-        
-        
-  ];
 
   // final numbers = List.generate(100, (index) => '$index');
 
@@ -110,19 +53,10 @@ class patient_symptoms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final user = FirebaseAuth.instance.currentUser;
-    dynamic email = '';
-    dynamic name = '';
-    dynamic picture = '';
-    if (user != null) {
-      email = user.email;
-      name = user.displayName;
-      picture = user.photoURL;
-    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.to(() => patient_symptoms());
         return true;
       },
       child: Scaffold(
@@ -151,19 +85,14 @@ class patient_symptoms extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => MyAppointments());
-                        },
-                        child: SvgPicture.asset(
-                          'assets/images/appointment.svg',
-                          width: 25,
-                          height: 25,
-                          color: Colors.white,
-                        ),
+                      SvgPicture.asset(
+                        'assets/images/appointment.svg',
+                        width: 25,
+                        height: 25,
+                        color: Colors.white,
                       ),
                       CustomText(
-                        text: name,
+                        text: "USERNAME",
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -188,7 +117,7 @@ class patient_symptoms extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.85,
+                height: size.height * 0.84,
 
                 width: double.infinity,
                 child: Column(
@@ -203,10 +132,11 @@ class patient_symptoms extends StatelessWidget {
                             left: size.width * 0.08,
                           ),
                           child: CustomText(
-                            text: "Know about symptoms",
+                            textAlign: TextAlign.left,
+                            text: "Covid-19 Symptoms",
                             textStyle: TextStyle(
                               color: primaryColor,
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Inter',
                             ),
@@ -227,12 +157,95 @@ class patient_symptoms extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            symptoms[0],
-                            symptoms[1],
-                            symptoms[2],
-                            symptoms[3],
-                            symptoms[4],
-                            
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "Most people who have Paget's disease of bone have no symptoms. When symptoms occur, the most common complaint is bone pain. \n\n Because this disease causes your body to generate new bone faster than normal, the rapid remodeling produces bone that's less organized and weaker than normal bone, which can lead to bone pain, deformities and fractures. \n\n The disease might affect only one or two areas of your body or might be widespread. Your signs and symptoms, if any, will depend on the affected part of your body.",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.02),
+                            Container(
+                              height: 150.0,
+                              width: 250.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/symptoms/bone.jpg'),
+                                      fit:BoxFit.fill
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.09,
+                                left: size.width * 0.02,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "\u2022 Pelvis. Paget's disease of bone in \n     the pelvis can cause hip pain. \n\u2022 Skull. An overgrowth of bone in the \n     skull can cause hearing loss or \n     headaches. \n\u2022 Spine. If your spine is affected, \n     nerve roots can become \n     compressed. This can cause pain, \n     tingling and numbness in an arm or \n     leg. \n\u2022 Leg. As the bones weaken, they \n     may bend — causing you to \n     become bowlegged. Enlarged and \n     misshapen bones in your legs can \n     put extra stress on nearby joints, \n     which may cause osteoarthritis in \n     your knee or hip.  ",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.03,
+                            ),
+
+                          Container(
+                              child: Row(
+                                children: [
+                                  CustomText(
+                                    textAlign: TextAlign.left,
+                                    text: " When to see a doctor!",
+                                    textStyle: TextStyle(
+                                      color: Color.fromARGB(221, 56, 96, 182),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                           Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                "\n\u2022 Pain in your bones and joints \n\u2022 Tingling and weakness in an extremity \n\u2022 Bone deformities \n\u2022 Unexplained hearing loss, especially if it's \n    only on one side",
+                                    textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                           
+                             
+                             
+                            SizedBox(height: size.height * 0.02),
                           ],
                         ),
                       ),
