@@ -169,7 +169,7 @@ class symptom1 extends StatelessWidget {
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
                                 ),
                               ),
@@ -196,7 +196,7 @@ class symptom1 extends StatelessWidget {
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
                                 ),
                               ),
@@ -213,7 +213,7 @@ class symptom1 extends StatelessWidget {
                                     textStyle: TextStyle(
                                       color: Color.fromARGB(221, 56, 96, 182),
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                       fontFamily: 'Inter',
                                     ),
                                   ),
@@ -233,7 +233,7 @@ class symptom1 extends StatelessWidget {
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
                                 ),
                               ),
@@ -248,7 +248,7 @@ class symptom1 extends StatelessWidget {
                                     textStyle: TextStyle(
                                       color: Color.fromARGB(221, 56, 96, 182),
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                       fontFamily: 'Inter',
                                     ),
                                   ),
@@ -268,7 +268,7 @@ class symptom1 extends StatelessWidget {
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
                                 ),
                               ),
@@ -283,7 +283,7 @@ class symptom1 extends StatelessWidget {
                                     textStyle: TextStyle(
                                       color: Color.fromARGB(221, 56, 96, 182),
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                       fontFamily: 'Inter',
                                     ),
                                   ),
@@ -303,7 +303,7 @@ class symptom1 extends StatelessWidget {
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: 'Inter',
                                 ),
                               ),
