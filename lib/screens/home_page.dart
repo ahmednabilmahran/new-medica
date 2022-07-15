@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_home.dart';
+import 'package:medica/view/widgets/constance.dart';
 import 'package:provider/provider.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/allWidgets/loading_view.dart';
@@ -160,27 +163,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(25),
+              bottomLeft: Radius.circular(25),
+            )),
+            backgroundColor: primaryColor,
             centerTitle: true,
             title: const Text('Medica Chat'),
             actions: [
               IconButton(
-                  onPressed: () => googleSignOut(),
-                  icon: const Icon(Icons.logout)),
-              IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilePage()));
-                  },
-                  icon: const Icon(Icons.person)),
+                onPressed: () {
+                  Get.to(() => MyAppointments());
+                },
+                icon: SvgPicture.asset(
+                  'assets/images/appointment.svg',
+                  color: Colors.white,
+                  width: 25,
+                ),
+              ),
             ]),
-        body:    WillPopScope(
-      onWillPop: () async {
-        // Get.to(loginAs());
-        Get.to(() => patient_home());
-        return true;
-      },
+        body: WillPopScope(
+          onWillPop: () async {
+            // Get.to(loginAs());
+            Get.to(() => patient_home());
+            return true;
+          },
           child: Stack(
             children: [
               Column(
@@ -295,7 +303,7 @@ class _HomePageState extends State<HomePage> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.dimen_30),
-        color: AppColors.spaceLight,
+        color: primaryColor,
       ),
     );
   }
