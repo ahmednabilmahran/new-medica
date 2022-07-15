@@ -1,11 +1,13 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
@@ -53,6 +55,15 @@ class symptom4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -85,14 +96,19 @@ class symptom4 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset(
-                        'assets/images/appointment.svg',
-                        width: 25,
-                        height: 25,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
                       ),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -117,7 +133,7 @@ class symptom4 extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.84,
+                height: size.height * 0.85,
 
                 width: double.infinity,
                 child: Column(
@@ -133,7 +149,7 @@ class symptom4 extends StatelessWidget {
                           ),
                           child: CustomText(
                             textAlign: TextAlign.left,
-                            text: "Covid-19 Symptoms",
+                            text: "Heart Disease Symptoms",
                             textStyle: TextStyle(
                               color: primaryColor,
                               fontSize: 22,
@@ -180,10 +196,9 @@ class symptom4 extends StatelessWidget {
                               width: 250.0,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/symptoms/heart.jpg'),
-                                      fit:BoxFit.fill
-                                ),
+                                    image: AssetImage(
+                                        'assets/images/symptoms/heart.jpg'),
+                                    fit: BoxFit.fill),
                               ),
                             ),
                             SizedBox(height: size.height * 0.02),
@@ -207,7 +222,6 @@ class symptom4 extends StatelessWidget {
                             SizedBox(
                               height: size.height * 0.02,
                             ),
-                            
                             Container(
                               padding: EdgeInsets.only(
                                 right: size.width * 0.03,
@@ -216,8 +230,8 @@ class symptom4 extends StatelessWidget {
                               child: CustomText(
                                 textAlign: TextAlign.left,
                                 text:
-                                "You might not be diagnosed with coronary artery disease until you have a heart attack, angina, stroke or heart failure. It's important to watch for cardiovascular symptoms and discuss concerns with your doctor. Cardiovascular disease can sometimes be found early with regular evaluations.",
-                                    textStyle: TextStyle(
+                                    "You might not be diagnosed with coronary artery disease until you have a heart attack, angina, stroke or heart failure. It's important to watch for cardiovascular symptoms and discuss concerns with your doctor. Cardiovascular disease can sometimes be found early with regular evaluations.",
+                                textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -226,9 +240,6 @@ class symptom4 extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: size.height * 0.03),
-                           
-                             
-                             
                             SizedBox(height: size.height * 0.02),
                           ],
                         ),

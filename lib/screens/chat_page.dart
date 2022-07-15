@@ -226,7 +226,7 @@ class _ChatPageState extends State<ChatPage> {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.back();
         return true;
       },
       child: Scaffold(
@@ -395,14 +395,15 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/clipboardNavBarHome.svg'),
+                                              'assets/images/clipboardNavBarHome.svg',
+                                              color: primaryColorOutOfFocus,),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Consult',
                                             textStyle:
-                                                TextStyle(color: linkColor),
+                                                TextStyle(color: primaryColorOutOfFocus),
                                           )
                                         ],
                                       ),
@@ -414,15 +415,14 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/message-circleNavBarHome.svg',
-                                              color: primaryColorOutOfFocus),
+                                              'assets/images/message-circleNavBarHome.svg'),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Chat',
                                             textStyle: TextStyle(
-                                                color: primaryColorOutOfFocus),
+                                                color: linkColor),
                                           )
                                         ],
                                       ),

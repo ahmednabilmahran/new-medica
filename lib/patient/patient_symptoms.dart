@@ -15,6 +15,7 @@ import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/symptoms/symptom1.dart';
 import 'package:medica/symptoms/symptom2.dart';
 import 'package:medica/symptoms/symptom3.dart';
@@ -73,23 +74,21 @@ class patient_symptoms extends StatelessWidget {
           Get.to(() => symptom3());
         }),
     symptomCard(
-        primary: 'Heart disease ',
+        primary: 'Heart disease',
         secondary: 'A buildup of fatty plaques in your arteries...',
         imageAddress: 'assets/images/symptoms/heart.jpg',
         imageFit: BoxFit.fitWidth,
         onPressed: () {
           Get.to(() => symptom4());
         }),
-        symptomCard(
-        primary: 'Bone disease ',
+    symptomCard(
+        primary: 'Bone disease',
         secondary: 'Most people who have Pagets disease...',
         imageAddress: 'assets/images/symptoms/bone.jpg',
         imageFit: BoxFit.fitWidth,
         onPressed: () {
           Get.to(() => symptom5());
         }),
-        
-        
   ];
 
   // final numbers = List.generate(100, (index) => '$index');
@@ -232,7 +231,6 @@ class patient_symptoms extends StatelessWidget {
                             symptoms[2],
                             symptoms[3],
                             symptoms[4],
-                            
                           ],
                         ),
                       ),
@@ -298,7 +296,9 @@ class patient_symptoms extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => HomePage());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -317,7 +317,9 @@ class patient_symptoms extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => patient_profile());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

@@ -17,7 +17,6 @@ import 'package:medica/providers/auth_provider.dart';
 import 'package:medica/providers/home_provider.dart';
 import 'package:medica/screens/chat_page.dart';
 import 'package:medica/screens/login_page.dart';
-import 'package:medica/screens/profile_page.dart';
 import 'package:medica/utilities/debouncer.dart';
 import 'package:medica/utilities/keyboard_utils.dart';
 
@@ -186,7 +185,7 @@ class _HomePageState extends State<HomePage> {
         body: WillPopScope(
           onWillPop: () async {
             // Get.to(loginAs());
-            Get.to(() => patient_home());
+            Get.back();
             return true;
           },
           child: Stack(
