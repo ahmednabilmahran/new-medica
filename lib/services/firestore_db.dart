@@ -16,7 +16,7 @@ class FirestoreDB {
   }
     Stream<List<Doctor>> getAllDoctors() {
     return _firebaseFirestore
-        .collection('doctors')
+        .collection('doctors').orderBy('name')
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Doctor.fromSnapshot(doc)).toList();
