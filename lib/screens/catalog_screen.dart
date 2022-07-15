@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/screens/cart_screen.dart';
 import 'package:medica/view/widgets/catalog_products.dart';
@@ -56,10 +57,12 @@ class CatalogScreen extends StatelessWidget {
                     height: size.height * 0.045,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: size.width * 0.04),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
                         child: SvgPicture.asset(
                           'assets/images/appointment.svg',
                           width: 25,
@@ -67,13 +70,16 @@ class CatalogScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600),
+                            fontFamily: 'DMSans',
+                            fontWeight: FontWeight.bold),
                       ),
                       TextButton(
                         onPressed: () {
