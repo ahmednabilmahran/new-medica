@@ -192,16 +192,19 @@ class symptom1 extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            SizedBox(height: size.height * 0.02),
                             Container(
-                              height: 200.0,
-                              width: 200.0,
+                              height: 150.0,
+                              width: 250.0,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
                                       'assets/images/symptoms/diabetes.jpg'),
+                                      fit:BoxFit.fill
                                 ),
                               ),
                             ),
+                            SizedBox(height: size.height * 0.02),
                             Container(
                               padding: EdgeInsets.only(
                                 right: size.width * 0.09,
