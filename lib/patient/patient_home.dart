@@ -131,11 +131,16 @@ class patient_home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                          onTap: () {
-                            Get.to(() => MyAppointments());
-                          },
-                          child: SvgPicture.asset('assets/images/appointment.svg',
-                      width: 25, height: 25,color: Colors.white,),),
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -157,13 +162,13 @@ class patient_home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: size.height * 0.84,
+                  height: size.height * 0.86,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75))),
                   padding: EdgeInsets.only(
-                    top: size.height * 0.05,
+                    top: size.height * 0.04,
                     right: size.width * 0.08,
                     left: size.width * 0.08,
                   ),
@@ -606,7 +611,7 @@ class patient_home extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(() => LoginPage());
+                            Get.to(() => HomePage());
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

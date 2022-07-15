@@ -16,6 +16,7 @@ import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profiledata.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/patient/patient_symptoms.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/screens/login_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
@@ -54,7 +55,7 @@ class patient_profile extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_getstarted());
+        Get.to(() => patient_home());
         return true;
       },
       child: Scaffold(
@@ -184,7 +185,12 @@ class patient_profile extends StatelessWidget {
                             child: Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SvgPicture.asset('assets/images/Heart.svg'),
+                                SvgPicture.asset(
+                                  'assets/images/appointment.svg',
+                                  width: 20,
+                                  height: 20,
+                                  color: secondaryColor,
+                                ),
                                 SizedBox(width: size.width * 0.04),
                                 CustomText(
                                   text: 'My Appointments',
@@ -348,7 +354,7 @@ class patient_profile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomText(
-                            text: 'Terms and conditions',
+                            text: 'Terms and Conditions',
                             textStyle: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 11,
@@ -365,7 +371,7 @@ class patient_profile extends StatelessWidget {
                           ),
                           SizedBox(height: size.height * 0.010),
                           CustomText(
-                            text: 'Privacy policy',
+                            text: 'Privacy Policy',
                             textStyle: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 11,
@@ -456,7 +462,7 @@ class patient_profile extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(() => LoginPage());
+                            Get.to(() => HomePage());
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

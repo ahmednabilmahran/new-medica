@@ -12,6 +12,7 @@ import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/screens/login_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
@@ -121,29 +122,6 @@ class patient_book extends StatelessWidget {
                       Image.asset('assets/images/Notify.png')
                     ],
                   ),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  TextFormField(
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.white),
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    indent: size.width * 0.04,
-                    endIndent: size.width * 0.06,
-                    thickness: 1,
-                    height: 1,
-                  ),
                 ],
               ),
             ),
@@ -166,7 +144,7 @@ class patient_book extends StatelessWidget {
                       ),
                       color: whitegrayish,
                     ),
-                    height: size.height * 0.78,
+                    height: size.height * 0.86,
                     width: double.infinity,
                     child: Column(
                       children: [
@@ -204,7 +182,7 @@ class patient_book extends StatelessWidget {
                           ),
                           // width: double.infinity,
                           // color: Colors.amber,
-                          height: size.height * 0.5925,
+                          height: size.height * 0.65,
                           child: SingleChildScrollView(
                             child: Wrap(
                               // alignment: WrapAlignment.spaceBetween,
@@ -222,116 +200,121 @@ class patient_book extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          // padding: EdgeInsets.only(
-                          //   top: size.height * 0.02,
-                          //   right: size.width * 0.1,
-                          //   left: size.width * 0.1,
-                          // ),
-                          width: double.infinity,
-                          height: size.height * 0.080,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                              )),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.04),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => patient_home());
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/images/homeNavBarHome.svg',
-                                        color: primaryColorOutOfFocus,
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.008,
-                                      ),
-                                      CustomText(
-                                        text: 'Home',
-                                        textStyle: TextStyle(
-                                            color: primaryColorOutOfFocus),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/images/clipboardNavBarHome.svg'),
-                                      SizedBox(
-                                        height: size.height * 0.008,
-                                      ),
-                                      CustomText(
-                                        text: 'Consult',
-                                        textStyle: TextStyle(color: linkColor),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => LoginPage());
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/images/message-circleNavBarHome.svg',
-                                          color: primaryColorOutOfFocus),
-                                      SizedBox(
-                                        height: size.height * 0.008,
-                                      ),
-                                      CustomText(
-                                        text: 'Chat',
-                                        textStyle: TextStyle(
-                                            color: primaryColorOutOfFocus),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => patient_profile());
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/images/UserNavBarHome.svg',
-                                          color: primaryColorOutOfFocus),
-                                      SizedBox(
-                                        height: size.height * 0.008,
-                                      ),
-                                      CustomText(
-                                        text: 'Profile',
-                                        textStyle: TextStyle(
-                                            color: primaryColorOutOfFocus),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   )
                 ],
               ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    // padding: EdgeInsets.only(
+                    //   top: size.height * 0.02,
+                    //   right: size.width * 0.1,
+                    //   left: size.width * 0.1,
+                    // ),
+                    width: double.infinity,
+                    height: size.height * 0.080,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        )),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => patient_home());
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/homeNavBarHome.svg',
+                                  color: primaryColorOutOfFocus,
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.008,
+                                ),
+                                CustomText(
+                                  text: 'Home',
+                                  textStyle:
+                                      TextStyle(color: primaryColorOutOfFocus),
+                                )
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                    'assets/images/clipboardNavBarHome.svg'),
+                                SizedBox(
+                                  height: size.height * 0.008,
+                                ),
+                                CustomText(
+                                  text: 'Consult',
+                                  textStyle: TextStyle(color: linkColor),
+                                )
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => HomePage());
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                    'assets/images/message-circleNavBarHome.svg',
+                                    color: primaryColorOutOfFocus),
+                                SizedBox(
+                                  height: size.height * 0.008,
+                                ),
+                                CustomText(
+                                  text: 'Chat',
+                                  textStyle:
+                                      TextStyle(color: primaryColorOutOfFocus),
+                                )
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => patient_profile());
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                    'assets/images/UserNavBarHome.svg',
+                                    color: primaryColorOutOfFocus),
+                                SizedBox(
+                                  height: size.height * 0.008,
+                                ),
+                                CustomText(
+                                  text: 'Profile',
+                                  textStyle:
+                                      TextStyle(color: primaryColorOutOfFocus),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ]),
           ],
         ),
