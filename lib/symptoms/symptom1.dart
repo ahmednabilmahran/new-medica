@@ -1,16 +1,20 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
+import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/patient/patient_symptoms.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -53,6 +57,15 @@ class symptom1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
@@ -85,14 +98,19 @@ class symptom1 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset(
-                        'assets/images/appointment.svg',
-                        width: 25,
-                        height: 25,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
                       ),
                       CustomText(
-                        text: "USERNAME",
+                        text: name,
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -117,7 +135,7 @@ class symptom1 extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.84,
+                height: size.height * 0.85,
 
                 width: double.infinity,
                 child: Column(
@@ -377,7 +395,9 @@ class symptom1 extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => HomePage());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -396,7 +416,9 @@ class symptom1 extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => patient_profile());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
