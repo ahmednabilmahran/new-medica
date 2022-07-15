@@ -1,42 +1,32 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
-import 'package:medica/doctor/doctor_profile.dart';
-import 'package:medica/myAppointments.dart';
-import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
-import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
-import 'package:medica/symptoms/symptom1.dart';
-import 'package:medica/symptoms/symptom2.dart';
-import 'package:medica/symptoms/symptom3.dart';
-import 'package:medica/symptoms/symptom4.dart';
+import 'package:medica/patient/patient_symptoms.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
-import 'package:medica/view/widgets/catalog_products.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
-import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class patient_symptoms extends StatelessWidget {
-  patient_symptoms() : _name = "DEFAULT";
+class symptom4 extends StatelessWidget {
+  symptom4() : _name = "DEFAULT";
 
-  patient_symptoms.withuser(this._name);
+  symptom4.withuser(this._name);
   String _name;
 
   String get name => _name;
@@ -44,50 +34,6 @@ class patient_symptoms extends StatelessWidget {
   set name(String name) {
     _name = name;
   }
-
-  List symptoms = [
-    symptomCard(
-      primary: 'Diabetes',
-      secondary: 'if you have any of the following...',
-      imageAddress: 'assets/images/symptoms/diabetes.jpg',
-      imageFit: BoxFit.fitWidth,
-      onPressed: () {
-        Get.to(() => symptom1());
-      },
-    ),
-    symptomCard(
-        primary: 'COVID-19',
-        secondary: 'People with COVID-19 have had a wide...',
-        imageAddress: 'assets/images/symptoms/covid.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom2());
-        }),
-    symptomCard(
-        primary: 'Cancer',
-        secondary: 'Signs and symptoms caused by cancer will...',
-        imageAddress: 'assets/images/symptoms/cancer.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom3());
-        }),
-    symptomCard(
-        primary: 'Heart disease ',
-        secondary: 'A buildup of fatty plaques in your arteries...',
-        imageAddress: 'assets/images/symptoms/heart.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom4());
-        }),
-        symptomCard(
-        primary: 'Heart disease Symptoms',
-        secondary: 'The point of using Lor Ipsum normal of letters...',
-        imageAddress: 'assets/images/symptoms/covid.jpg',
-        imageFit: BoxFit.fitWidth,
-        onPressed: () {
-          Get.to(() => symptom4());
-        })
-  ];
 
   // final numbers = List.generate(100, (index) => '$index');
 
@@ -107,19 +53,10 @@ class patient_symptoms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final user = FirebaseAuth.instance.currentUser;
-    dynamic email = '';
-    dynamic name = '';
-    dynamic picture = '';
-    if (user != null) {
-      email = user.email;
-      name = user.displayName;
-      picture = user.photoURL;
-    }
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.to(() => patient_symptoms());
         return true;
       },
       child: Scaffold(
@@ -148,19 +85,14 @@ class patient_symptoms extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => MyAppointments());
-                        },
-                        child: SvgPicture.asset(
-                          'assets/images/appointment.svg',
-                          width: 25,
-                          height: 25,
-                          color: Colors.white,
-                        ),
+                      SvgPicture.asset(
+                        'assets/images/appointment.svg',
+                        width: 25,
+                        height: 25,
+                        color: Colors.white,
                       ),
                       CustomText(
-                        text: name,
+                        text: "USERNAME",
                         textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -185,7 +117,7 @@ class patient_symptoms extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.85,
+                height: size.height * 0.84,
 
                 width: double.infinity,
                 child: Column(
@@ -200,10 +132,11 @@ class patient_symptoms extends StatelessWidget {
                             left: size.width * 0.08,
                           ),
                           child: CustomText(
-                            text: "Know about symptoms",
+                            textAlign: TextAlign.left,
+                            text: "Covid-19 Symptoms",
                             textStyle: TextStyle(
                               color: primaryColor,
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Inter',
                             ),
@@ -224,13 +157,79 @@ class patient_symptoms extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            symptoms[0],
-                            symptoms[1],
-                            symptoms[2],
-                            symptoms[3],
-                            symptoms[3],
-                            symptoms[3],
-                            symptoms[3],
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "A buildup of fatty plaques in your arteries, or atherosclerosis (ath-ur-o-skluh-ROE-sis) can damage your blood vessels and heart. Plaque buildup causes narrowed or blocked blood vessels that can lead to a heart attack, chest pain (angina) or stroke. \n\n Coronary artery disease symptoms may be different for men and women. For instance, men are more likely to have chest pain. Women are more likely to have other signs and symptoms along with chest discomfort, such as shortness of breath, nausea and extreme fatigue. \n\n Signs and symptoms can include:",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.02),
+                            Container(
+                              height: 150.0,
+                              width: 250.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/symptoms/heart.jpg'),
+                                      fit:BoxFit.fill
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.02),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.09,
+                                left: size.width * 0.02,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "\u2022 Chest pain, chest tightness, chest\n    pressure and chest discomfort\n    (angina). \n\u2022 Shortness of breath. \n\u2022 Pain, numbness, weakness or\n    coldness in your legs or arms if the\n    blood vessels in those parts of your\n    body are narrowed. \n\u2022 Pain in the neck, jaw, throat, upper\n    abdomen or back.  ",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.02,
+                            ),
+                            
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                "You might not be diagnosed with coronary artery disease until you have a heart attack, angina, stroke or heart failure. It's important to watch for cardiovascular symptoms and discuss concerns with your doctor. Cardiovascular disease can sometimes be found early with regular evaluations.",
+                                    textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                           
+                             
+                             
+                            SizedBox(height: size.height * 0.02),
                           ],
                         ),
                       ),
