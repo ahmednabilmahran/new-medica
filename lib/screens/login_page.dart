@@ -17,19 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
-    switch (authProvider.status) {
-      case Status.authenticateError:
-        Fluttertoast.showToast(msg: 'Sign in failed');
-        break;
-      case Status.authenticateCanceled:
-        Fluttertoast.showToast(msg: 'Sign in cancelled');
-        break;
-      case Status.authenticated:
-        Fluttertoast.showToast(msg: 'Sign in successful');
-        break;
-      default:
-        break;
-    }
+    // switch (authProvider.status) {
+    //   case Status.authenticateError:
+    //     Fluttertoast.showToast(msg: 'Sign in failed');
+    //     break;
+    //   case Status.authenticateCanceled:
+    //     Fluttertoast.showToast(msg: 'Sign in cancelled');
+    //     break;
+    //   case Status.authenticated:
+    //     Fluttertoast.showToast(msg: 'Sign in successful');
+    //     break;
+    //   default:
+    //     break;
+    // }
 
     return Scaffold(
       body: Stack(

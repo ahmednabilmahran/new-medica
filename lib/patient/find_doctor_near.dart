@@ -6,10 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_register.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -62,23 +64,6 @@ class _patient_findState extends State<patient_find> {
             'Cardiologist in 6th of October Clinic',
             20,
             'assets/images/Kareem.png'));
-      },
-    ),
-    FindDoctor(
-      docName: 'Dr. Mai Farah',
-      docSpec: 'The point of using Lor Ipsum normal of letters...',
-      imageAddress: 'assets/images/washHands.jpg',
-      experienceYears: 15,
-      onPressed: () {
-        Get.to(() => DoctorProfile());
-      },
-    ),
-    FindDoctor(
-      docName: 'Check Temperature',
-      docSpec: 'The point of using Lor Ipsum normal of letters...',
-      experienceYears: 15,
-      onPressed: () {
-        Get.to(() => DoctorProfile());
       },
     ),
   ];
@@ -199,8 +184,17 @@ class _patient_findState extends State<patient_find> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset('assets/images/appointment.svg',
-                      width: 25, height: 25,color: Colors.white,),
+                      GestureDetector(
+                        onTap: (){
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -211,29 +205,6 @@ class _patient_findState extends State<patient_find> {
                       ),
                       Image.asset('assets/images/Notify.png')
                     ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  TextFormField(
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.white),
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    indent: size.width * 0.04,
-                    endIndent: size.width * 0.06,
-                    thickness: 1,
-                    height: 1,
                   ),
                 ],
               ),
@@ -250,7 +221,7 @@ class _patient_findState extends State<patient_find> {
                     // top: size.height * 0.05,
                     ),
                 // // color: Colors.green,
-                height: size.height * 0.78,
+                height: size.height * 0.86,
 
                 width: double.infinity,
                 child: Column(
@@ -293,15 +264,13 @@ class _patient_findState extends State<patient_find> {
                         right: size.width * 0.08,
                         // top: size.height * 0.05,
                       ),
-                      height: size.height * 0.55,
+                      height: size.height * 0.62,
                       width: double.infinity,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             findDoctor[0],
                             findDoctor[1],
-                            findDoctor[2],
-                            findDoctor[3],
                           ],
                         ),
                       ),
@@ -367,7 +336,9 @@ class _patient_findState extends State<patient_find> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => HomePage());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

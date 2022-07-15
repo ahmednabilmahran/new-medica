@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/doctor/doctor_profile.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
@@ -136,7 +137,17 @@ class patient_symptoms extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset('assets/images/Menu.png'),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
+                      ),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -147,29 +158,6 @@ class patient_symptoms extends StatelessWidget {
                       ),
                       Image.asset('assets/images/Notify.png')
                     ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.03,
-                  ),
-                  TextFormField(
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.white),
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    indent: size.width * 0.04,
-                    endIndent: size.width * 0.06,
-                    thickness: 1,
-                    height: 1,
                   ),
                 ],
               ),
@@ -186,7 +174,7 @@ class patient_symptoms extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.78,
+                height: size.height * 0.85,
 
                 width: double.infinity,
                 child: Column(
@@ -220,7 +208,7 @@ class patient_symptoms extends StatelessWidget {
                         right: size.width * 0.08,
                         left: size.width * 0.08,
                       ),
-                      height: size.height * 0.62,
+                      height: size.height * 0.68,
                       width: double.infinity,
                       child: SingleChildScrollView(
                         child: Column(

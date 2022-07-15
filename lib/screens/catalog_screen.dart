@@ -133,7 +133,7 @@ class CatalogScreen extends StatelessWidget {
                                 ),
                                 child: CustomText(
                                   textAlign: TextAlign.left,
-                                  text: 'Popular products',
+                                  text: 'Popular Products',
                                   textStyle: TextStyle(
                                     color: primaryColor,
                                     fontSize: 20,
