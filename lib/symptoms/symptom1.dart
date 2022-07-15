@@ -117,7 +117,7 @@ class symptom1 extends StatelessWidget {
                 //   // top: size.height * 0.05,
                 // ),
                 // color: Colors.green,
-                height: size.height * 0.88,
+                height: size.height * 0.84,
 
                 width: double.infinity,
                 child: Column(
@@ -175,26 +175,140 @@ class symptom1 extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(
-                                right: size.width * 0.08,
-                                left: size.width * 0.08,
-                              ),
-                              // height: size.height * 0.68,
-                              width: double.infinity,
-                              child: Column(children: <Widget>[
-                                ListTile(
-                                  leading: Icon(
-                                    Icons.fiber_manual_record,
-                                    size: 15,
-                                  ),
-                                  title: new Text(
-                                    'My first line',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: 13),
-                                  ),
+                              height: 200.0,
+                              width: 200.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/symptoms/diabetes.jpg'),
                                 ),
-                              ]),
+                              ),
                             ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.09,
+                                left: size.width * 0.02,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "\u2022 Urinate (pee) a lot, often at night. \n\u2022 Are very thirsty. \n\u2022 Lose weight without trying. \n\u2022 Are very hungry.  \n\u2022 Have blurry vision.  \n\u2022 Feel very tired.  \n\u2022 Have very dry skin.  \n\u2022 Have sores that heal slowly.  \n\u2022 Have more infections than usual. ",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.03,
+                            ),
+                            Container(
+                              child: Row(
+                                children: [
+                                  CustomText(
+                                    textAlign: TextAlign.left,
+                                    text: " Symptoms of Type 1 Diabetes:",
+                                    textStyle: TextStyle(
+                                      color: Color.fromARGB(221, 56, 96, 182),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "People who have type 1 diabetes may also have nausea, vomiting, or stomach pains. Type 1 diabetes symptoms can develop in just a few weeks or months and can be severe. Type 1 diabetes usually starts when you’re a child, teen, or young adult but can happen at any age.",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                            Container(
+                              child: Row(
+                                children: [
+                                  CustomText(
+                                    textAlign: TextAlign.left,
+                                    text: " Symptoms of Type 2 Diabetes:",
+                                    textStyle: TextStyle(
+                                      color: Color.fromARGB(221, 56, 96, 182),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "Type 2 diabetes symptoms often take several years to develop. Some people don’t notice any symptoms at all. Type 2 diabetes usually starts when you’re an adult, though more and more children and teens are developing it. Because symptoms are hard to spot, it’s important to know the risk factors for type 2 diabetes. Make sure to visit your doctor if you have any of them.",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                            Container(
+                              child: Row(
+                                children: [
+                                  CustomText(
+                                    textAlign: TextAlign.left,
+                                    text: " Symptoms of Type 3 Diabetes:",
+                                    textStyle: TextStyle(
+                                      color: Color.fromARGB(221, 56, 96, 182),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
+                              ),
+                              child: CustomText(
+                                textAlign: TextAlign.left,
+                                text:
+                                    "Gestational diabetes (diabetes during pregnancy) usually doesn’t have any symptoms. If you’re pregnant, your doctor should test you for gestational diabetes between 24 and 28 weeks of pregnancy. If needed, you can make changes to protect your health and your baby’s health.",
+                                textStyle: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Inter',
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.02),
                           ],
                         ),
                       ),
