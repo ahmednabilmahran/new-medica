@@ -16,6 +16,7 @@ import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/symptoms/symptom1.dart';
 import 'package:medica/symptoms/symptom2.dart';
+import 'package:medica/symptoms/symptom3.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
 import 'package:medica/view/widgets/catalog_products.dart';
@@ -61,11 +62,12 @@ class patient_symptoms extends StatelessWidget {
           Get.to(() => symptom2());
         }),
     symptomCard(
-        primary: 'Regular Hand Wash',
-        secondary: 'The point of using Lor Ipsum normal of letters...',
-        imageAddress: 'assets/images/washHands.jpg',
+        primary: 'Cancer Symptoms',
+        secondary: 'Signs and symptoms caused by cancer will...',
+        imageAddress: 'assets/images/symptoms/cancer.jpg',
+        imageFit: BoxFit.fitWidth,
         onPressed: () {
-          Get.to(() => DoctorProfile());
+          Get.to(() => symptom3());
         }),
     symptomCard(
         primary: 'Check Temperature',

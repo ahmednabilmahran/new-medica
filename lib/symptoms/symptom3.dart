@@ -23,10 +23,10 @@ import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class symptom2 extends StatelessWidget {
-  symptom2() : _name = "DEFAULT";
+class symptom3 extends StatelessWidget {
+  symptom3() : _name = "DEFAULT";
 
-  symptom2.withuser(this._name);
+  symptom3.withuser(this._name);
   String _name;
 
   String get name => _name;
@@ -133,7 +133,7 @@ class symptom2 extends StatelessWidget {
                           ),
                           child: CustomText(
                             textAlign: TextAlign.left,
-                            text: "Covid-19 Symptoms",
+                            text: "Cancer Symptoms",
                             textStyle: TextStyle(
                               color: primaryColor,
                               fontSize: 22,
@@ -165,7 +165,7 @@ class symptom2 extends StatelessWidget {
                               child: CustomText(
                                 textAlign: TextAlign.left,
                                 text:
-                                    "People with COVID-19 have had a wide range of symptoms reported – ranging from mild symptoms to severe illness. Symptoms may appear 2-14 days after exposure to the virus. Anyone can have mild to severe symptoms. People with these symptoms may have COVID-19:",
+                                    "Signs and symptoms caused by cancer will vary depending on what part of the body is affected. \n\n Some general signs and symptoms associated with, but not specific to, cancer, include:",
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
@@ -181,7 +181,7 @@ class symptom2 extends StatelessWidget {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                      'assets/images/symptoms/covid.jpg'),
+                                      'assets/images/symptoms/cancer.jpg'),
                                       fit:BoxFit.fill
                                 ),
                               ),
@@ -195,7 +195,7 @@ class symptom2 extends StatelessWidget {
                               child: CustomText(
                                 textAlign: TextAlign.left,
                                 text:
-                                    "\u2022 Fever or chills. \n\u2022 Cough. \n\u2022 Shortness or difficulty breathing. \n\u2022 Fatigue.  \n\u2022 Muscle or body aches.  \n\u2022 Headache.  \n\u2022 New loss of taste or smell.  \n\u2022 Sore throat.  \n\u2022 Congestion or runny nose.  \n\u2022 Congestion or runny nose.  \n\u2022 Diarrhea. ",
+                                    "\u2022 Fatigue. \n\u2022 Lump or area of thickening that can \n    be felt under the skin. \n\u2022 Weight changes, including \n    unintended loss or gain. \n\u2022 Changes in bowel or bladder habits.  \n\u2022 Persistent cough or trouble \n    breathing.  \n\u2022 Difficulty swallowing.  \n\u2022 Hoarseness.  \n\u2022 Persistent indigestion or discomfort \n    after eating.  \n\u2022 Persistent, unexplained muscle or\n     joint pain.  \n\u2022 Unexplained bleeding or bruising. ",
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 15,
@@ -205,33 +205,15 @@ class symptom2 extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: size.height * 0.02,
+                              height: size.height * 0.03,
                             ),
                             
-                            Container(
-                              padding: EdgeInsets.only(
-                                right: size.width * 0.03,
-                                left: size.width * 0.04,
-                              ),
-                              child: CustomText(
-                                textAlign: TextAlign.left,
-                                text:
-                                    "This list does not include all possible symptoms. CDC will continue to update this list as we learn more about COVID-19. Older adults and people who have severe underlying medical conditions like heart or lung disease or diabetes seem to be at higher risk for developing more serious complications from COVID-19 illness..",
-                                textStyle: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Inter',
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: size.height * 0.03),
                             Container(
                               child: Row(
                                 children: [
                                   CustomText(
                                     textAlign: TextAlign.left,
-                                    text: " When to Seek Emergency Medical Attention!",
+                                    text: " When to see a doctor!",
                                     textStyle: TextStyle(
                                       color: Color.fromARGB(221, 56, 96, 182),
                                       fontSize: 14,
@@ -243,15 +225,15 @@ class symptom2 extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: size.height * 0.01),
-                             Container(
+                            Container(
                               padding: EdgeInsets.only(
-                                right: size.width * 0.09,
-                                left: size.width * 0.02,
+                                right: size.width * 0.03,
+                                left: size.width * 0.04,
                               ),
                               child: CustomText(
                                 textAlign: TextAlign.left,
                                 text:
-                                    "\u2022 Trouble breathing. \n\u2022 pain or pressure in the chest. \n\u2022 Inability to wake or stay awake. \n\u2022 Pale, gray, or blue-colored skin, lips, or nail beds, depending on skin tone. ",
+                                    "Make an appointment with your doctor if you have any persistent signs or symptoms that concern you. \n\n If you don't have any signs or symptoms, but are worried about your risk of cancer, discuss your concerns with your doctor. Ask about which cancer screening tests and procedures are appropriate for you.",
                                 textStyle: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 14,
@@ -260,6 +242,7 @@ class symptom2 extends StatelessWidget {
                                 ),
                               ),
                             ),
+                             
                             SizedBox(height: size.height * 0.02),
                           ],
                         ),
