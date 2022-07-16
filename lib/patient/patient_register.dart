@@ -1,8 +1,13 @@
 // ignore_for_file: prefer_const_constructors, unused_field, prefer_const_literals_to_create_immutables, unused_local_variable, use_key_in_widget_constructors, camel_case_types, must_be_immutable, unnecessary_new, prefer_typing_uninitialized_variables, library_private_types_in_public_api, prefer_final_fields, use_build_context_synchronously
 
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:medica/controllers/profileController.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/providers/auth_provider.dart';
@@ -20,6 +25,7 @@ class patient_register extends StatefulWidget {
 
 class _patient_registerState extends State<patient_register> {
   final _registerFormKey = GlobalKey<FormState>();
+  profileController profileCtrl = Get.put(profileController());
 
   final _nameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
@@ -30,6 +36,8 @@ class _patient_registerState extends State<patient_register> {
   final _focusPassword = FocusNode();
 
   bool _isProcessing = false;
+  File? _image;
+  late String url;
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +118,28 @@ class _patient_registerState extends State<patient_register> {
                       height: size.height * 0.005,
                     ),
                     Stack(children: [
-                      SvgPicture.asset(
-                        'assets/images/user_register.svg',
-                        width: size.width * 0.30,
+                      Obx(
+                        () => RawMaterialButton(
+                          onPressed: () {
+                            _showPicker(context);
+                          },
+                          child: CircleAvatar(
+                            radius: 59,
+                            backgroundColor: Colors.purple,
+                            child: profileCtrl.selectedImagePath.value != ''
+                                ? CircleAvatar(
+                                    radius: 55,
+                                    backgroundColor: Colors.purple,
+                                    backgroundImage: FileImage(
+                                      File((profileCtrl
+                                          .selectedImagePath.value)),
+                                    ))
+                                : SvgPicture.asset(
+                                    'assets/images/user_register.svg',
+                                    width: size.width * 0.30,
+                                  ),
+                          ),
+                        ),
                       ),
                     ]),
                     SizedBox(
@@ -381,20 +408,41 @@ class _patient_registerState extends State<patient_register> {
                                     print(_nameTextController);
                                     print(_nameTextController.value);
                                     print(_nameTextController.text);
+                                    print(_image.toString());
+                                    print(profileCtrl.selectedImagePath.value);
+                                    _image = File(
+                                        profileCtrl.selectedImagePath.value);
                                     setState(() {
                                       _isProcessing = true;
                                     });
                                     if (_registerFormKey.currentState!
                                         .validate()) {
-                                      authProvider.registerUsingEmailPassword(
-                                        name: _nameTextController.text,
-                                        email: _emailTextController.text,
-                                        password: _passwordTextController.text,
-                                      );
+                                      if (_image == null) {
+                                        Get.snackbar(
+                                            "Error!", "Please pick an image",
+                                            backgroundColor: Colors.red,
+                                            snackPosition: SnackPosition.TOP,
+                                            colorText: Colors.white);
+                                      } else {
+                                        final ref = FirebaseStorage.instance
+                                            .ref()
+                                            .child('usersImages')
+                                            .child(_nameTextController.text +
+                                                '.jpg');
+                                        await ref.putFile(_image!);
+                                        url = await ref.getDownloadURL();
+                                        authProvider.registerUsingEmailPassword(
+                                          name: _nameTextController.text,
+                                          email: _emailTextController.text,
+                                          password:
+                                              _passwordTextController.text,
+                                          photoUrl: url,
+                                        );
 
-                                      setState(() {
-                                        _isProcessing = false;
-                                      });
+                                        setState(() {
+                                          _isProcessing = false;
+                                        });
+                                      }
                                     }
                                   },
                                   style: TextButton.styleFrom(
@@ -463,50 +511,50 @@ class _patient_registerState extends State<patient_register> {
       ),
     );
   }
+
+  void pickImage() async {
+    final picker = ImagePicker();
+    var image = picker.pickImage(source: ImageSource.camera);
+
+    _image = image as File;
+  }
+
+  void _showPicker(context) {
+    profileController profileCtrl = Get.put(profileController());
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Gallery'),
+                      onTap: () {
+                        profileCtrl.getImage(ImageSource.gallery);
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      profileCtrl.getImage(ImageSource.camera);
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  new ListTile(
+                    leading: new Icon(Icons.delete),
+                    title: new Text('Remove Photo'),
+                    onTap: () {
+                      profileCtrl.deleteMemoryImage();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 }
-//   void pickImage() async {
-//     final picker = ImagePicker();
-//     var image = picker.pickImage(source: ImageSource.camera);
-
-//     _image = image as File;
-//   }
-// }
-
-// void _showPicker(context) {
-//   profileController profileCtrl = Get.put(profileController());
-//   showModalBottomSheet(
-//       context: context,
-//       builder: (BuildContext bc) {
-//         return SafeArea(
-//           child: Container(
-//             child: new Wrap(
-//               children: <Widget>[
-//                 new ListTile(
-//                     leading: new Icon(Icons.photo_library),
-//                     title: new Text('Gallery'),
-//                     onTap: () {
-//                       profileCtrl.getImage(ImageSource.gallery);
-//                       Navigator.of(context).pop();
-//                     }),
-//                 new ListTile(
-//                   leading: new Icon(Icons.photo_camera),
-//                   title: new Text('Camera'),
-//                   onTap: () {
-//                     profileCtrl.getImage(ImageSource.camera);
-//                     Navigator.of(context).pop();
-//                   },
-//                 ),
-//                 new ListTile(
-//                   leading: new Icon(Icons.delete),
-//                   title: new Text('Remove Photo'),
-//                   onTap: () {
-//                     profileCtrl.deleteMemoryImage();
-//                     Navigator.of(context).pop();
-//                   },
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       });
-// }

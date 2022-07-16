@@ -8,9 +8,6 @@ import 'package:get/state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 class profileController extends GetxController {
-
-
-
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
 
@@ -35,26 +32,37 @@ class profileController extends GetxController {
 
   fireStore_Get_ImagePath() {
     FirebaseFirestore.instance
-        .collection("usersImage").where("uid",isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .collection("usersImages")
+        .where("uid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        if(doc != null){
-          if(FirebaseAuth.instance.currentUser?.uid == doc["uid"]){
+        if (doc != null) {
+          if (FirebaseAuth.instance.currentUser?.uid == doc["uid"]) {
             selectedImagePath.value = doc["image_path"];
             print("1111111111111111111111111111111");
-          }else{
+          } else {
             selectedImagePath.value = '';
             print("0000000000000000000000000000000");
           }
-
         }
       });
     });
-
   }
- 
-void deleteMemoryImage(){
- selectedImagePath.value = '';
-}
+
+  void deleteMemoryImage() {
+    selectedImagePath.value = '';
+    FirebaseFirestore.instance
+        .collection("usersImages")
+        .where("uid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if (doc != null &&
+            FirebaseAuth.instance.currentUser?.uid == doc["uid"]) {
+          doc.reference.delete();
+        }
+      });
+    });
+  }
 }

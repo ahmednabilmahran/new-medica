@@ -129,6 +129,7 @@ class AuthProvider extends ChangeNotifier {
     required String name,
     required String email,
     required String password,
+    required String photoUrl,
   }) async {
     User? user;
 
@@ -140,7 +141,7 @@ class AuthProvider extends ChangeNotifier {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
+      await user!.updateProfile(displayName: name, photoURL: photoUrl);
       await user.reload();
       user = firebaseAuth.currentUser;
       firebaseFirestore
@@ -150,6 +151,7 @@ class AuthProvider extends ChangeNotifier {
         FirestoreConstants.id: user.uid,
         FirestoreConstants.email: user.email,
         FirestoreConstants.pass: password,
+        FirestoreConstants.photoUrl: user.photoURL,
         FirestoreConstants.displayName: user.displayName,
         "createdAt: ": DateTime.now().millisecondsSinceEpoch.toString(),
         FirestoreConstants.chattingWith: null
@@ -160,10 +162,9 @@ class AuthProvider extends ChangeNotifier {
           FirestoreConstants.displayName, currentUser.displayName ?? "");
       await prefs.setString(
           FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
-      await prefs.setString(
-          FirestoreConstants.phone, currentUser.phoneNumber ?? "");
       print(prefs.getString(FirestoreConstants.id));
       print(prefs.getString(FirestoreConstants.displayName));
+      print(prefs.getString(FirestoreConstants.photoUrl));
 
       Get.to(() => patient_home
           .withuser(prefs.getString(FirestoreConstants.displayName) as String));
