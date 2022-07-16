@@ -66,6 +66,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo.png"
 
 flutter_native_splash:
   # background_image: "assets/images/splashBackground.png"
@@ -95,8 +101,6 @@ flutter:
     - assets/images/socialmedia/
     - assets/images/logo.png
     - assets/images/symptoms/
-
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
