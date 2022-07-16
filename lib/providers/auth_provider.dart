@@ -206,14 +206,23 @@ class AuthProvider extends ChangeNotifier {
         password: password,
       );
       user = userCredential.user;
-      User? currentUser = user;
-      await prefs.setString(FirestoreConstants.id, currentUser!.uid);
-      await prefs.setString(
-          FirestoreConstants.displayName, currentUser.displayName ?? "");
-      await prefs.setString(
-          FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
-      await prefs.setString(
-          FirestoreConstants.phone, currentUser.phoneNumber ?? "");
+      User? firebaseUser = user;
+      if (firebaseUser != null) {
+        final QuerySnapshot result = await firebaseFirestore
+            .collection(FirestoreConstants.pathUserCollection)
+            .where(FirestoreConstants.id, isEqualTo: firebaseUser.uid)
+            .get();
+        final List<DocumentSnapshot> document = result.docs;
+        DocumentSnapshot documentSnapshot = document[0];
+        ChatUser userChat = ChatUser.fromDocument(documentSnapshot);
+        await prefs.setString(FirestoreConstants.id, userChat.id);
+        await prefs.setString(
+            userChat.displayName, FirestoreConstants.displayName);
+        await prefs.setString(FirestoreConstants.aboutMe, userChat.aboutMe);
+        await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
+        userChat.displayName = user?.displayName as String;
+        print(userChat.displayName);
+      }
       print(prefs.getString(FirestoreConstants.id));
       print(prefs.getString(FirestoreConstants.displayName));
       Get.offAll(() => patient_home

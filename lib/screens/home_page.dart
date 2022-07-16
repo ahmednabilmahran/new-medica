@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
