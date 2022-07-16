@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:medica/view/widgets/constance.dart';
 
 class MyAppointments extends StatefulWidget {
   @override
@@ -17,6 +18,13 @@ class _MyAppointmentsState extends State<MyAppointments> {
     var user_appointment_codes = [];
     return Scaffold(
       appBar: AppBar(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+        )),
+        backgroundColor: primaryColor,
+        centerTitle: true,
         title: Text('My Appointments'),
       ),
       body: Container(

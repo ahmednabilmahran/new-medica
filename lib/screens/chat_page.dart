@@ -258,62 +258,81 @@ class _ChatPageState extends State<ChatPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                  right: size.width * 0.05,
-                                ),
-                                clipBehavior: Clip.hardEdge,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(Sizes.dimen_20),
-                                ),
-                                child: Image.network(
-                                  widget.peerAvatar,
-                                  width: Sizes.dimen_64,
-                                  height: Sizes.dimen_64,
-                                  fit: BoxFit.cover,
-                                  loadingBuilder: (BuildContext ctx,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: primaryColor,
-                                        value: loadingProgress
-                                                        .expectedTotalBytes !=
-                                                    null &&
-                                                loadingProgress
-                                                        .expectedTotalBytes !=
-                                                    null
-                                            ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes!
-                                            : null,
-                                      ),
-                                    );
-                                  },
-                                  errorBuilder: (context, object, stackTrace) {
-                                    return const Icon(
-                                      Icons.account_circle,
-                                      size: 35,
-                                      color: AppColors.greyColor,
-                                    );
-                                  },
-                                ),
+                              Column(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: SvgPicture.asset(
+                                          'assets/icons/Arrow.svg'))
+                                ],
                               ),
                               Container(
-                                margin:
-                                    EdgeInsets.only(bottom: size.height * .02),
-                                child: Text(
-                                  'Dr. ${widget.peerNickname}'.trim(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'dmsans',
-                                    fontSize: 18,
-                                  ),
+                                // width: size.width * 0.666666,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        right: size.width * 0.05,
+                                      ),
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            Sizes.dimen_20),
+                                      ),
+                                      child: Image.network(
+                                        widget.peerAvatar,
+                                        width: Sizes.dimen_64,
+                                        height: Sizes.dimen_64,
+                                        fit: BoxFit.cover,
+                                        loadingBuilder: (BuildContext ctx,
+                                            Widget child,
+                                            ImageChunkEvent? loadingProgress) {
+                                          if (loadingProgress == null)
+                                            return child;
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              color: primaryColor,
+                                              value: loadingProgress
+                                                              .expectedTotalBytes !=
+                                                          null &&
+                                                      loadingProgress
+                                                              .expectedTotalBytes !=
+                                                          null
+                                                  ? loadingProgress
+                                                          .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                  : null,
+                                            ),
+                                          );
+                                        },
+                                        errorBuilder:
+                                            (context, object, stackTrace) {
+                                          return const Icon(
+                                            Icons.account_circle,
+                                            size: 35,
+                                            color: AppColors.greyColor,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                          bottom: size.height * .02),
+                                      child: Text(
+                                        'Dr. ${widget.peerNickname}'.trim(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'dmsans',
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -395,15 +414,14 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/clipboardNavBarHome.svg',
-                                              color: primaryColorOutOfFocus,),
+                                              'assets/images/clipboardNavBarHome.svg'),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Consult',
                                             textStyle:
-                                                TextStyle(color: primaryColorOutOfFocus),
+                                                TextStyle(color: linkColor),
                                           )
                                         ],
                                       ),
@@ -415,14 +433,15 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/message-circleNavBarHome.svg'),
+                                              'assets/images/message-circleNavBarHome.svg',
+                                              color: primaryColorOutOfFocus),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Chat',
                                             textStyle: TextStyle(
-                                                color: linkColor),
+                                                color: primaryColorOutOfFocus),
                                           )
                                         ],
                                       ),
