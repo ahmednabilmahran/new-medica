@@ -1,2 +1,2 @@
-0 COVID-19
-1 NORMAL
+ Positive, COVID-19
+ Negative, NORMAL
