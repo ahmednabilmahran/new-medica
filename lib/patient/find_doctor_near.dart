@@ -10,6 +10,7 @@ import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
+import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
@@ -185,7 +186,7 @@ class _patient_findState extends State<patient_find> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Get.to(() => MyAppointments());
                         },
                         child: SvgPicture.asset(
@@ -357,7 +358,9 @@ class _patient_findState extends State<patient_find> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => patient_profile());
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
