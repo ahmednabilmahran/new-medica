@@ -200,7 +200,7 @@ class selectSpeciality extends StatelessWidget {
                                     width: size.width * 0.027,
                                   ),
                                   CustomText(
-                                    text: '\tAudiology',
+                                    text: 'Audiology',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -1786,8 +1786,8 @@ class selectSpeciality extends StatelessWidget {
                             ),
                             RawMaterialButton(
                               onPressed: () {
-                                Get.to(() => doctor_register
-                                    .getspeciality('Urology'));
+                                Get.to(() =>
+                                    doctor_register.getspeciality('Urology'));
                               },
                               child: Row(
                                 children: [

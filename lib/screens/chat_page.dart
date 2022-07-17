@@ -414,14 +414,16 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/clipboardNavBarHome.svg'),
+                                            'assets/images/clipboardNavBarHome.svg',
+                                            color: primaryColorOutOfFocus,
+                                          ),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Consult',
-                                            textStyle:
-                                                TextStyle(color: linkColor),
+                                            textStyle: TextStyle(
+                                                color: primaryColorOutOfFocus),
                                           )
                                         ],
                                       ),
@@ -433,15 +435,14 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/message-circleNavBarHome.svg',
-                                              color: primaryColorOutOfFocus),
+                                              'assets/images/message-circleNavBarHome.svg'),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Chat',
-                                            textStyle: TextStyle(
-                                                color: primaryColorOutOfFocus),
+                                            textStyle:
+                                                TextStyle(color: linkColor),
                                           )
                                         ],
                                       ),
