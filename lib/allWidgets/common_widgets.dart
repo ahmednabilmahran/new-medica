@@ -58,7 +58,7 @@ Widget messageBubble(
     width: Sizes.dimen_200,
     decoration: BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.circular(Sizes.dimen_10),
+      borderRadius: BorderRadius.circular(20),
     ),
     child: Text(
       chatContent,
