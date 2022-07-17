@@ -98,7 +98,8 @@ class AuthProvider extends ChangeNotifier {
           await prefs.setString(FirestoreConstants.id, userChat.id);
           await prefs.setString(
               FirestoreConstants.displayName, userChat.displayName);
-          await prefs.setString(FirestoreConstants.aboutMe, userChat.aboutMe);
+          await prefs.setString(
+              FirestoreConstants.speciality, userChat.speciality);
           await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
         }
         Get.to(() => patient_home.withuser(
@@ -219,7 +220,8 @@ class AuthProvider extends ChangeNotifier {
         await prefs.setString(FirestoreConstants.id, userChat.id);
         await prefs.setString(
             userChat.displayName, FirestoreConstants.displayName);
-        await prefs.setString(FirestoreConstants.aboutMe, userChat.aboutMe);
+        await prefs.setString(
+            FirestoreConstants.speciality, userChat.speciality);
         await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
         userChat.displayName = user?.displayName as String;
         print(userChat.displayName);
@@ -298,7 +300,8 @@ class AuthProvider extends ChangeNotifier {
           await prefs.setString(FirestoreConstants.id, userChat.id);
           await prefs.setString(
               FirestoreConstants.displayName, userChat.displayName);
-          await prefs.setString(FirestoreConstants.aboutMe, userChat.aboutMe);
+          await prefs.setString(
+              FirestoreConstants.speciality, userChat.speciality);
           await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
         }
         Get.to(() => doctor_home.withuser(
@@ -332,20 +335,26 @@ class AuthProvider extends ChangeNotifier {
         password: password,
       );
       user = userCredential.user;
-      User? currentUser = user;
-      await prefs.setString(FirestoreConstants.id, currentUser!.uid);
-      await prefs.setString(
-          FirestoreConstants.displayName, currentUser.displayName ?? "");
-      await prefs.setString(
-          FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
-      await prefs.setString(
-          FirestoreConstants.phone, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.speciality, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.email, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.pass, currentUser.phoneNumber ?? "");
+      User? firebaseUser = user;
+      if (firebaseUser != null) {
+        final QuerySnapshot result = await firebaseFirestore
+            .collection(FirestoreConstants.pathDoctorCollection)
+            .where(FirestoreConstants.id, isEqualTo: firebaseUser.uid)
+            .get();
+        final List<DocumentSnapshot> document = result.docs;
+        DocumentSnapshot documentSnapshot = document[0];
+        ChatUser userChat = ChatUser.fromDocument(documentSnapshot);
+        await prefs.setString(
+            FirestoreConstants.displayName, firebaseUser.displayName as String);
+        await prefs.setString(FirestoreConstants.id, userChat.id);
+        await prefs.setString(
+            userChat.displayName, FirestoreConstants.displayName);
+        await prefs.setString(
+            FirestoreConstants.speciality, userChat.speciality);
+        await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
+        userChat.displayName = user?.displayName as String;
+        print(userChat.displayName);
+      }
       print(prefs.getString(FirestoreConstants.id));
       print(prefs.getString(FirestoreConstants.displayName));
       Get.offAll(() => doctor_home
@@ -379,6 +388,12 @@ class AuthProvider extends ChangeNotifier {
     required String password,
     required String phone,
     required String speciality,
+    required dynamic experience,
+    required dynamic patients,
+    required dynamic certificates,
+    required dynamic lat,
+    required dynamic long,
+    required String photoUrl,
   }) async {
     User? user;
 
@@ -390,7 +405,7 @@ class AuthProvider extends ChangeNotifier {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
+      await user!.updateProfile(displayName: name, photoURL: photoUrl);
       await user.reload();
       user = firebaseAuth.currentUser;
       firebaseFirestore
@@ -401,7 +416,13 @@ class AuthProvider extends ChangeNotifier {
         FirestoreConstants.email: user.email,
         FirestoreConstants.pass: password,
         FirestoreConstants.phone: phone,
+        FirestoreConstants.experience: experience,
+        FirestoreConstants.patients: patients,
+        FirestoreConstants.certificates: certificates,
+        FirestoreConstants.lat: lat,
+        FirestoreConstants.long: long,
         FirestoreConstants.speciality: speciality,
+        FirestoreConstants.photoUrl: user.photoURL,
         FirestoreConstants.displayName: user.displayName,
         "createdAt: ": DateTime.now().millisecondsSinceEpoch.toString(),
         FirestoreConstants.chattingWith: null
@@ -414,12 +435,14 @@ class AuthProvider extends ChangeNotifier {
           FirestoreConstants.photoUrl, currentUser.photoURL ?? "");
       await prefs.setString(
           FirestoreConstants.phone, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.speciality, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.email, currentUser.phoneNumber ?? "");
-      await prefs.setString(
-          FirestoreConstants.pass, currentUser.phoneNumber ?? "");
+      await prefs.setString(FirestoreConstants.speciality, speciality);
+      await prefs.setString(FirestoreConstants.email, email);
+      await prefs.setString(FirestoreConstants.certificates, certificates);
+      await prefs.setString(FirestoreConstants.experience, experience);
+      await prefs.setString(FirestoreConstants.lat, lat);
+      await prefs.setString(FirestoreConstants.long, long);
+      await prefs.setString(FirestoreConstants.patients, patients);
+      await prefs.setString(FirestoreConstants.pass, password);
       print(prefs.getString(FirestoreConstants.id));
       print(prefs.getString(FirestoreConstants.displayName));
 

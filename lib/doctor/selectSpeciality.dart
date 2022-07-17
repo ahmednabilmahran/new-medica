@@ -38,7 +38,7 @@ class selectSpeciality extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomText(
-                              text: 'Select a speciality',
+                              text: 'Select a Speciality',
                               textStyle: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Inter',
