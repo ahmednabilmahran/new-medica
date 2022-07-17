@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:medica/doctor/doctor_register.dart';
-import 'package:medica/doctor/doctor_register.dart';
-import 'package:medica/view/widgets/LnRCurve.dart';
-import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
-import 'package:medica/view/widgets/custom_text_form_field.dart';
-import 'package:medica/view/widgets/my_flutter_app_icons.dart';
 import 'package:medica/view/widgets/speciality_icons_icons.dart';
-import 'doctor_getstarted.dart';
 
 // ignore_for_file: prefer_const_constructors, unused_field
 
@@ -34,7 +26,7 @@ class selectSpeciality extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: size.height * 0.06,
+                    height: size.height * 0.05,
                   ),
                   Container(
                     child: Column(
@@ -82,7 +74,7 @@ class selectSpeciality extends StatelessWidget {
                   // top: size.height * 0.05,
                 ),
                 // color: Colors.green,
-                height: size.height * 0.87,
+                height: size.height * 0.88,
 
                 width: double.infinity,
                 child: Column(
@@ -96,7 +88,7 @@ class selectSpeciality extends StatelessWidget {
                       height: size.height * 0.03,
                     ),
                     Container(
-                      height: size.height * 0.79,
+                      height: size.height * 0.81,
                       width: double.infinity,
                       child: SingleChildScrollView(
                         child: Column(
@@ -197,7 +189,7 @@ class selectSpeciality extends StatelessWidget {
                                     color: Color(0xffF95DDE),
                                   ),
                                   SizedBox(
-                                    width: size.width * 0.027,
+                                    width: size.width * 0.035,
                                   ),
                                   CustomText(
                                     text: 'Audiology',
@@ -523,7 +515,7 @@ class selectSpeciality extends StatelessWidget {
                                     width: size.width * 0.027,
                                   ),
                                   CustomText(
-                                    text: '\t\tDietitian and Nutrition',
+                                    text: '  Dietitian and Nutrition',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -723,7 +715,7 @@ class selectSpeciality extends StatelessWidget {
                                     width: size.width * 0.027,
                                   ),
                                   CustomText(
-                                    text: '\tGeneral Surgery',
+                                    text: 'General Surgery',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -920,10 +912,10 @@ class selectSpeciality extends StatelessWidget {
                                     color: Color(0xffF95DDE),
                                   ),
                                   SizedBox(
-                                    width: size.width * 0.027,
+                                    width: size.width * 0.05,
                                   ),
                                   CustomText(
-                                    text: '\t\tInternal Medicine',
+                                    text: 'Internal Medicine',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -1040,10 +1032,10 @@ class selectSpeciality extends StatelessWidget {
                                     color: Color(0xffF95DDE),
                                   ),
                                   SizedBox(
-                                    width: size.width * 0.027,
+                                    width: size.width * 0.035,
                                   ),
                                   CustomText(
-                                    text: '\tNephrology',
+                                    text: 'Nephrology',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -1120,10 +1112,10 @@ class selectSpeciality extends StatelessWidget {
                                     color: Color(0xffF95DDE),
                                   ),
                                   SizedBox(
-                                    width: size.width * 0.027,
+                                    width: size.width * 0.035,
                                   ),
                                   CustomText(
-                                    text: '\tNeurosurgery',
+                                    text: 'Neurosurgery',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',
@@ -1443,7 +1435,7 @@ class selectSpeciality extends StatelessWidget {
                                     width: size.width * 0.027,
                                   ),
                                   CustomText(
-                                    text: '\tPain Managment',
+                                    text: 'Pain Managment',
                                     textStyle: TextStyle(
                                       color: Colors.grey[800],
                                       fontFamily: 'Inter',

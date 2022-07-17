@@ -183,6 +183,10 @@ flutter:
       fonts:
         - asset: assets/icons/ProfileIcons.ttf
 
+    - family: SpecialityIcons
+      fonts:
+        - asset: assets/icons/SpecialityIcons.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
