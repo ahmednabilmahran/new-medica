@@ -7,7 +7,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:medica/doctorfirebasetest/doctor_screen.dart';
 import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
@@ -335,9 +334,7 @@ class patient_profile extends StatelessWidget {
                                 ),
                               )),
                           TextButton(
-                              onPressed: () {
-                                Get.to(() => DoctorScreen());
-                              },
+                              onPressed: () {},
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.02),

@@ -15,6 +15,7 @@ import 'package:medica/patient/patient_register.dart';
 import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
 import 'package:medica/view/widgets/LnRCurve.dart';
+import 'package:medica/view/widgets/catalog_doctor.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_background.dart';
 import 'package:medica/view/widgets/custom_text.dart';
@@ -267,14 +268,8 @@ class _patient_findState extends State<patient_find> {
                       ),
                       height: size.height * 0.62,
                       width: double.infinity,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            findDoctor[0],
-                            findDoctor[1],
-                          ],
-                        ),
-                      ),
+                      child:             CatalogDoctor(),
+
                     ),
                     Container(
                       // padding: EdgeInsets.only(

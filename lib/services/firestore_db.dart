@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:medica/doctorfirebasetest/doctor_model.dart';
+// import 'doctor_model'
 import 'package:medica/models/product_model.dart';
+
+import '../view/widgets/doctor_model.dart';
 
 class FirestoreDB {
   // Initialise Firebase Cloud Firestore
