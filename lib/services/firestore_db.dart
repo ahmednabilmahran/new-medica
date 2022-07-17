@@ -16,9 +16,11 @@ class FirestoreDB {
       return snapshot.docs.map((doc) => Product.fromSnapshot(doc)).toList();
     });
   }
-    Stream<List<Doctor>> getAllDoctors() {
+
+  Stream<List<Doctor>> getAllDoctors() {
     return _firebaseFirestore
-        .collection('doctors').orderBy('name')
+        .collection('doctors')
+        .orderBy('displayName')
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Doctor.fromSnapshot(doc)).toList();

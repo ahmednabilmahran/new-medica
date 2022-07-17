@@ -79,9 +79,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
     final db = FirebaseFirestore.instance;
     dynamic _msg = '';
     dynamic pname = null;
-    dynamic speciality = doctorController.doctor[widget._index].speciality;
     dynamic _selected_doc = doctorController.doctor[widget._index].name;
     dynamic _selected_day = DateTime.now();
+    var patients =
+        double.parse(doctorController.doctor[widget._index].patients) / 1000;
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
     dynamic name = '';
@@ -199,7 +200,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                       children: [
                                         TextButton(
                                             onPressed: () {
-                                              launch('tel:+201015248753');
+                                              launch(
+                                                  "tel:+2${doctorController.doctor[widget._index].phone}");
                                             },
                                             style: TextButton.styleFrom(
                                                 elevation: 5,
@@ -295,7 +297,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         CustomText(
                                           text:
                                               // widget._docexperience.toString(),
-                                              '5',
+                                              doctorController
+                                                  .doctor[widget._index]
+                                                  .experience,
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,
@@ -331,7 +335,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: '18K',
+                                          text:
+                                              "${patients.toStringAsFixed(0)}K",
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,
@@ -368,7 +373,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: '20',
+                                          text: doctorController
+                                              .doctor[widget._index]
+                                              .certificates,
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,

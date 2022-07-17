@@ -6,20 +6,40 @@ class Doctor {
   final String speciality;
   final String imageAddress;
   final String email;
+  final String certificates;
+  final String experience;
+  final String lat;
+  final String long;
+  final String patients;
+  final String phone;
+  final String id;
 
-  const Doctor({
-    required this.name,
-    required this.speciality,
-    required this.imageAddress,
-    required this.email
-  });
+  const Doctor(
+      {required this.certificates,
+      required this.experience,
+      required this.lat,
+      required this.long,
+      required this.patients,
+      required this.phone,
+      required this.id,
+      required this.name,
+      required this.speciality,
+      required this.imageAddress,
+      required this.email});
 
   static Doctor fromSnapshot(DocumentSnapshot snap) {
     Doctor doctor = Doctor(
-      name: snap['name'],
+      name: snap['displayName'],
       speciality: snap['speciality'],
-      imageAddress: snap['imageAddress'],
-      email: snap['email']
+      imageAddress: snap['photoUrl'],
+      email: snap['email'],
+      certificates: snap['certificates'],
+      experience: snap['experience'],
+      id: snap['id'],
+      lat: snap['lat'],
+      long: snap['long'],
+      patients: snap['patients'],
+      phone: snap['phone'],
     );
     return doctor;
   }

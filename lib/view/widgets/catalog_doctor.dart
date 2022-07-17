@@ -94,7 +94,8 @@ class CatalogDoctorCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: doctorController.doctor[index].name,
+                              text:
+                                  "Dr. ${doctorController.doctor[index].name}",
                               textAlign: TextAlign.left,
                               textStyle: TextStyle(
                                 color: primaryColor,
@@ -112,7 +113,10 @@ class CatalogDoctorCard extends StatelessWidget {
                                       alignment: Alignment.centerRight,
                                       onPressed: () {
                                         Get.to(() => map.withlatlng(
-                                            31.048505, 31.3759948));
+                                            double.parse(doctorController
+                                                .doctor[index].lat),
+                                            double.parse(doctorController
+                                                .doctor[index].long)));
                                       },
                                       icon: Icon(Icons.location_on_outlined))
                                 ],
@@ -135,7 +139,8 @@ class CatalogDoctorCard extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: '5+ years overall Exp.',
+                              text:
+                                  '${doctorController.doctor[index].experience} + years overall Exp.',
                               textStyle: TextStyle(
                                 color: Color(0xffFF8F6A),
                               ),
