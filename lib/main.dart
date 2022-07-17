@@ -12,6 +12,7 @@ import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/allConstants/app_constants.dart';
 import 'package:medica/doctor/doctor_getstarted.dart';
 import 'package:medica/doctor/doctor_home.dart';
+import 'package:medica/loginType.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_getstarted.dart';
@@ -77,13 +78,14 @@ class MyApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         return GetMaterialApp(
-          initialBinding: Binding(),
-          debugShowCheckedModeBanner: false,
-          home: isUserLoggedIn
-              ? patient_home.withuser(
-                  prefs.getString(FirestoreConstants.displayName) as String)
-              : patient_getstarted(),
-        );
+            initialBinding: Binding(),
+            debugShowCheckedModeBanner: false,
+            home: loginAs()
+            // home: isUserLoggedIn
+            //     ? patient_home.withuser(
+            //         prefs.getString(FirestoreConstants.displayName) as String)
+            //     : patient_getstarted(),
+            );
       }),
     );
   }

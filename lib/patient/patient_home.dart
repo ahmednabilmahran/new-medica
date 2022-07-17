@@ -154,12 +154,14 @@ class patient_home extends StatelessWidget {
                           Row(
                             children: [
                               Container(
-                                margin:
-                                    EdgeInsets.only(right: size.width * 0.03),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.green,
-                                ),
-                              ),
+                                  margin:
+                                      EdgeInsets.only(right: size.width * 0.03),
+                                  child: picture != ''
+                                      ? CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(picture))
+                                      : CircleAvatar(
+                                          backgroundColor: Colors.green)),
                               CustomText(
                                 text: name,
                                 textStyle: TextStyle(

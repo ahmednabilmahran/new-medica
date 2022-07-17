@@ -414,14 +414,16 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/clipboardNavBarHome.svg'),
+                                            'assets/images/clipboardNavBarHome.svg',
+                                            color: primaryColorOutOfFocus,
+                                          ),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Consult',
-                                            textStyle:
-                                                TextStyle(color: linkColor),
+                                            textStyle: TextStyle(
+                                                color: primaryColorOutOfFocus),
                                           )
                                         ],
                                       ),
@@ -433,15 +435,14 @@ class _ChatPageState extends State<ChatPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/images/message-circleNavBarHome.svg',
-                                              color: primaryColorOutOfFocus),
+                                              'assets/images/message-circleNavBarHome.svg'),
                                           SizedBox(
                                             height: size.height * 0.008,
                                           ),
                                           CustomText(
                                             text: 'Chat',
-                                            textStyle: TextStyle(
-                                                color: primaryColorOutOfFocus),
+                                            textStyle:
+                                                TextStyle(color: linkColor),
                                           )
                                         ],
                                       ),
@@ -564,6 +565,8 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget buildItem(int index, DocumentSnapshot? documentSnapshot) {
+    final Size size = MediaQuery.of(context).size;
+
     if (documentSnapshot != null) {
       ChatMessages chatMessages = ChatMessages.fromDocument(documentSnapshot);
       if (chatMessages.idFrom == currentUserId) {
@@ -579,7 +582,8 @@ class _ChatPageState extends State<ChatPage> {
                         chatContent: chatMessages.content,
                         color: AppColors.primaryColor,
                         textColor: AppColors.white,
-                        margin: const EdgeInsets.only(right: Sizes.dimen_10),
+                        margin: EdgeInsets.only(
+                            right: Sizes.dimen_10, bottom: size.height * 0.005),
                       )
                     : chatMessages.type == MessageType.image
                         ? Container(
