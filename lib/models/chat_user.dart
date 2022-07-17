@@ -8,14 +8,14 @@ class ChatUser extends Equatable {
   final String photoUrl;
   late String displayName;
   final String phoneNumber;
-  final String aboutMe;
+  final String speciality;
 
    ChatUser(
       {required this.id,
       required this.photoUrl,
       required this.displayName,
       required this.phoneNumber,
-      required this.aboutMe});
+      required this.speciality});
 
   ChatUser copyWith({
     String? id,
@@ -29,25 +29,25 @@ class ChatUser extends Equatable {
           photoUrl: photoUrl ?? this.photoUrl,
           displayName: nickname ?? displayName,
           phoneNumber: phoneNumber ?? this.phoneNumber,
-          aboutMe: email ?? aboutMe);
+          speciality: email ?? speciality);
 
   Map<String, dynamic> toJson() => {
         FirestoreConstants.displayName: displayName,
         FirestoreConstants.photoUrl: photoUrl,
         FirestoreConstants.phone: phoneNumber,
-        FirestoreConstants.aboutMe: aboutMe,
+        FirestoreConstants.speciality: speciality,
       };
   factory ChatUser.fromDocument(DocumentSnapshot snapshot) {
     String photoUrl = "";
     String nickname = "";
     String phoneNumber = "";
-    String aboutMe = "";
+    String speciality = "";
 
     try {
       photoUrl = snapshot.get(FirestoreConstants.photoUrl);
       nickname = snapshot.get(FirestoreConstants.displayName);
       phoneNumber = snapshot.get(FirestoreConstants.phone);
-      aboutMe = snapshot.get(FirestoreConstants.aboutMe);
+      speciality = snapshot.get(FirestoreConstants.speciality);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -58,9 +58,9 @@ class ChatUser extends Equatable {
         photoUrl: photoUrl,
         displayName: nickname,
         phoneNumber: phoneNumber,
-        aboutMe: aboutMe);
+        speciality: speciality);
   }
   @override
   // TODO: implement props
-  List<Object?> get props => [id, photoUrl, displayName, phoneNumber, aboutMe];
+  List<Object?> get props => [id, photoUrl, displayName, phoneNumber, speciality];
 }
