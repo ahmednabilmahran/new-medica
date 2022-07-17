@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medica/doctor/doctor_profile.dart';
+import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/view/widgets/constance.dart';
 // import 'package:medica/doctorfirebasetest/doctor_controller.dart';
 import 'package:medica/view/widgets/custom_text.dart';
@@ -45,7 +47,9 @@ class CatalogDoctorCard extends StatelessWidget {
         bottom: size.height * 0.012,
       ),
       child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(DoctorProfile.index(index));
+          },
           style: TextButton.styleFrom(
               // alignment: Alignment.centerLeft,
               backgroundColor: Colors.white,

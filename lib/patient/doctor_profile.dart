@@ -8,65 +8,79 @@ import 'package:medica/patient/patient_profile.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:medica/view/widgets/doctor_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'patient_home.dart';
 
 class DoctorProfile extends StatefulWidget {
   DoctorProfile()
-      : _docname = "DEFAULT",
-        _docspec = "DEFAULT",
-        _docimageAddress = "assets/images/logo.png",
-        _docexperience = 0;
+      // : _docname = "DEFAULT",
+      //   _docspec = "DEFAULT",
+      //   _docimageAddress = "assets/images/logo.png",
+      //   _docexperience = 0,
+      : _index = 0;
 
-  DoctorProfile.withdoctor(
-      this._docname, this._docspec, this._docexperience, this._docimageAddress);
+  // DoctorProfile.withdoctor(
+  //     this._docname, this._docspec, this._docexperience, this._docimageAddress);
+  DoctorProfile.index(
+    this._index,
+  );
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
   DateTime _selectedValue = DateTime.now();
-  String _docname;
+  late int _index;
+  // late String _docname;
 
-  String get name => _docname;
+  // String get name => _docname;
 
-  set name(String name) {
-    _docname = name;
+  // set name(String name) {
+  //   _docname = name;
+  // }
+
+  int get index => _index;
+
+  set index(int index) {
+    _index = index;
   }
 
-  String _docspec;
+  // late String _docspec;
 
-  String get spec => _docspec;
+  // String get spec => _docspec;
 
-  set spec(String spec) {
-    _docspec = spec;
-  }
+  // set spec(String spec) {
+  //   _docspec = spec;
+  // }
 
-  String _docimageAddress;
+  // late String _docimageAddress;
 
-  String get imageAddress => _docimageAddress;
+  // String get imageAddress => _docimageAddress;
 
-  set imageAddress(String imageAddress) {
-    _docimageAddress = imageAddress;
-  }
+  // set imageAddress(String imageAddress) {
+  //   _docimageAddress = imageAddress;
+  // }
 
-  int _docexperience;
+  // late int _docexperience;
 
-  int get experience => _docexperience;
+  // int get experience => _docexperience;
 
-  set experience(int experience) {
-    _docexperience = experience;
-  }
+  // set experience(int experience) {
+  //   _docexperience = experience;
+  // }
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
+    final doctorController = Get.put(DoctorController());
+
     final Size size = MediaQuery.of(context).size;
     final db = FirebaseFirestore.instance;
     dynamic _msg = '';
     dynamic pname = null;
-    dynamic speciality = widget._docspec;
-    dynamic _selected_doc = widget._docname;
+    dynamic speciality = doctorController.doctor[widget._index].speciality;
+    dynamic _selected_doc = doctorController.doctor[widget._index].name;
     dynamic _selected_day = DateTime.now();
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
@@ -96,7 +110,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       height: size.height * 0.4,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(widget._docimageAddress),
+                              image: NetworkImage(doctorController
+                                  .doctor[widget._index].imageAddress),
                               fit: BoxFit.fitWidth,
                               alignment: Alignment.topCenter)),
                     )
@@ -141,7 +156,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         Row(
                                           children: [
                                             CustomText(
-                                              text: widget._docname,
+                                              text: doctorController
+                                                  .doctor[widget._index].name,
                                               // textAlign: TextAlign.left,
                                               textStyle: TextStyle(
                                                   color: primaryColor,
@@ -157,7 +173,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           children: [
                                             Expanded(
                                               child: CustomText(
-                                                text: widget._docspec,
+                                                text: doctorController
+                                                    .doctor[widget._index]
+                                                    .speciality,
                                                 textStyle: TextStyle(
                                                   color: Colors.grey.shade500,
                                                 ),
@@ -276,7 +294,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         ),
                                         CustomText(
                                           text:
-                                              widget._docexperience.toString(),
+                                              // widget._docexperience.toString(),
+                                              '5',
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,

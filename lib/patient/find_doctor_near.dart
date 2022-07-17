@@ -36,39 +36,7 @@ class patient_find extends StatefulWidget {
 class _patient_findState extends State<patient_find> {
   // List doctorCat = [];
 
-  List findDoctor = [
-    FindDoctor(
-      docName: 'Dr. Omar Essam',
-      docSpec: 'Cardiovascular Pathologist in El Dokki Clinic',
-      imageAddress: 'assets/images/OIP.png',
-      imageFit: BoxFit.fitWidth,
-      experienceYears: 15,
-      lat: 30.0380503,
-      lng: 31.2112887,
-      onPressed: () {
-        Get.to(() => DoctorProfile.withdoctor(
-            'Dr. Omar Essam',
-            'Cardiovascular Pathologist in El Dokki Clinic',
-            15,
-            'assets/images/OIP.png'));
-      },
-    ),
-    FindDoctor(
-      docName: 'Dr. Kareem Ayman',
-      experienceYears: 20,
-      docSpec: 'Cardiologist in 6th of October Clinic',
-      imageAddress: 'assets/images/Kareem.png',
-      lat: 29.9725103,
-      lng: 30.9366578,
-      onPressed: () {
-        Get.to(() => DoctorProfile.withdoctor(
-            'Dr. Kareem Ayman',
-            'Cardiologist in 6th of October Clinic',
-            20,
-            'assets/images/Kareem.png'));
-      },
-    ),
-  ];
+  
 
   // final numbers = List.generate(100, (index) => '$index');
   @override
