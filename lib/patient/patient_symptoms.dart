@@ -150,26 +150,55 @@ class patient_symptoms extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => MyAppointments());
-                        },
-                        child: SvgPicture.asset(
-                          'assets/images/appointment.svg',
-                          width: 25,
-                          height: 25,
-                          color: Colors.white,
-                        ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => MyAppointments());
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/images/appointment.svg',
+                                  width: 25,
+                                  height: 25,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      CustomText(
-                        text: name,
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                  margin:
+                                      EdgeInsets.only(right: size.width * 0.03),
+                                  child: picture != ''
+                                      ? CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(picture))
+                                      : CircleAvatar(
+                                          backgroundColor: Colors.green)),
+                              CustomText(
+                                text: name,
+                                textStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'DMSans',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      Image.asset('assets/images/Notify.png')
+                      Column(
+                        children: [
+                          Image.asset('assets/images/Notify.png'),
+                        ],
+                      )
                     ],
                   ),
                 ],

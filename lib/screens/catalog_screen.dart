@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/myAppointments.dart';
+import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/screens/cart_screen.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/catalog_products.dart';
 
 import '../patient/patient_profile.dart';
@@ -73,6 +75,12 @@ class CatalogScreen extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.01,
                       ),
+                      Container(
+                          margin: EdgeInsets.only(right: size.width * 0.03),
+                          child: picture != ''
+                              ? CircleAvatar(
+                                  backgroundImage: NetworkImage(picture))
+                              : CircleAvatar(backgroundColor: Colors.green)),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -115,7 +123,7 @@ class CatalogScreen extends StatelessWidget {
                       ),
                       color: whitegrayish,
                     ),
-                    height: size.height * 0.88,
+                    height: size.height * 0.86,
                     width: double.infinity,
                     child: Column(
                       children: [
@@ -210,24 +218,31 @@ class CatalogScreen extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => patient_book());
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SvgPicture.asset(
-                                'assets/images/clipboardNavBarHome.svg'),
+                              'assets/images/clipboardNavBarHome.svg',
+                              color: primaryColorOutOfFocus,
+                            ),
                             SizedBox(
                               height: size.height * 0.008,
                             ),
                             CustomText(
                               text: 'Consult',
-                              textStyle: TextStyle(color: linkColor),
+                              textStyle:
+                                  TextStyle(color: primaryColorOutOfFocus),
                             )
                           ],
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => HomePage());
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

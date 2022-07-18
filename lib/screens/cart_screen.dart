@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/myAppointments.dart';
+import 'package:medica/patient/patient_book.dart';
+import 'package:medica/screens/home_page.dart';
 import 'package:medica/view/widgets/cart_products.dart';
 import 'package:medica/view/widgets/cart_total.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -32,7 +34,7 @@ class CartScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.back();
         return true;
       },
       child: Scaffold(
@@ -71,6 +73,12 @@ class CartScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
+                      Container(
+                          margin: EdgeInsets.only(right: size.width * 0.03),
+                          child: picture != ''
+                              ? CircleAvatar(
+                                  backgroundImage: NetworkImage(picture))
+                              : CircleAvatar(backgroundColor: Colors.green)),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
@@ -283,24 +291,30 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => patient_book());
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SvgPicture.asset(
-                                'assets/images/clipboardNavBarHome.svg'),
+                                'assets/images/clipboardNavBarHome.svg',
+                                color: primaryColorOutOfFocus),
                             SizedBox(
                               height: size.height * 0.008,
                             ),
                             CustomText(
                               text: 'Consult',
-                              textStyle: TextStyle(color: linkColor),
+                              textStyle:
+                                  TextStyle(color: primaryColorOutOfFocus),
                             )
                           ],
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => HomePage());
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

@@ -88,6 +88,12 @@ class patient_profile extends StatelessWidget {
                         height: 25,
                         color: Colors.white,
                       ),
+                      Container(
+                          margin: EdgeInsets.only(right: size.width * 0.03),
+                          child: picture != ''
+                              ? CircleAvatar(
+                                  backgroundImage: NetworkImage(picture))
+                              : CircleAvatar(backgroundColor: Colors.green)),
                       CustomText(
                         text: name,
                         textStyle: TextStyle(
