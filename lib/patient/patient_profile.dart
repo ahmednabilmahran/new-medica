@@ -19,6 +19,7 @@ import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profiledata.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/patient/patient_symptoms.dart';
+import 'package:medica/providers/auth_provider.dart';
 import 'package:medica/screens/home_page.dart';
 import 'package:medica/screens/login_page.dart';
 import 'package:medica/view/widgets/HomeCurve.dart';
@@ -31,6 +32,8 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/profile_icons_icons.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class patient_profile extends StatelessWidget {
@@ -45,7 +48,10 @@ class patient_profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final SharedPreferences prefs;
     final user = FirebaseAuth.instance.currentUser;
+    final authProvider = Provider.of<AuthProvider>(context);
+    
     dynamic email = '';
     dynamic name = '';
     dynamic picture = '';
@@ -326,7 +332,7 @@ class patient_profile extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(40)),
                           ),
                           onPressed: () {
-                            Get.to(() => patient_getstarted());
+                            authProvider.googleSignOut();
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
