@@ -50,15 +50,16 @@ class CatalogScreen extends StatelessWidget {
               //   horizontal: size.width * 0.05,
               // ),
               // color: Colors.green,
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+              // padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
               alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: size.height * 0.045,
+                    height: size.height * 0.06,
                   ),
                   Row(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
@@ -72,33 +73,40 @@ class CatalogScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(
-                        width: size.width * 0.01,
-                      ),
+                      // SizedBox(
+                      //   width: size.width * 0.01,
+                      // ),
                       Container(
-                          margin: EdgeInsets.only(right: size.width * 0.03),
-                          child: picture != ''
-                              ? CircleAvatar(
-                                  backgroundImage: NetworkImage(picture))
-                              : CircleAvatar(backgroundColor: Colors.green)),
-                      CustomText(
-                        text: name,
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'DMSans',
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(() => CartScreen());
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/shopping-cart.svg',
-                          height: 25,
-                          color: Colors.white,
+                        child: Row(
+                          children: [
+                            Container(
+                                margin:
+                                    EdgeInsets.only(right: size.width * 0.03),
+                                child: picture != ''
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(picture))
+                                    : CircleAvatar(
+                                        backgroundColor: Colors.green)),
+                            CustomText(
+                              text: name,
+                              textStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'DMSans',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            Get.to(() => CartScreen());
+                          },
+                          child: SvgPicture.asset(
+                            'assets/icons/shopping-cart.svg',
+                            height: 25,
+                            color: Colors.white,
+                          ))
                     ],
                   ),
                 ],

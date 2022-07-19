@@ -1,5 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, unused_import, unnecessary_import, import_of_legacy_library_into_null_safe, must_be_immutable, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, await_only_futures, unnecessary_new, empty_constructor_bodies
 
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,11 +31,22 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/core/view_model/auth_view_model.dart';
 
-class patient_home extends StatelessWidget {
+import '../allConstants/all_constants.dart';
+import '../allConstants/color_constants.dart';
+import '../allConstants/size_constants.dart';
+
+class patient_home extends StatefulWidget {
   patient_home() : _name = "DEFAULT";
 
   patient_home.withuser(this._name);
 
+  String _name;
+
+  @override
+  State<patient_home> createState() => _patient_homeState();
+}
+
+class _patient_homeState extends State<patient_home> {
   List depts = [
     Depts(
       deptName: 'Cardio',
@@ -63,28 +76,89 @@ class patient_home extends StatelessWidget {
     ),
   ];
 
-  String _name;
-
-  String get name => _name;
+  String get name => widget._name;
 
   set name(String name) {
-    _name = name;
+    widget._name = name;
   }
 
   // final numbers = List.generate(100, (index) => '$index');
+  Future<bool> onBackPress() {
+    openDialog();
+    return Future.value(false);
+  }
 
-//   Widget buildGridView() => GridView.builder(
-//         gridDelegate:
-//             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-//         itemCount: numbers.length,
-//         itemBuilder: (context, index) {
-//           final item = numbers[index];
-//           return buildNumber(item);
-//         },
-//       );
-//   Widget buildNumber(String number) => Container(
-//     child: GridTile(header: Text,),
-//   );
+  Future<void> openDialog() async {
+    switch (await showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SimpleDialog(
+            backgroundColor: AppColors.primaryColor,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Exit Application',
+                  style: TextStyle(color: AppColors.white),
+                ),
+                Icon(
+                  Icons.exit_to_app,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Sizes.dimen_10),
+            ),
+            children: [
+              vertical10,
+              const Text(
+                'Are you sure?',
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: AppColors.white, fontSize: Sizes.dimen_16),
+              ),
+              vertical15,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 0);
+                    },
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: AppColors.white),
+                    ),
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 1);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                      ),
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: const Text(
+                        'Yes',
+                        style: TextStyle(color: AppColors.spaceCadet),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          );
+        })) {
+      case 0:
+        break;
+      case 1:
+        exit(0);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +175,7 @@ class patient_home extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_getstarted());
-        return true;
+        return onBackPress();
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
