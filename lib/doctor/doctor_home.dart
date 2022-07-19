@@ -18,8 +18,6 @@ import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
-import 'package:get/get.dart';
 
 class doctor_home extends StatelessWidget {
   doctor_home() : _name = "DEFAULT";

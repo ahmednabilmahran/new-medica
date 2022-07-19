@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_register.dart';
