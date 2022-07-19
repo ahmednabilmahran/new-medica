@@ -52,82 +52,82 @@ class _HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
-  // Future<bool> onBackPress() {
-  //   openDialog();
-  //   return Future.value(false);
-  // }
+  Future<bool> onBackPress() {
+    openDialog();
+    return Future.value(false);
+  }
 
-  // Future<void> openDialog() async {
-  //   switch (await showDialog(
-  //       context: context,
-  //       builder: (BuildContext ctx) {
-  //         return SimpleDialog(
-  //           backgroundColor: AppColors.burgundy,
-  //           title: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: const [
-  //               Text(
-  //                 'Exit Application',
-  //                 style: TextStyle(color: AppColors.white),
-  //               ),
-  //               Icon(
-  //                 Icons.exit_to_app,
-  //                 size: 30,
-  //                 color: Colors.white,
-  //               ),
-  //             ],
-  //           ),
-  //           shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.circular(Sizes.dimen_10),
-  //           ),
-  //           children: [
-  //             vertical10,
-  //             const Text(
-  //               'Are you sure?',
-  //               textAlign: TextAlign.center,
-  //               style:
-  //                   TextStyle(color: AppColors.white, fontSize: Sizes.dimen_16),
-  //             ),
-  //             vertical15,
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.end,
-  //               children: [
-  //                 SimpleDialogOption(
-  //                   onPressed: () {
-  //                     Navigator.pop(context, 0);
-  //                   },
-  //                   child: const Text(
-  //                     'Cancel',
-  //                     style: TextStyle(color: AppColors.white),
-  //                   ),
-  //                 ),
-  //                 SimpleDialogOption(
-  //                   onPressed: () {
-  //                     Navigator.pop(context, 1);
-  //                   },
-  //                   child: Container(
-  //                     decoration: BoxDecoration(
-  //                       color: AppColors.white,
-  //                       borderRadius: BorderRadius.circular(Sizes.dimen_8),
-  //                     ),
-  //                     padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-  //                     child: const Text(
-  //                       'Yes',
-  //                       style: TextStyle(color: AppColors.spaceCadet),
-  //                     ),
-  //                   ),
-  //                 )
-  //               ],
-  //             )
-  //           ],
-  //         );
-  //       })) {
-  //     case 0:
-  //       break;
-  //     case 1:
-  //       exit(0);
-  //   }
-  // }
+  Future<void> openDialog() async {
+    switch (await showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SimpleDialog(
+            backgroundColor: AppColors.burgundy,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Exit Application',
+                  style: TextStyle(color: AppColors.white),
+                ),
+                Icon(
+                  Icons.exit_to_app,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Sizes.dimen_10),
+            ),
+            children: [
+              vertical10,
+              const Text(
+                'Are you sure?',
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: AppColors.white, fontSize: Sizes.dimen_16),
+              ),
+              vertical15,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 0);
+                    },
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: AppColors.white),
+                    ),
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 1);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                      ),
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: const Text(
+                        'Yes',
+                        style: TextStyle(color: AppColors.spaceCadet),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          );
+        })) {
+      case 0:
+        break;
+      case 1:
+        exit(0);
+    }
+  }
 
   void scrollListener() {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&

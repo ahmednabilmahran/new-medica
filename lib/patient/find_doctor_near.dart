@@ -22,7 +22,6 @@ import 'package:medica/view/widgets/custom_text.dart';
 import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/find_doc_cat.dart';
-import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:medica/patient/doctor_profile.dart';

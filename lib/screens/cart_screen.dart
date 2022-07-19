@@ -74,18 +74,26 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          margin: EdgeInsets.only(right: size.width * 0.03),
-                          child: picture != ''
-                              ? CircleAvatar(
-                                  backgroundImage: NetworkImage(picture))
-                              : CircleAvatar(backgroundColor: Colors.green)),
-                      CustomText(
-                        text: name,
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin:
+                                    EdgeInsets.only(right: size.width * 0.03),
+                                child: picture != ''
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(picture))
+                                    : CircleAvatar(
+                                        backgroundColor: Colors.green)),
+                            CustomText(
+                              text: name,
+                              textStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
                       ),
                       Image.asset('assets/images/Notify.png')
                     ],
