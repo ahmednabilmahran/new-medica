@@ -1,6 +1,5 @@
 name: medica
-description: A new Flutter project.
-
+description: MEDICA App. \nMobile app allows providers to effectively streamline communication between patients, providers, and their caregivers and allows for 24/7 management of a patient's condition along with the ability to personalize healthcare per patient. \nAnd presents buying medicines and cosmetics through the app. \nThrough ML (Machine Learning) we made the prediction of COVID-19 is available. \nAnd read about the symptoms and know the common disease of it.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -41,25 +40,20 @@ dependencies:
   fluttertoast: ^8.0.9
   image_picker: ^0.8.5+3
   shared_preferences: ^2.0.15
-  intl: ^0.17.0
-  photo_view: ^0.14.0
   provider: ^6.0.3
-  country_code_picker: ^2.0.2
   url_launcher: ^6.1.4
   equatable: ^2.0.3
-  google_sign_in_web: ^0.10.1+3
   flutter_native_splash: ^2.2.4
   carousel_slider: ^4.1.1
   material_design_icons_flutter: ^5.0.6595
   get: ^4.6.5
   flutter_svg: ^1.1.1+1
   flutter_staggered_grid_view: ^0.6.1
-  path: ^1.8.1
   google_maps_flutter: ^2.1.8
+  dio: ^4.0.6
+  flutter_polyline_points: ^1.0.0
+  geolocator: ^9.0.1
   date_picker_timeline: ^1.2.3
-  booking_calendar: ^1.1.4
-  mockito: ^5.2.0
-  flutter_plugin_android_lifecycle: ^2.0.0
   tflite: ^1.1.2
 
 dev_dependencies:
