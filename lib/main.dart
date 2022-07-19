@@ -10,10 +10,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/allConstants/app_constants.dart';
-import 'package:medica/doctor/doctor_getstarted.dart';
-import 'package:medica/doctor/doctor_home.dart';
-import 'package:medica/patient/doctor_profile.dart';
-import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +20,6 @@ import 'package:medica/providers/chat_provider.dart';
 import 'package:medica/providers/home_provider.dart';
 import 'package:medica/providers/profile_provider.dart';
 import 'package:get/get.dart';
-import 'package:medica/helper/binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,7 +72,6 @@ class MyApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         return GetMaterialApp(
-          initialBinding: Binding(),
           debugShowCheckedModeBanner: false,
           home: isUserLoggedIn
               ? patient_home.withuser(

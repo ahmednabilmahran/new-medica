@@ -29,7 +29,6 @@ import 'package:medica/view/widgets/custom_text_form_field.dart';
 import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/profile_icons_icons.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 

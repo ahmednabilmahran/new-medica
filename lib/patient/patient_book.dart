@@ -24,8 +24,6 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/patient_book_card.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
-
 class patient_book extends StatelessWidget {
   List book = [
     patientAppointmentCard(

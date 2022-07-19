@@ -25,7 +25,6 @@ import 'package:medica/view/widgets/find_doc_cat.dart';
 import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:medica/patient/doctor_profile.dart';
 
 class patient_find extends StatefulWidget {

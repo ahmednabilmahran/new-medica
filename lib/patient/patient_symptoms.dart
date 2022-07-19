@@ -32,7 +32,6 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/find_doctor.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
-import 'package:medica/core/view_model/auth_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class patient_symptoms extends StatelessWidget {
