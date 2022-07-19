@@ -20,16 +20,15 @@ class appTime extends StatefulWidget {
   // set setIsActive(bool isActiv) {
   //   this.isActiv = isActiv;
   // }
-     List<String> categories;
-   appTime({
-    Key? key,
-    required this.categories,
-  }) : super(key: key);
 
+  List<String> times;
+  appTime({
+    Key? key,
+    required this.times,
+  }) : super(key: key);
 
   @override
   State<appTime> createState() => _appTimeState();
-  
 }
 
 class _appTimeState extends State<appTime> {
@@ -58,7 +57,7 @@ class _appTimeState extends State<appTime> {
         height: size.height * 0.06,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: widget.categories.length,
+          itemCount: widget.times.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               margin: EdgeInsets.only(right: size.width * 0.02),
@@ -76,13 +75,14 @@ class _appTimeState extends State<appTime> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
+                      print(widget.times[index]);
                     });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomText(
-                        text: widget.categories[index],
+                        text: widget.times[index],
                         textStyle: TextStyle(
                             color: index == selectedIndex
                                 ? selectedColor
