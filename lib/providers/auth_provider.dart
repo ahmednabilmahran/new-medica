@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/allConstants/firestore_constants.dart';
 import 'package:medica/doctor/doctor_home.dart';
 import 'package:medica/patient/patient_getstarted.dart';
+import 'package:medica/patient/patient_login.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:medica/allConstants/all_constants.dart';
@@ -104,7 +105,7 @@ class AuthProvider extends ChangeNotifier {
               FirestoreConstants.speciality, userChat.speciality);
           await prefs.setString(FirestoreConstants.phone, userChat.phoneNumber);
         }
-        Get.to(() => patient_home.withuser(
+        Get.offAll(() => patient_home.withuser(
             prefs.getString(FirestoreConstants.displayName) as String));
         _status = Status.authenticated;
         notifyListeners();
@@ -171,8 +172,9 @@ class AuthProvider extends ChangeNotifier {
       print(prefs.getString(FirestoreConstants.displayName));
       print(prefs.getString(FirestoreConstants.photoUrl));
 
-      Get.to(() => patient_home
-          .withuser(prefs.getString(FirestoreConstants.displayName) as String));
+      Get.to(() => PatientLogin());
+      // Get.to(() => patient_home
+      //     .withuser(prefs.getString(FirestoreConstants.displayName) as String));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
