@@ -24,24 +24,33 @@ import 'package:medica/view/widgets/depts.dart';
 import 'package:medica/view/widgets/patient_book_card.dart';
 import 'package:medica/view/widgets/symptom_card.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
+
 class patient_book extends StatelessWidget {
   List book = [
     patientAppointmentCard(
-        speciality: 'Orthopedist',
-        numberOfDoctor: '20 ',
-        description: 'The point of using Lor Ipsum letters...'),
+      speciality: 'Cardio',
+      numberOfDoctor: '20 ',
+      description: 'Affecting on the heart and blood vessels...',
+      imageaddress: 'assets/images/consult/cardio.jpg',
+    ),
     patientAppointmentCard(
-        speciality: 'Dentist',
+        speciality: 'Biochem',
         numberOfDoctor: '20 ',
-        description: 'The point of using Lor Ipsum letters...'),
+        description: 'Diseases affect the biochemical processes...',
+        imageaddress: 'assets/images/consult/biochem.jpg',
+        ),
     patientAppointmentCard(
-        speciality: 'Ear Nose Throat',
+        speciality: 'Research',
         numberOfDoctor: '20 ',
-        description: 'The point of using Lor Ipsum letters...'),
+        description: 'Get reliable results with our system...',
+        imageaddress: 'assets/images/consult/research.jpg',
+        ),
     patientAppointmentCard(
-        speciality: 'Pediatrain',
+        speciality: 'Neurology',
         numberOfDoctor: '20 ',
-        description: 'The point of using Lor Ipsum letters...'),
+        description: 'Disorders that affect the brain...',
+        imageaddress: 'assets/images/consult/neurology.jpg',
+        ),
   ];
 
   // final numbers = List.generate(100, (index) => '$index');
@@ -203,10 +212,6 @@ class patient_book extends StatelessWidget {
                                 book[0],
                                 book[1],
                                 book[2],
-                                book[3],
-                                book[3],
-                                book[3],
-                                book[3],
                                 book[3],
                               ],
                             ),
