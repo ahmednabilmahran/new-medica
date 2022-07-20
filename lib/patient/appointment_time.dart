@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medica/allConstants/app_constants.dart';
 
 import 'package:medica/view/widgets/constance.dart';
 
@@ -75,7 +76,9 @@ class _appTimeState extends State<appTime> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
+                      time = widget.times[index];
                       print(widget.times[index]);
+                      print(time);
                     });
                   },
                   child: Row(

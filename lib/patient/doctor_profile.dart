@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/patient/appointment_time.dart';
 import 'package:medica/patient/patient_profile.dart';
+import 'package:medica/screens/chat_page.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
@@ -32,6 +33,7 @@ class DoctorProfile extends StatefulWidget {
   DateTime _selectedValue = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
   late int _index;
+
   // late String _docname;
 
   // String get name => _docname;
@@ -87,12 +89,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
     dynamic name = '';
+    dynamic picture = '';
     dynamic id = '';
     if (user != null) {
       email = user.email;
       name = user.displayName;
       id = user.uid;
       pname = user.displayName;
+      picture = user.photoURL;
     }
 
     //  _selectedValue;
@@ -223,7 +227,18 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                             child: SvgPicture.asset(
                                                 'assets/icons/phone.svg')),
                                         TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Get.to(() => ChatPage(
+                                                  peerNickname: doctorController
+                                                      .doctor[widget._index]
+                                                      .name,
+                                                  peerAvatar: doctorController
+                                                      .doctor[widget._index]
+                                                      .imageAddress,
+                                                  peerId: doctorController
+                                                      .doctor[widget._index].id,
+                                                  userAvatar: picture));
+                                            },
                                             style: TextButton.styleFrom(
                                                 elevation: 5,
                                                 shape: RoundedRectangleBorder(
@@ -326,7 +341,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           height: size.height * 0.01,
                                         ),
                                         CustomText(
-                                          text: 'Patients',
+                                          text: 'Price',
                                           textStyle: TextStyle(
                                             color: primaryColor.withAlpha(120),
                                             fontSize: 15,
@@ -510,7 +525,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                               // description != null &&
                                               // _selected_doc != null &&
                                               widget._selectedValue != null) {
-                                            var time = [0, 0];
                                             db.collection('appointments').add({
                                               'patient': pname,
                                               'patient_id': uid,
