@@ -17,3 +17,5 @@ const Color primarybutton = Color(0xff603EBC);
 const k_keepMeLoggedIn = 'KeepMeLoggedIn';
 const k_dockeepMeLoggedIn = 'docKeepMeLoggedIn';
 String current_user = patient_home() as String;
+String time = '00:00';
+
