@@ -127,7 +127,7 @@ class AuthProvider extends ChangeNotifier {
     await googleSignIn.disconnect();
     await googleSignIn.signOut();
     prefs.setBool(k_keepMeLoggedIn, false);
-    Get.to(() => patient_getstarted());
+    Get.offAll(() => patient_getstarted());
   }
 
   Future<User?> registerUsingEmailPassword({
