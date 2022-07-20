@@ -10,7 +10,7 @@ class Doctor {
   final String experience;
   final String lat;
   final String long;
-  final String patients;
+  final String price;
   final String phone;
   final String id;
 
@@ -19,7 +19,7 @@ class Doctor {
       required this.experience,
       required this.lat,
       required this.long,
-      required this.patients,
+      required this.price,
       required this.phone,
       required this.id,
       required this.name,
@@ -38,7 +38,7 @@ class Doctor {
       id: snap['id'],
       lat: snap['lat'],
       long: snap['long'],
-      patients: snap['patients'],
+      price: snap['price'],
       phone: snap['phone'],
     );
     return doctor;

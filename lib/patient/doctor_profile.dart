@@ -84,8 +84,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
     dynamic pname = null;
     dynamic _selected_doc = doctorController.doctor[widget._index].name;
     dynamic _selected_day = DateTime.now();
-    var patients =
-        double.parse(doctorController.doctor[widget._index].patients) / 1000;
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
     dynamic name = '';
@@ -352,7 +350,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         ),
                                         CustomText(
                                           text:
-                                              "${patients.toStringAsFixed(0)}K",
+                                              "${doctorController.doctor[widget._index].price} EGP",
                                           textStyle: TextStyle(
                                             color: primaryColor,
                                             fontSize: 18,
@@ -529,13 +527,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                               'patient': pname,
                                               'patient_id': uid,
                                               'doctor': _selected_doc,
+                                              'price': doctorController
+                                                  .doctor[widget._index].price,
                                               'day': widget._selectedValue
                                                   .toString(),
                                               // 'disease': description,
                                               'status': 'pending',
                                               'timestamp':
                                                   FieldValue.serverTimestamp(),
-                                              'time': time,
+                                              'time': time.toString(),
                                             }).then((value) {
                                               print(value.id);
                                               db

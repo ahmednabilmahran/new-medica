@@ -393,7 +393,7 @@ class AuthProvider extends ChangeNotifier {
     required String phone,
     required String speciality,
     required dynamic experience,
-    required dynamic patients,
+    required dynamic price,
     required dynamic certificates,
     required dynamic lat,
     required dynamic long,
@@ -421,7 +421,7 @@ class AuthProvider extends ChangeNotifier {
         FirestoreConstants.pass: password,
         FirestoreConstants.phone: phone,
         FirestoreConstants.experience: experience,
-        FirestoreConstants.patients: patients,
+        FirestoreConstants.price: price,
         FirestoreConstants.certificates: certificates,
         FirestoreConstants.lat: lat,
         FirestoreConstants.long: long,
@@ -445,7 +445,7 @@ class AuthProvider extends ChangeNotifier {
       await prefs.setString(FirestoreConstants.experience, experience);
       await prefs.setString(FirestoreConstants.lat, lat);
       await prefs.setString(FirestoreConstants.long, long);
-      await prefs.setString(FirestoreConstants.patients, patients);
+      await prefs.setString(FirestoreConstants.price, price);
       await prefs.setString(FirestoreConstants.pass, password);
       print(prefs.getString(FirestoreConstants.id));
       print(prefs.getString(FirestoreConstants.displayName));

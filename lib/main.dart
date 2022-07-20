@@ -41,14 +41,14 @@ class MyApp extends StatelessWidget {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   bool isUserLoggedIn = false;
-  bool doctorisUserLoggedIn = false;
+  // bool doctorisUserLoggedIn = false;
 
   MyApp({Key? key, required this.prefs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     isUserLoggedIn = prefs.getBool(AppConstants.k_keepMeLoggedIn) ?? false;
-    isUserLoggedIn = prefs.getBool(AppConstants.k_dockeepMeLoggedIn) ?? false;
+    // isUserLoggedIn = prefs.getBool(AppConstants.k_dockeepMeLoggedIn) ?? false;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthProvider>(

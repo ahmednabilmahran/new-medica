@@ -44,7 +44,7 @@ class _doctor_registerState extends State<doctor_register> {
   final _phoneTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _experienceTextController = TextEditingController();
-  final _patientsTextController = TextEditingController();
+  final _priceTextController = TextEditingController();
   final _certificatesTextController = TextEditingController();
   final _latTextController = TextEditingController();
   final _longTextController = TextEditingController();
@@ -54,7 +54,7 @@ class _doctor_registerState extends State<doctor_register> {
   final _focusPhone = FocusNode();
   final _focusPassword = FocusNode();
   final _focusExperience = FocusNode();
-  final _focusPatients = FocusNode();
+  final _focusPrice = FocusNode();
   final _focusCertificates = FocusNode();
   final _focusLat = FocusNode();
   final _focusLong = FocusNode();
@@ -82,7 +82,7 @@ class _doctor_registerState extends State<doctor_register> {
           _focusPhone.unfocus();
           _focusPassword.unfocus();
           _focusExperience.unfocus();
-          _focusPatients.unfocus();
+          _focusPrice.unfocus();
           _focusCertificates.unfocus();
           _focusLat.unfocus();
           _focusLong.unfocus();
@@ -623,7 +623,7 @@ class _doctor_registerState extends State<doctor_register> {
                                                     width: size.width * 0.035,
                                                   ),
                                                   CustomText(
-                                                    text: 'Number Of Patients',
+                                                    text: 'Price',
                                                     textStyle: TextStyle(
                                                       fontFamily: 'DMSans',
                                                       fontSize: 14,
@@ -639,7 +639,7 @@ class _doctor_registerState extends State<doctor_register> {
                                                       TextInputType.number,
                                                   decoration: InputDecoration(
                                                       hintText:
-                                                          'Number Of Patients',
+                                                          'Consulting Price',
                                                       prefixIcon: Icon(
                                                         MyFlutterApp.lock,
                                                         size: 20,
@@ -656,12 +656,12 @@ class _doctor_registerState extends State<doctor_register> {
                                                       fillColor: Colors.white,
                                                       border: InputBorder.none),
                                                   controller:
-                                                      _patientsTextController,
-                                                  focusNode: _focusPatients,
+                                                      _priceTextController,
+                                                  focusNode: _focusPrice,
                                                   validator: (value) {
                                                     if (value!.isEmpty ||
                                                         value == null) {
-                                                      return 'Patients can\'t be empty';
+                                                      return 'Price can\'t be empty';
                                                     }
                                                   }),
                                               Divider(
@@ -930,8 +930,8 @@ class _doctor_registerState extends State<doctor_register> {
                                                       experience:
                                                           _experienceTextController
                                                               .text,
-                                                      patients:
-                                                          _patientsTextController
+                                                      price:
+                                                          _priceTextController
                                                               .text,
                                                       certificates:
                                                           _certificatesTextController

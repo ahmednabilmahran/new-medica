@@ -9,7 +9,7 @@ class FirestoreConstants {
   static const photoUrl = "photoUrl";
   static const phone = "phone";
   static const experience = "experience";
-  static const patients = "patients";
+  static const price = "price";
   static const certificates = "certificates";
   static const lat = "lat";
   static const long = "long";
