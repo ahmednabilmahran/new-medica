@@ -13,6 +13,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
   dynamic docnames = [];
   late String? patientnames = auth.currentUser?.displayName;
   dynamic days = [];
+  dynamic times = [];
   @override
   Widget build(BuildContext context) {
     var user_appointment_codes = [];
@@ -46,6 +47,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
                   patientnames =
                       FirebaseAuth.instance.currentUser?.displayName as String;
                   days = value.data()?['day'];
+                  times = value.data()?['time'];
                 });
                 return Center(
                   child: CircularProgressIndicator(),
