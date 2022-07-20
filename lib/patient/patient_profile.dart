@@ -51,7 +51,7 @@ class patient_profile extends StatelessWidget {
     final SharedPreferences prefs;
     final user = FirebaseAuth.instance.currentUser;
     final authProvider = Provider.of<AuthProvider>(context);
-    
+
     dynamic email = '';
     dynamic name = '';
     dynamic picture = '';
@@ -88,11 +88,16 @@ class patient_profile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset(
-                        'assets/images/appointment.svg',
-                        width: 25,
-                        height: 25,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
                       ),
                       Container(
                         child: Row(
