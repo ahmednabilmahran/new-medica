@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medica/allConstants/all_constants.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_register.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -11,7 +14,12 @@ import 'package:medica/view/widgets/slider_para.dart';
 import 'package:medica/view/widgets/wavey_shape.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class patient_getstarted extends StatelessWidget {
+class patient_getstarted extends StatefulWidget {
+  @override
+  State<patient_getstarted> createState() => _patient_getstartedState();
+}
+
+class _patient_getstartedState extends State<patient_getstarted> {
   List<Widget> cardList = [
     const sliderCard(
         text: 'Patient care',
@@ -22,6 +30,84 @@ class patient_getstarted extends StatelessWidget {
         graph:
             'the main focus of application is helping you to find the best reservation system appropriate for you.'),
   ];
+
+  Future<bool> onBackPress() {
+    openDialog();
+    return Future.value(false);
+  }
+
+  Future<void> openDialog() async {
+    switch (await showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SimpleDialog(
+            backgroundColor: AppColors.primaryColor,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Exit Application',
+                  style: TextStyle(color: AppColors.white),
+                ),
+                Icon(
+                  Icons.exit_to_app,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Sizes.dimen_10),
+            ),
+            children: [
+              vertical10,
+              const Text(
+                'Are you sure?',
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: AppColors.white, fontSize: Sizes.dimen_16),
+              ),
+              vertical15,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 0);
+                    },
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: AppColors.white),
+                    ),
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, 1);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                      ),
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: const Text(
+                        'Yes',
+                        style: TextStyle(color: AppColors.spaceCadet),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          );
+        })) {
+      case 0:
+        break;
+      case 1:
+        exit(0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -29,8 +115,8 @@ class patient_getstarted extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.back();
-        return true;
+        // Get.back();
+        return onBackPress();
       },
       child: Scaffold(
         body: Stack(
