@@ -366,7 +366,7 @@ class patient_profile extends StatelessWidget {
                               ],
                             ),
                           )),
-                      SizedBox(height: size.height * 0.15),
+                      SizedBox(height: size.height * 0.10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

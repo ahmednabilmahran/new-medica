@@ -207,7 +207,7 @@ class CatalogDoctorCard extends StatelessWidget {
                                 fontSize: 12))),
                     TextButton(
                         onPressed: () {
-                          Get.to(DoctorProfile.index(index));
+                          Get.to(() => DoctorProfile.index(index));
                         },
                         style: TextButton.styleFrom(
                           minimumSize:
