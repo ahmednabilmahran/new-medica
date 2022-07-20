@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medica/doctor/doctor_profile.dart';
 import 'package:medica/patient/doctor_profile.dart';
+import 'package:medica/screens/chat_page.dart';
 import 'package:medica/view/widgets/constance.dart';
 // import 'package:medica/doctorfirebasetest/doctor_controller.dart';
 import 'package:medica/view/widgets/custom_text.dart';
@@ -42,6 +44,15 @@ class CatalogDoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser;
+    dynamic email = '';
+    dynamic name = '';
+    dynamic picture = '';
+    if (user != null) {
+      email = user.email;
+      name = user.displayName;
+      picture = user.photoURL;
+    }
     return Container(
       padding: EdgeInsets.only(
         bottom: size.height * 0.012,
@@ -169,7 +180,14 @@ class CatalogDoctorCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => ChatPage(
+                              peerNickname: doctorController.doctor[index].name,
+                              peerAvatar:
+                                  doctorController.doctor[index].imageAddress,
+                              peerId: doctorController.doctor[index].id,
+                              userAvatar: picture));
+                        },
                         style: TextButton.styleFrom(
                           minimumSize:
                               Size(size.width * 0.36, size.height * 0.055),
@@ -188,7 +206,9 @@ class CatalogDoctorCard extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                                 fontSize: 12))),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(DoctorProfile.index(index));
+                        },
                         style: TextButton.styleFrom(
                           minimumSize:
                               Size(size.width * 0.36, size.height * 0.055),
