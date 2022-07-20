@@ -544,7 +544,7 @@ class _patient_homeState extends State<patient_home> {
                                     Row(
                                       children: [
                                         CustomText(
-                                          text: 'The points of using to',
+                                          text: 'Find the best doctor',
                                           textStyle: TextStyle(
                                               fontSize: 12,
                                               fontFamily: 'Inter',
@@ -628,7 +628,7 @@ class _patient_homeState extends State<patient_home> {
                                     Row(
                                       children: [
                                         CustomText(
-                                          text: 'The points of using to',
+                                          text: 'Calling your doctor',
                                           textStyle: TextStyle(
                                               fontSize: 12,
                                               fontFamily: 'Inter',

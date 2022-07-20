@@ -14,13 +14,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 class patient_getstarted extends StatelessWidget {
   List<Widget> cardList = [
     const sliderCard(
-        text: 'Great',
+        text: 'Patient care',
         graph:
-            'The point of using Lorem Ipsum is that it has a more-or-less no distribution of look like readable english.'),
+            'this application is helping you to save your time and your energy , when searching about doctor or buy any medicine.'),
     const sliderCard(
-        text: 'Instant',
+        text: 'Better help',
         graph:
-            'The point of using Lorem Ipsum is that it has a more-or-less no distribution of look like readable english.'),
+            'the main focus of application is helping you to find the best reservation system appropriate for you.'),
   ];
   @override
   Widget build(BuildContext context) {
