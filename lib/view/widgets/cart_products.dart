@@ -12,7 +12,7 @@ class CartProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
+    
     return Obx(
       () => Scrollbar(
         child: SizedBox(

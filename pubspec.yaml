@@ -64,6 +64,8 @@ dependencies:
   mockito: ^5.2.0
   flutter_plugin_android_lifecycle: ^2.0.0
   tflite: ^1.1.2
+  stripe_payment: ^1.1.4
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -105,7 +107,6 @@ flutter:
     - assets/images/logo.png
     - assets/images/symptoms/
     - assets/images/consult/
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

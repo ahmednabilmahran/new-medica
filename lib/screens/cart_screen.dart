@@ -9,15 +9,29 @@ import 'package:medica/view/widgets/cart_products.dart';
 import 'package:medica/view/widgets/cart_total.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
+import 'package:medica/view/widgets/payment_service.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 
 import '../controllers/cart_controller.dart';
 import '../patient/patient_home.dart';
 import '../patient/patient_profile.dart';
 import '../view/widgets/custom_background.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   CartScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   final controller = Get.put(CartController());
+  PaymentMethod? paymentMethod;
+  @override
+  void initState() {
+    super.initState();
+    PaymentService.init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +52,7 @@ class CartScreen extends StatelessWidget {
         return true;
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: Alignment.center,
           children: [
@@ -242,7 +257,10 @@ class CartScreen extends StatelessWidget {
                                         double.infinity,
                                         size.height * 0.062,
                                       )),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    paymentMethod = await PaymentService()
+                                        .createPaymentMethod();
+                                  },
                                   child: CustomText(
                                     text: 'PROCEED TO CHECKOUT',
                                     textStyle: TextStyle(
