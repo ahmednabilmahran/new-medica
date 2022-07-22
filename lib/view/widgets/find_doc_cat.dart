@@ -30,7 +30,7 @@ class _docCatState extends State<docCat> {
     "Cardio",
     "Biochem",
     "Research",
-    "Neurology",
+    "Dentistry",
     "Neurology",
     "Neurology",
     "Neurology",

@@ -519,9 +519,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           .get()
                                           .then((value) {
                                         if (value.data() != null) {
+                                            // void removeProduct(Product product) {
+  //   if (_products.containsKey(product) && _products[product] == 1) {
+  //     _products.removeWhere((key, value) => key == product);
+  //   } else {
+  //     _products[product] -= 1;
+  //   }
+  // }
                                           if (pname != null &&
                                               // description != null &&
-                                              // _selected_doc != null &&
                                               widget._selectedValue != null) {
                                             db.collection('appointments').add({
                                               'patient': pname,
@@ -557,6 +563,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                                 ]),
                                               }).then((value) {
                                                 print('success');
+                                                Get.snackbar(
+                                                  "Appointment created successfully",
+                                                  "You have made an appointment with Dr.${doctorController.doctor[widget._index].name} Successfully",
+                                                  backgroundColor: whitegrayish,
+                                                  snackPosition:
+                                                      SnackPosition.BOTTOM,
+                                                  duration:
+                                                      Duration(seconds: 2),
+                                                );
                                               }).catchError((e) => setState(() {
                                                         _msg = e.message;
                                                       }));
