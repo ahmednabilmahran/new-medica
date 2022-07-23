@@ -339,13 +339,11 @@ class _CartScreenState extends State<CartScreen> {
                                         _isInitPayment = false;
                                       }
                                     });
-                                    _reset =
-                                        await FlutterFawryPay.instance.reset();
+                                    FawryResponse response =
+                                        await FlutterFawryPay.instance
+                                            .startProcess();
                                     setState(() {
-                                      if (_reset) {
-                                        _isInitPayment = false;
-                                        _isInitCardToken = false;
-                                      }
+                                      _text = "Your result: $response";
                                     });
                                   },
                                   child: CustomText(
