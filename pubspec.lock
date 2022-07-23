@@ -293,6 +293,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_fawry_pay:
+    dependency: "direct main"
+    description:
+      name: flutter_fawry_pay
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6+1"
+  flutter_fawry_pay_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_fawry_pay_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
+  flutter_fawry_pay_web:
+    dependency: transitive
+    description:
+      name: flutter_fawry_pay_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -465,7 +486,7 @@ packages:
     source: hosted
     version: "0.10.2"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -819,13 +840,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  stripe_payment:
-    dependency: "direct main"
-    description:
-      name: stripe_payment
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.4"
   table_calendar:
     dependency: transitive
     description:

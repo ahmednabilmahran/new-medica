@@ -64,8 +64,7 @@ dependencies:
   mockito: ^5.2.0
   flutter_plugin_android_lifecycle: ^2.0.0
   tflite: ^1.1.2
-  stripe_payment: ^1.1.4
-  http: ^0.13.4
+  flutter_fawry_pay:
 
 dev_dependencies:
   flutter_test:

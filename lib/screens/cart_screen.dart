@@ -26,13 +26,55 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   final controller = Get.put(CartController());
+  bool _isFawryPayInit = false;
+  bool _isInitPayment = false;
+  bool _isInitCardToken = false;
+  bool _reset = false;
+  String _text = "";
   PaymentMethod? paymentMethod;
+   late StreamSubscription _fawryCallbackResultStream;
+
   @override
   void initState() {
     super.initState();
-    PaymentService.init();
+    initFawryPay();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _fawryCallbackResultStream.cancel();
+  }
+Future<void> initFawryPay() async {
+    try {
+      String merchantID = '1tSa6uxz2nRbgY+b+cZGyA==';
+      _isFawryPayInit = await FlutterFawryPay.instance.init(
+        // Set the merchant ID here for one time only.
+        merchantID: merchantID,
+        style: Style.STYLE1,
+        // If set to true, you must set username and email.
+        skipCustomerInput: true,
+        // Must be a phone number.
+        username: "01234567890",
+        email: "abc@test.com",
+        // For web how you show the Fawry screen.
+        webDisplayMode: DisplayMode.SIDE_PAGE,
+        // You should set environment here.
+        environment: Environment.TEST,
+      );
+
+      _fawryCallbackResultStream =
+          FlutterFawryPay.instance.callbackResultStream().listen((event) {
+        Map<dynamic, dynamic> data = event;
+        FawryResponse response = FawryResponse.fromMap(data);
+        setState(() => _text = response.toString());
+      });
+
+      setState(() {});
+    } catch (ex) {
+      print(ex);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -52,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
         return true;
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false, 
+        resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: Alignment.center,
           children: [
