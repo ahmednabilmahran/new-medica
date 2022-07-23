@@ -80,6 +80,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
     final Size size = MediaQuery.of(context).size;
     final db = FirebaseFirestore.instance;
+    final checkapps = FirebaseFirestore.instance;
     dynamic _msg = '';
     dynamic pname = null;
     dynamic _selected_doc = doctorController.doctor[widget._index].name;
@@ -517,67 +518,97 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           .collection('users')
                                           .doc(uid)
                                           .get()
-                                          .then((value) {
+                                          .then((value) async {
                                         if (value.data() != null) {
-                                            // void removeProduct(Product product) {
-  //   if (_products.containsKey(product) && _products[product] == 1) {
-  //     _products.removeWhere((key, value) => key == product);
-  //   } else {
-  //     _products[product] -= 1;
-  //   }
-  // }
-                                          if (pname != null &&
-                                              // description != null &&
-                                              widget._selectedValue != null) {
-                                            db.collection('appointments').add({
-                                              'patient': pname,
-                                              'patient_id': uid,
-                                              'doctor': _selected_doc,
-                                              'price': doctorController
-                                                  .doctor[widget._index].price,
-                                              'day': widget._selectedValue
-                                                  .toString(),
-                                              // 'disease': description,
-                                              'status': 'pending',
-                                              'timestamp':
-                                                  FieldValue.serverTimestamp(),
-                                              'time': time.toString(),
-                                            }).then((value) {
-                                              print(value.id);
+                                          // void removeProduct(Product product) {
+                                          //   if (_products.containsKey(product) && _products[product] == 1) {
+                                          //     _products.removeWhere((key, value) => key == product);
+                                          //   } else {
+                                          //     _products[product] -= 1;
+                                          //   }
+                                          // }
+                                          final QuerySnapshot result =
+                                              await checkapps
+                                                  .collection('appointments')
+                                                  .where('doctor_id',
+                                                      isEqualTo:
+                                                          doctorController
+                                                              .doctor[
+                                                                  widget._index]
+                                                              .id)
+                                                  .where('patient_id',
+                                                      isEqualTo: uid)
+                                                  .get();
+                                          final List<DocumentSnapshot>
+                                              document = result.docs;
+                                          if (document.isEmpty) {
+                                            if (pname != null &&
+                                                // description != null &&
+                                                widget._selectedValue != null) {
                                               db
-                                                  .collection('users')
-                                                  .doc(uid)
-                                                  .update({
-                                                'appointments':
-                                                    FieldValue.arrayUnion(
-                                                        [value]),
-                                                'doctorname':
-                                                    FieldValue.arrayUnion(
-                                                        [_selected_doc]),
-                                                // 'patientname':
-                                                //     FieldValue.arrayUnion(
-                                                //         [pname]),
-                                                'day': FieldValue.arrayUnion([
-                                                  widget._selectedValue
-                                                      .toString()
-                                                ]),
+                                                  .collection('appointments')
+                                                  .add({
+                                                'patient': pname,
+                                                'patient_id': uid,
+                                                'doctor': _selected_doc,
+                                                'doctor_id': doctorController
+                                                    .doctor[widget._index].id,
+                                                'price': doctorController
+                                                    .doctor[widget._index]
+                                                    .price,
+                                                'day': widget._selectedValue
+                                                    .toString(),
+                                                // 'disease': description,
+                                                'status': 'pending',
+                                                'timestamp': FieldValue
+                                                    .serverTimestamp(),
+                                                'time': time.toString(),
                                               }).then((value) {
-                                                print('success');
-                                                Get.snackbar(
-                                                  "Appointment created successfully",
-                                                  "You have made an appointment with Dr.${doctorController.doctor[widget._index].name} Successfully",
-                                                  backgroundColor: whitegrayish,
-                                                  snackPosition:
-                                                      SnackPosition.BOTTOM,
-                                                  duration:
-                                                      Duration(seconds: 2),
-                                                );
+                                                print(value.id);
+                                                db
+                                                    .collection('users')
+                                                    .doc(uid)
+                                                    .update({
+                                                  'appointments':
+                                                      FieldValue.arrayUnion(
+                                                          [value]),
+                                                  'doctorname':
+                                                      FieldValue.arrayUnion(
+                                                          [_selected_doc]),
+                                                  // 'patientname':
+                                                  //     FieldValue.arrayUnion(
+                                                  //         [pname]),
+                                                  'day': FieldValue.arrayUnion([
+                                                    widget._selectedValue
+                                                        .toString()
+                                                  ]),
+                                                }).then((value) {
+                                                  print('success');
+                                                  Get.snackbar(
+                                                    "Appointment created successfully",
+                                                    "You have made an appointment with Dr.${doctorController.doctor[widget._index].name} Successfully",
+                                                    backgroundColor:
+                                                        whitegrayish,
+                                                    snackPosition:
+                                                        SnackPosition.BOTTOM,
+                                                    duration:
+                                                        Duration(seconds: 2),
+                                                  );
+                                                }).catchError(
+                                                        (e) => setState(() {
+                                                              _msg = e.message;
+                                                            }));
                                               }).catchError((e) => setState(() {
                                                         _msg = e.message;
                                                       }));
-                                            }).catchError((e) => setState(() {
-                                                  _msg = e.message;
-                                                }));
+                                            }
+                                          } else {
+                                            Get.snackbar("Error!",
+                                                "You already booked, Sorry it's Not Avialable to book again",
+                                                backgroundColor: Colors.red,
+                                                snackPosition:
+                                                    SnackPosition.TOP,
+                                                colorText: Colors.white);
                                           }
                                         } else {
                                           print('Fields can\'t be empty');

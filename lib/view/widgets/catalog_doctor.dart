@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medica/doctor/doctor_profile.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/screens/chat_page.dart';
 import 'package:medica/view/widgets/constance.dart';
@@ -59,7 +58,7 @@ class CatalogDoctorCard extends StatelessWidget {
       ),
       child: TextButton(
           onPressed: () {
-            Get.to(DoctorProfile.index(index));
+            Get.to(() => DoctorProfile.index(index));
           },
           style: TextButton.styleFrom(
               // alignment: Alignment.centerLeft,
