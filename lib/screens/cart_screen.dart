@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
         return true;
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false, 
         body: Stack(
           alignment: Alignment.center,
           children: [
