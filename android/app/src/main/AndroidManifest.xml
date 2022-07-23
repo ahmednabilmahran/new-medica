@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.medica">
+    package="com.example.medica"
+        xmlns:tools="http://schemas.android.com/tools" >
+
 
 <uses-permission android:name = "android.permission.CAMERA"/>
 <uses-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -10,7 +12,8 @@
    <application
         android:label="medica"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:label,android:name">
             <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyBMELkBGS_hG0QpjXioNhgwt7Ym0qBO3BQ"/>
         <activity

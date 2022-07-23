@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fawry_pay/flutter_fawry_pay.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/myAppointments.dart';
@@ -9,8 +12,6 @@ import 'package:medica/view/widgets/cart_products.dart';
 import 'package:medica/view/widgets/cart_total.dart';
 import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/custom_text.dart';
-import 'package:medica/view/widgets/payment_service.dart';
-import 'package:stripe_payment/stripe_payment.dart';
 
 import '../controllers/cart_controller.dart';
 import '../patient/patient_home.dart';
@@ -31,8 +32,7 @@ class _CartScreenState extends State<CartScreen> {
   bool _isInitCardToken = false;
   bool _reset = false;
   String _text = "";
-  PaymentMethod? paymentMethod;
-   late StreamSubscription _fawryCallbackResultStream;
+  late StreamSubscription _fawryCallbackResultStream;
 
   @override
   void initState() {
@@ -45,7 +45,8 @@ class _CartScreenState extends State<CartScreen> {
     super.dispose();
     _fawryCallbackResultStream.cancel();
   }
-Future<void> initFawryPay() async {
+
+  Future<void> initFawryPay() async {
     try {
       String merchantID = '1tSa6uxz2nRbgY+b+cZGyA==';
       _isFawryPayInit = await FlutterFawryPay.instance.init(
@@ -75,6 +76,7 @@ Future<void> initFawryPay() async {
       print(ex);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -300,8 +302,51 @@ Future<void> initFawryPay() async {
                                         size.height * 0.062,
                                       )),
                                   onPressed: () async {
-                                    paymentMethod = await PaymentService()
-                                        .createPaymentMethod();
+                                    _isInitPayment = await FlutterFawryPay
+                                        .instance
+                                        .initialize(
+                                      returnUrl:
+                                          "test.com", // For Web use only.
+                                      items: [
+                                        FawryItem(
+                                            sku: "1",
+                                            description: "Item 1",
+                                            qty: 1,
+                                            price: 20.0),
+                                      ],
+                                      customParam: {
+                                        "order_id": "123213",
+                                        "price": 231.0,
+                                      },
+                                    );
+                                    setState(() {
+                                      if (_isInitPayment) {
+                                        _isInitCardToken = false;
+                                      }
+                                    });
+                                    _isInitCardToken = await FlutterFawryPay
+                                        .instance
+                                        .initializeCardTokenizer(
+                                      customerMobile: "01234567890",
+                                      customerEmail: "abc@test.com",
+                                      customParam: {
+                                        "order_id": "123213",
+                                        "price": 231.0,
+                                      },
+                                    );
+                                    setState(() {
+                                      if (_isInitCardToken) {
+                                        _isInitPayment = false;
+                                      }
+                                    });
+                                    _reset =
+                                        await FlutterFawryPay.instance.reset();
+                                    setState(() {
+                                      if (_reset) {
+                                        _isInitPayment = false;
+                                        _isInitCardToken = false;
+                                      }
+                                    });
                                   },
                                   child: CustomText(
                                     text: 'PROCEED TO CHECKOUT',
