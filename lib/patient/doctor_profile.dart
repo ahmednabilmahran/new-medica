@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fawry_pay/flutter_fawry_pay.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/patient/appointment_time.dart';
@@ -74,6 +77,13 @@ class DoctorProfile extends StatefulWidget {
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
+  bool _isFawryPayInit = false;
+  bool _isInitPayment = false;
+  bool _isInitCardToken = false;
+  bool _reset = false;
+  String _text = "";
+  late StreamSubscription _fawryCallbackResultStream;
+
   @override
   Widget build(BuildContext context) {
     final doctorController = Get.put(DoctorController());
@@ -510,7 +520,44 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               child: Column(
                                 children: [
                                   TextButton(
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      // _isInitPayment = await FlutterFawryPay
+                                      //     .instance
+                                      //     .initialize(
+                                      //   // returnUrl:
+                                      //   // "test.com", // For Web use only.
+                                      //   items: [
+                                      //     FawryItem(
+                                      //         sku: "1",
+                                      //         description: "Item 1",
+                                      //         qty: 1,
+                                      //         price: double.parse(
+                                      //             doctorController
+                                      //                 .doctor[widget._index]
+                                      //                 .price)),
+                                      //   ],
+                                      //   customParam: {
+                                      //     "order_id": "123213",
+                                      //     "price": 231.0,
+                                      //   },
+                                      // );
+                                      // setState(() {
+                                      //   if (_isInitPayment) {
+                                      //     _isInitCardToken = false;
+                                      //   }
+                                      // });
+
+                                      // setState(() {
+                                      //   if (_isInitCardToken) {
+                                      //     _isInitPayment = false;
+                                      //   }
+                                      // });
+                                      // FawryResponse response =
+                                      //     await FlutterFawryPay.instance
+                                      //         .startProcess();
+                                      // setState(() {
+                                      //   _text = "Your result: $response";
+                                      // });
                                       final user =
                                           FirebaseAuth.instance.currentUser;
                                       var uid = user?.uid;
@@ -614,6 +661,43 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           print('Fields can\'t be empty');
                                         }
                                       }).catchError((e) => print(e.toString()));
+                                      _isInitPayment = await FlutterFawryPay
+                                          .instance
+                                          .initialize(
+                                        // returnUrl:
+                                        // "test.com", // For Web use only.
+                                        items: [
+                                          FawryItem(
+                                              sku: "1",
+                                              description: "Item 1",
+                                              qty: 1,
+                                              price: double.parse(
+                                                  doctorController
+                                                      .doctor[widget._index]
+                                                      .price)),
+                                        ],
+                                        customParam: {
+                                          "order_id": "123213",
+                                          "price": 231.0,
+                                        },
+                                      );
+                                      setState(() {
+                                        if (_isInitPayment) {
+                                          _isInitCardToken = false;
+                                        }
+                                      });
+
+                                      setState(() {
+                                        if (_isInitCardToken) {
+                                          _isInitPayment = false;
+                                        }
+                                      });
+                                      FawryResponse response =
+                                          await FlutterFawryPay.instance
+                                              .startProcess();
+                                      setState(() {
+                                        _text = "Your result: $response";
+                                      });
                                     },
                                     style: TextButton.styleFrom(
                                       shape: RoundedRectangleBorder(
