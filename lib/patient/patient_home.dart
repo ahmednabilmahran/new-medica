@@ -51,28 +51,18 @@ class _patient_homeState extends State<patient_home> {
     Depts(
       deptName: 'Cardio',
       icon: 'assets/images/depts/Cardio.png',
-      onPressed: () {
-        Get.to(() => patient_find());
-      },
     ),
     Depts(
       deptName: 'Biochem',
       icon: 'assets/images/depts/BioChem.png',
-      onPressed: () {
-        Get.to(() => patient_symptoms());
-      },
     ),
     Depts(
       deptName: 'Research',
       icon: 'assets/images/depts/Research.png',
-      onPressed: () {
-        Get.to(() => patient_book());
-      },
     ),
     Depts(
       deptName: 'Neurology',
       icon: 'assets/images/depts/Neurology.png',
-      onPressed: () {},
     ),
   ];
 
@@ -283,7 +273,7 @@ class _patient_homeState extends State<patient_home> {
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
                           CustomText(
-                            text: 'Departments',
+                            text: 'Available Departments',
                             textStyle: TextStyle(
                                 color: primaryColor,
                                 fontSize: 18,
@@ -305,10 +295,6 @@ class _patient_homeState extends State<patient_home> {
                             depts[0],
                             depts[1],
                             depts[2],
-                            depts[3],
-                            depts[3],
-                            depts[3],
-                            depts[3],
                             depts[3],
                           ]),
                         ),
@@ -480,6 +466,7 @@ class _patient_homeState extends State<patient_home> {
                                       size.width * 0.38, size.height * 0.215),
                                 ),
                                 onPressed: () {
+                                  sorted = 0;
                                   Get.to(() => patient_find());
                                 },
                                 child: Column(

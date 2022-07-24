@@ -6,13 +6,12 @@ import 'custom_text.dart';
 class Depts extends StatelessWidget {
   final String deptName;
   final String icon;
-  final Function onPressed;
 
   const Depts({
     Key? key,
     required this.deptName,
     required this.icon,
-    required this.onPressed}) : super(key: key);
+}) : super(key: key);
 
 
 
@@ -25,7 +24,6 @@ class Depts extends StatelessWidget {
       ),
       child: ElevatedButton(
           onPressed: () {
-            onPressed();
           },
           style: TextButton.styleFrom(
               padding: EdgeInsets.all(0),

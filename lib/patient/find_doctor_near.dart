@@ -121,7 +121,7 @@ class _patient_findState extends State<patient_find> {
     return WillPopScope(
       onWillPop: () async {
         // Get.to(loginAs());
-        Get.to(() => patient_home());
+        Get.off(() => patient_home());
         return true;
       },
       child: Scaffold(
@@ -156,7 +156,7 @@ class _patient_findState extends State<patient_find> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(() => MyAppointments());
+                                  Get.off(() => MyAppointments());
                                 },
                                 child: SvgPicture.asset(
                                   'assets/images/appointment.svg',
@@ -242,16 +242,8 @@ class _patient_findState extends State<patient_find> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.08,
-                        top: size.height * 0.02,
-                      ),
-                      // margin: EdgeInsets.only(right: size.width * 0.02),
-                      child: docCat(),
-                    ),
                     SizedBox(
-                      height: size.height * 0.01,
+                      height: size.height * 0.001,
                     ),
                     Container(
                       padding: EdgeInsets.only(
@@ -259,7 +251,7 @@ class _patient_findState extends State<patient_find> {
                         right: size.width * 0.08,
                         // top: size.height * 0.05,
                       ),
-                      height: size.height * 0.62,
+                      height: size.height * 0.70,
                       width: double.infinity,
                       child: CatalogDoctor(),
                     ),
@@ -285,7 +277,7 @@ class _patient_findState extends State<patient_find> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Get.to(() => patient_home());
+                                Get.off(() => patient_home());
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -304,7 +296,7 @@ class _patient_findState extends State<patient_find> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.to(() => patient_book());
+                                Get.off(() => patient_book());
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -325,7 +317,7 @@ class _patient_findState extends State<patient_find> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.to(() => HomePage());
+                                Get.off(() => HomePage());
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -346,7 +338,7 @@ class _patient_findState extends State<patient_find> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.to(() => patient_profile());
+                                Get.off(() => patient_profile());
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

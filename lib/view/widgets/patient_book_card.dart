@@ -10,6 +10,7 @@ class patientAppointmentCard extends StatelessWidget {
   String description;
   String imageaddress;
   BoxFit imageFit;
+  final Function onPressed;
   patientAppointmentCard({
     Key? key,
     required this.speciality,
@@ -17,6 +18,7 @@ class patientAppointmentCard extends StatelessWidget {
     required this.description,
     this.imageaddress = 'assets/images/logo.png',
     this.imageFit = BoxFit.fitHeight,
+    required this.onPressed
   }) : super(key: key);
 
   @override
@@ -46,7 +48,9 @@ class patientAppointmentCard extends StatelessWidget {
               minimumSize: Size(size.width * 0.393, size.height * 0.25),
               maximumSize: Size(size.width * 0.393, size.height * 0.25),
               padding: EdgeInsets.all(8)),
-          onPressed: () {},
+          onPressed: () {
+            onPressed();
+          },
           child: Column(
             children: [
               Container(

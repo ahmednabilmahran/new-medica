@@ -19,3 +19,4 @@ const k_dockeepMeLoggedIn = 'docKeepMeLoggedIn';
 String current_user = patient_home() as String;
 String time = '00:00';
 String dept = "Audiology";
+int sorted = 0;

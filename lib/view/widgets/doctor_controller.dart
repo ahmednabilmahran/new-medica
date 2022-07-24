@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 // import 'package:./doctorfirebasetest/doctor_model.dart';
 import 'package:medica/services/firestore_db.dart';
+import 'package:medica/view/widgets/constance.dart';
 import 'package:medica/view/widgets/doctor_model.dart';
 
 class DoctorController extends GetxController {
@@ -9,7 +10,12 @@ class DoctorController extends GetxController {
 
   @override
   void onInit() {
-    doctor.bindStream(FirestoreDB().getAllDoctors());
-    super.onInit();
+    if (sorted == 0) {
+      doctor.bindStream(FirestoreDB().getAllDoctors());
+      super.onInit();
+    } else {
+      doctor.bindStream(FirestoreDB().getSortedDoctors());
+      super.onInit();
+    }
   }
 }

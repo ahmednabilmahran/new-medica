@@ -22,6 +22,16 @@ class FirestoreDB {
     return _firebaseFirestore
         .collection('doctors')
         .orderBy('displayName')
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) => Doctor.fromSnapshot(doc)).toList();
+    });
+  }
+
+    Stream<List<Doctor>> getSortedDoctors() {
+    return _firebaseFirestore
+        .collection('doctors')
+        .orderBy('displayName')
         .where('speciality', isEqualTo: dept)
         .snapshots()
         .map((snapshot) {

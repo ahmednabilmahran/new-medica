@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_home.dart';
 import 'package:medica/patient/patient_profile.dart';
@@ -29,28 +30,52 @@ class patient_book extends StatelessWidget {
   List book = [
     patientAppointmentCard(
       speciality: 'Cardio',
-      numberOfDoctor: '20 ',
+      numberOfDoctor: '1 ',
       description: 'Affecting on the heart and blood vessels...',
       imageaddress: 'assets/images/consult/cardio.jpg',
+      onPressed: () {
+        sorted = 1;
+        dept = 'Cardio';
+        Get.to(() => patient_find());
+        // sorted = 0;
+      },
     ),
     patientAppointmentCard(
-        speciality: 'Biochem',
-        numberOfDoctor: '20 ',
-        description: 'Diseases affect the biochemical processes...',
-        imageaddress: 'assets/images/consult/biochem.jpg',
-        ),
+      speciality: 'Biochem',
+      numberOfDoctor: '1 ',
+      description: 'Diseases affect the biochemical processes...',
+      imageaddress: 'assets/images/consult/biochem.jpg',
+      onPressed: () {
+        sorted = 1;
+        dept = 'Audiology';
+        Get.to(() => patient_find());
+        // sorted = 0;
+      },
+    ),
     patientAppointmentCard(
-        speciality: 'Research',
-        numberOfDoctor: '20 ',
-        description: 'Get reliable results with our system...',
-        imageaddress: 'assets/images/consult/research.jpg',
-        ),
+      speciality: 'Research',
+      numberOfDoctor: '1 ',
+      description: 'Get reliable results with our system...',
+      imageaddress: 'assets/images/consult/research.jpg',
+      onPressed: () {
+        sorted = 1;
+        dept = 'Research';
+        Get.to(() => patient_find());
+        // sorted = 0;
+      },
+    ),
     patientAppointmentCard(
-        speciality: 'Neurology',
-        numberOfDoctor: '20 ',
-        description: 'Disorders that affect the brain...',
-        imageaddress: 'assets/images/consult/neurology.jpg',
-        ),
+      speciality: 'Neurology',
+      numberOfDoctor: '1 ',
+      description: 'Disorders that affect the brain...',
+      imageaddress: 'assets/images/consult/neurology.jpg',
+      onPressed: () {
+        sorted = 1;
+        dept = 'Neurology';
+        Get.to(() => patient_find());
+        // sorted = 0;
+      },
+    ),
   ];
 
   // final numbers = List.generate(100, (index) => '$index');
