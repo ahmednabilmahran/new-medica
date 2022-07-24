@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:medica/Covid19Detector.dart';
 import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
+import 'package:medica/patient/instructions.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_getstarted.dart';
@@ -328,7 +329,7 @@ class _patient_homeState extends State<patient_home> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)))),
                           onPressed: () {
-                            Get.to(() => Covid19Detector());
+                            Get.to(() => instructions());
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
