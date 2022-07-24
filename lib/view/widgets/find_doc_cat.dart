@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:medica/view/widgets/doctor_controller.dart';
 
 import 'constance.dart';
 import 'custom_text.dart';
@@ -25,17 +27,16 @@ class docCat extends StatefulWidget {
 }
 
 class _docCatState extends State<docCat> {
+  final doctorController = Get.put(DoctorController());
+
   int selectedIndex = 0;
   final List<String> categories = [
     "Cardio",
     "Biochem",
     "Research",
-    "Dentistry",
-    "Neurology",
-    "Neurology",
-    "Neurology",
+    // "Dentistry",
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -45,6 +46,8 @@ class _docCatState extends State<docCat> {
     Color unSelectedColor = primaryColor;
     Color? color;
     Color? bgColor;
+    final doctorController = Get.put(DoctorController());
+
     // setState(() {
     //   if (widget.isActiv) {
     //     color = selectedColor;
@@ -60,7 +63,7 @@ class _docCatState extends State<docCat> {
         height: size.height * 0.06,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
+          itemCount: doctorController.doctor.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               margin: EdgeInsets.only(right: size.width * 0.02),
@@ -78,13 +81,14 @@ class _docCatState extends State<docCat> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
+                      
                     });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomText(
-                        text: categories[index],
+                        text: doctorController.doctor[index].speciality,
                         textStyle: TextStyle(
                             color: index == selectedIndex
                                 ? selectedColor
