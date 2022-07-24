@@ -453,7 +453,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           deactivatedColor: Colors.white,
                                           dayTextStyle: TextStyle(
                                             color: Color(0xffFF8F6A),
-                                          ),
+                                          ),  
                                           onDateChange: (date) {
                                             // New date selected
                                             setState(() {

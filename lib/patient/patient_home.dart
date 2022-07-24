@@ -565,7 +565,9 @@ class _patient_homeState extends State<patient_home> {
                                   maximumSize: Size(
                                       size.width * 0.38, size.height * 0.215),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => HomePage());
+                                },
                                 child: Column(
                                   children: [
                                     Stack(
@@ -578,13 +580,15 @@ class _patient_homeState extends State<patient_home> {
                                           decoration: BoxDecoration(
                                               // color: Colors.amber,
                                               image: DecorationImage(
-                                                  fit: BoxFit.fitHeight,
+                                                  fit: BoxFit.fitWidth,
                                                   image: AssetImage(
-                                                      'assets/images/onlineConsult.jpg')),
+                                                      'assets/images/Live_Chat.jpg')),
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                         ),
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             Container(
                                               child: Column(
@@ -592,7 +596,10 @@ class _patient_homeState extends State<patient_home> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   SvgPicture.asset(
-                                                      'assets/images/video.svg')
+                                                      'assets/images/message-circleNavBarHome.svg',
+                                                      color: Color(0xffFE9270),
+                                                      height:
+                                                          size.height * 0.02)
                                                 ],
                                               ),
                                               height: 30,
@@ -626,10 +633,11 @@ class _patient_homeState extends State<patient_home> {
                                         ),
                                       ],
                                     ),
-                                    Row(
+                                    Wrap(
                                       children: [
                                         CustomText(
-                                          text: 'Calling your doctor',
+                                          textAlign: TextAlign.left,
+                                          text: 'Chatting with your doctor',
                                           textStyle: TextStyle(
                                               fontSize: 12,
                                               fontFamily: 'Inter',
