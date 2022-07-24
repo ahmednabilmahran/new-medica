@@ -79,6 +79,8 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // double total = double.parse(controller.total);
+    // double total = 150;
     final Size size = MediaQuery.of(context).size;
     final user = FirebaseAuth.instance.currentUser;
     dynamic email = '';
@@ -302,17 +304,20 @@ class _CartScreenState extends State<CartScreen> {
                                         size.height * 0.062,
                                       )),
                                   onPressed: () async {
+                                    // print(50);
+                                    // double total = controller.total;
                                     _isInitPayment = await FlutterFawryPay
                                         .instance
                                         .initialize(
-                                      returnUrl:
-                                          "test.com", // For Web use only.
+                                      // returnUrl:
+                                      // "test.com", // For Web use only.
                                       items: [
                                         FawryItem(
                                             sku: "1",
                                             description: "Item 1",
                                             qty: 1,
-                                            price: 20.0),
+                                            price:
+                                                double.parse(controller.total)),
                                       ],
                                       customParam: {
                                         "order_id": "123213",
@@ -324,16 +329,7 @@ class _CartScreenState extends State<CartScreen> {
                                         _isInitCardToken = false;
                                       }
                                     });
-                                    _isInitCardToken = await FlutterFawryPay
-                                        .instance
-                                        .initializeCardTokenizer(
-                                      customerMobile: "01234567890",
-                                      customerEmail: "abc@test.com",
-                                      customParam: {
-                                        "order_id": "123213",
-                                        "price": 231.0,
-                                      },
-                                    );
+
                                     setState(() {
                                       if (_isInitCardToken) {
                                         _isInitPayment = false;

@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:medica/Covid19Detector.dart';
 import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
+import 'package:medica/patient/instructions.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
 import 'package:medica/patient/patient_getstarted.dart';
@@ -328,7 +329,7 @@ class _patient_homeState extends State<patient_home> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)))),
                           onPressed: () {
-                            Get.to(() => Covid19Detector());
+                            Get.to(() => instructions());
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -564,7 +565,9 @@ class _patient_homeState extends State<patient_home> {
                                   maximumSize: Size(
                                       size.width * 0.38, size.height * 0.215),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => HomePage());
+                                },
                                 child: Column(
                                   children: [
                                     Stack(
@@ -577,13 +580,15 @@ class _patient_homeState extends State<patient_home> {
                                           decoration: BoxDecoration(
                                               // color: Colors.amber,
                                               image: DecorationImage(
-                                                  fit: BoxFit.fitHeight,
+                                                  fit: BoxFit.fitWidth,
                                                   image: AssetImage(
-                                                      'assets/images/onlineConsult.jpg')),
+                                                      'assets/images/Live_Chat.jpg')),
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                         ),
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             Container(
                                               child: Column(
@@ -591,7 +596,10 @@ class _patient_homeState extends State<patient_home> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   SvgPicture.asset(
-                                                      'assets/images/video.svg')
+                                                      'assets/images/message-circleNavBarHome.svg',
+                                                      color: Color(0xffFE9270),
+                                                      height:
+                                                          size.height * 0.02)
                                                 ],
                                               ),
                                               height: 30,
@@ -625,10 +633,11 @@ class _patient_homeState extends State<patient_home> {
                                         ),
                                       ],
                                     ),
-                                    Row(
+                                    Wrap(
                                       children: [
                                         CustomText(
-                                          text: 'Calling your doctor',
+                                          textAlign: TextAlign.left,
+                                          text: 'Chatting with your doctor',
                                           textStyle: TextStyle(
                                               fontSize: 12,
                                               fontFamily: 'Inter',
