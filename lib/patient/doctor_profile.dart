@@ -447,6 +447,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                           DateTime.now(),
                                           initialSelectedDate: DateTime.now(),
                                           daysCount: 7,
+                                          height: size.height * 0.1,
                                           selectionColor: secondaryColor,
                                           selectedTextColor: Colors.white,
                                           deactivatedColor: Colors.white,
