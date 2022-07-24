@@ -81,7 +81,12 @@ class _docCatState extends State<docCat> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
-                      
+// <<<<<<< HEAD
+
+                      print(categories[index]);
+                      dept = categories[index];
+                      print(dept);
+// >>>>>>> a4841f7199955bae4f4522106678c32aeca206bf
                     });
                   },
                   child: Row(

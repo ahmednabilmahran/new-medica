@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'doctor_model'
 import 'package:medica/models/product_model.dart';
+import 'package:medica/view/widgets/constance.dart';
 
 import '../view/widgets/doctor_model.dart';
 
@@ -21,6 +22,7 @@ class FirestoreDB {
     return _firebaseFirestore
         .collection('doctors')
         .orderBy('displayName')
+        .where('speciality', isEqualTo: dept)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Doctor.fromSnapshot(doc)).toList();
