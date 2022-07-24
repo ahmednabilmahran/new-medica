@@ -630,6 +630,28 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                                     widget._selectedValue
                                                         .toString()
                                                   ]),
+                                                });
+                                                db
+                                                    .collection('doctors')
+                                                    .doc(doctorController
+                                                        .doctor[widget._index]
+                                                        .id)
+                                                    .update({
+                                                  'appointments':
+                                                      FieldValue.arrayUnion(
+                                                          [value]),
+                                                  'patientname':
+                                                      FieldValue.arrayUnion(
+                                                          [user?.displayName]),
+                                                  // 'patientname':
+                                                  //     FieldValue.arrayUnion(
+                                                  //         [pname]),
+                                                  'day': FieldValue.arrayUnion([
+                                                    widget._selectedValue
+                                                        .toString()
+                                                  ]),
+                                                }).then((value) {
+                                                  {}
                                                 }).then((value) {
                                                   print('success');
                                                   Get.snackbar(
