@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/patient/patient_book.dart';
@@ -76,19 +77,38 @@ class patient_profiledata extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset(
-                        'assets/images/appointment.svg',
-                        width: 25,
-                        height: 25,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => MyAppointments());
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/appointment.svg',
+                          width: 25,
+                          height: 25,
+                          color: Colors.white,
+                        ),
                       ),
-                      CustomText(
-                        text: name,
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600),
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                                margin:
+                                    EdgeInsets.only(right: size.width * 0.03),
+                                child: picture != ''
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(picture))
+                                    : CircleAvatar(
+                                        backgroundColor: Colors.green)),
+                            CustomText(
+                              text: name,
+                              textStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
                       ),
                       Image.asset('assets/images/Notify.png')
                     ],
