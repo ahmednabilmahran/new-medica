@@ -35,7 +35,7 @@ class _docCatState extends State<docCat> {
     "Neurology",
     "Neurology",
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -78,6 +78,9 @@ class _docCatState extends State<docCat> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
+                      print(categories[index]);
+                      dept = categories[index];
+                      print(dept);
                     });
                   },
                   child: Row(
