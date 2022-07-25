@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/myAppointments.dart';
-import 'package:medica/patient/Rosheta.dart';
 import 'package:medica/patient/aboutus.dart';
 import 'package:medica/patient/find_doctor_near.dart';
 import 'package:medica/patient/patient_login.dart';
@@ -232,49 +231,6 @@ class patient_profile extends StatelessWidget {
                               ],
                             ),
                           )),
-                      // SizedBox(height: size.height * 0.02),
-                      // TextButton(
-                      //     style: TextButton.styleFrom(
-                      //       maximumSize:
-                      //           Size(double.infinity, size.height * 0.070),
-                      //       minimumSize:
-                      //           Size(double.infinity, size.height * 0.070),
-                      //       backgroundColor: Colors.white,
-                      //       shape: RoundedRectangleBorder(
-                      //           //    side:
-                      //           // BorderSide(
-                      //           //   color: Colors.grey,
-                      //           //   width: 1,
-                      //           //   style: BorderStyle.solid
-                      //           //   ),
-                      //           borderRadius: BorderRadius.circular(40)),
-                      //     ),
-                      //     onPressed: () {
-                      //       Get.to(() => rosheta());
-                      //     },
-                      //     child: Padding(
-                      //       padding: EdgeInsets.symmetric(
-                      //           horizontal: size.width * 0.02),
-                      //       child: Row(
-                      //         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //         children: [
-                      //           SvgPicture.asset(
-                      //               'assets/images/information-svgrepo-com.svg'),
-                      //           SizedBox(width: size.width * 0.04),
-                      //           CustomText(
-                      //             text: 'Rosheta',
-                      //             textStyle: TextStyle(
-                      //                 color: Colors.black87,
-                      //                 fontFamily: 'Inter',
-                      //                 fontWeight: FontWeight.w400,
-                      //                 fontSize: 16),
-                      //           ),
-                      //           SizedBox(width: size.width * 0.43),
-                      //           SvgPicture.asset(
-                      //               'assets/images/chevron-right.svg'),
-                      //         ],
-                      //       ),
-                      //     )),
                       SizedBox(height: size.height * 0.02),
                       TextButton(
                           style: TextButton.styleFrom(
