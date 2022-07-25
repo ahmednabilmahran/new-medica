@@ -131,6 +131,12 @@ class AuthProvider extends ChangeNotifier {
     Get.offAll(() => patient_getstarted());
   }
 
+  Future<void> regularSignOut() async {
+    _status = Status.uninitialized;
+    await firebaseAuth.signOut();
+    prefs.setBool(k_keepMeLoggedIn, false);
+    Get.offAll(() => patient_getstarted());
+  }
   Future<User?> registerUsingEmailPassword({
     required String name,
     required String email,

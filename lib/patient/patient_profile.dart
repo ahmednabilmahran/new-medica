@@ -337,7 +337,11 @@ class patient_profile extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(40)),
                           ),
                           onPressed: () {
-                            authProvider.googleSignOut();
+                            if (authProvider.isLoggedIn() == true) {
+                              authProvider.googleSignOut();
+                            } else {
+                              authProvider.regularSignOut();
+                            }
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
