@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medica/allConstants/firestore_constants.dart';
-import 'package:medica/doctor/doctor_home.dart';
 import 'package:medica/patient/patient_getstarted.dart';
 import 'package:medica/patient/patient_login.dart';
 import 'package:medica/view/widgets/constance.dart';

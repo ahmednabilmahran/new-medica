@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:medica/allConstants/all_constants.dart';
-import 'package:medica/doctor/doctor_profile.dart';
 import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/doctor_profile.dart';
 import 'package:medica/patient/patient_login.dart';

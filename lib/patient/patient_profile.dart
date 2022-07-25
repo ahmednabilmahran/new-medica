@@ -7,7 +7,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:medica/doctor/doctor_register.dart';
 import 'package:medica/myAppointments.dart';
 import 'package:medica/patient/Rosheta.dart';
 import 'package:medica/patient/aboutus.dart';
